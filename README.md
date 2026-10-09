@@ -10,15 +10,15 @@ The plugin bundles 28 skills and the hosted Seqera MCP server (`https://mcp.seqe
 In Claude Code:
 
 ```
-/plugin marketplace add seqeralabs/nextflow-claude-plugin
-/plugin install nextflow@nextflow-claude-plugin
+/plugin marketplace add seqeralabs/nextflow-plugin
+/plugin install nextflow@nextflow-plugin
 ```
 
 Or from a shell:
 
 ```bash
-claude plugin marketplace add seqeralabs/nextflow-claude-plugin
-claude plugin install nextflow@nextflow-claude-plugin
+claude plugin marketplace add seqeralabs/nextflow-plugin
+claude plugin install nextflow@nextflow-plugin
 ```
 
 Restart Claude Code after installing. The first time a Seqera tool is used, Claude Code opens
@@ -31,22 +31,22 @@ To make the plugin available to everyone working in a repository, add it to that
 ```json
 {
   "extraKnownMarketplaces": {
-    "nextflow-claude-plugin": {
-      "source": { "source": "github", "repo": "seqeralabs/nextflow-claude-plugin" }
+    "nextflow-plugin": {
+      "source": { "source": "github", "repo": "seqeralabs/nextflow-plugin" }
     }
   },
-  "enabledPlugins": { "nextflow@nextflow-claude-plugin": true }
+  "enabledPlugins": { "nextflow@nextflow-plugin": true }
 }
 ```
 
 ### Codex
 
 In the Codex app, open **Plugins → Add → Add plugin marketplace**, enter
-`seqeralabs/nextflow-claude-plugin` as the source and install **Nextflow**. Or from a shell:
+`seqeralabs/nextflow-plugin` as the source and install **Nextflow**. Or from a shell:
 
 ```bash
-codex plugin marketplace add seqeralabs/nextflow-claude-plugin
-codex plugin add nextflow@nextflow-claude-plugin
+codex plugin marketplace add seqeralabs/nextflow-plugin
+codex plugin add nextflow@nextflow-plugin
 ```
 
 The same repository serves both hosts: Codex reads the Claude marketplace and plugin layout,
@@ -104,5 +104,5 @@ To release, bump `VERSION` in `tools/import_package.py`, re-import, merge, then 
 claude plugin tag .
 ```
 
-Installed copies pick up the new version on `claude plugin update nextflow@nextflow-claude-plugin`,
+Installed copies pick up the new version on `claude plugin update nextflow@nextflow-plugin`,
 or automatically if the user has marketplace auto-update enabled.

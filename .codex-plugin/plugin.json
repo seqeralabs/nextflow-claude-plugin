@@ -6,8 +6,8 @@
     "name": "Seqera",
     "url": "https://seqera.io"
   },
-  "homepage": "https://github.com/seqeralabs/nextflow-claude-plugin",
-  "repository": "https://github.com/seqeralabs/nextflow-claude-plugin",
+  "homepage": "https://github.com/seqeralabs/nextflow-plugin",
+  "repository": "https://github.com/seqeralabs/nextflow-plugin",
   "license": "Apache-2.0",
   "keywords": [
     "nextflow",
@@ -34,6 +34,6 @@
     "longDescription": "Develop and troubleshoot Nextflow pipelines, migrate scripts and Snakemake workflows, create containers and schemas, run nf-core analyses, and manage Seqera workflows through the production MCP server.",
     "shortDescription": "Nextflow pipelines and Seqera",
     "capabilities": [],
-    "websiteURL": "https://github.com/seqeralabs/nextflow-claude-plugin"
+    "websiteURL": "https://github.com/seqeralabs/nextflow-plugin"
   }
 }

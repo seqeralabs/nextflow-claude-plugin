@@ -47,8 +47,8 @@ jobs:
           CLAUDE_CONFIG_DIR: ${{ runner.temp }}/claude
         run: |
           claude plugin marketplace add ./
-          claude plugin install nextflow@nextflow-claude-plugin
-          claude plugin details nextflow@nextflow-claude-plugin | tee details.txt
+          claude plugin install nextflow@nextflow-plugin
+          claude plugin details nextflow@nextflow-plugin | tee details.txt
           expected=$(ls skills | wc -l)
           grep -q "Skills (${expected})" details.txt
           grep -q "MCP servers (1)  seqera" details.txt
@@ -60,9 +60,9 @@ jobs:
           npm install -g "@openai/codex@${CODEX_VERSION}"
           mkdir -p "$CODEX_HOME"
           codex plugin marketplace add ./
-          codex plugin add nextflow@nextflow-claude-plugin
+          codex plugin add nextflow@nextflow-plugin
           codex plugin list | tee codex-plugins.txt
-          grep -q "nextflow@nextflow-claude-plugin  installed, enabled" codex-plugins.txt
+          grep -q "nextflow@nextflow-plugin  installed, enabled" codex-plugins.txt
           codex mcp list | tee codex-mcp.txt
           grep -q "seqera  https://mcp.seqera.io/mcp" codex-mcp.txt
           expected=$(ls skills | wc -l)

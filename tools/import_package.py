@@ -26,7 +26,7 @@ REPO = Path(__file__).resolve().parent.parent
 # (plugin.json, mcp.json, .codex-plugin/, README.md) is host-specific and regenerated here.
 CONTENT = ["skills", "scripts", "assets", "licenses", "sources.json"]
 
-REPOSITORY = "https://github.com/seqeralabs/nextflow-claude-plugin"
+REPOSITORY = "https://github.com/seqeralabs/nextflow-plugin"
 LICENSE = "Apache-2.0"
 
 # Seqera releases the portal-derived skill files bundled in this plugin under Apache-2.0
@@ -238,7 +238,7 @@ def main() -> None:
 
     write_json(REPO / ".claude-plugin" / "marketplace.json", {
         "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-        "name": "nextflow-claude-plugin",
+        "name": "nextflow-plugin",
         "owner": AUTHOR,
         "metadata": {"description": "Nextflow plugin for Claude Code"},
         "plugins": [{
