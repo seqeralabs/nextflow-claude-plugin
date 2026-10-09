@@ -313,4 +313,4 @@ When the user asks about Docker + scripts, follow this flow:
 - `create-container` — Wave/conda container provisioning
 - `create-workflow` — composing workflows from modules
 - `convert-python-script` — converting Python scripts to Nextflow processes
-- `nf-pipeline-structure` — understanding pipeline layout including shared helper commands
+- `nf-pipeline-design` — understanding pipeline layout including shared helper commands

@@ -495,4 +495,4 @@ void onFlowComplete(WorkflowMetadata meta) {
 
 - `nf-plugin-legacy-migration` — Convert legacy plugins to new registry format
 - `nextflow-config` — Configure plugins in nextflow.config
-- `nf-pipeline-structure` — Standard pipeline organization
+- `nf-pipeline-design` — Standard pipeline organization

@@ -5,8 +5,8 @@
       "path": "skills/audit-conversion-readiness/SKILL.md",
       "source": "portal/backend/src/skills/audit-conversion-readiness/SKILL.md",
       "source_sha256": "c03ff0e0755129fb718f8d7d45dec4b222661c9c5e3af91145deab166907de29",
-      "bundled_sha256": "84ee72862ea949a9b11a9485c872f36a433a07807a05f6b69e0478c1145bcacb",
-      "override": false
+      "bundled_sha256": "f11f5db7561c82f65d0b2f5470dfe44e2ab983bb6119bd157a4e4f0457a844df",
+      "override": true
     },
     {
       "path": "skills/audit-conversion-readiness/references/reference-patterns.md",
@@ -26,8 +26,8 @@
       "path": "skills/audit-conversion-readiness/references/tool-availability.md",
       "source": "portal/backend/src/skills/audit-conversion-readiness/references/tool-availability.md",
       "source_sha256": "be177bc6723e1612ed788436e0109560c1993345abb3ff1967da6c75c40e577b",
-      "bundled_sha256": "865df2736d1dea5b3cda663f9729c5a9cb93f31baebd955fb5e31f77473c0d18",
-      "override": false
+      "bundled_sha256": "4e7ff003fe93330f1c96315e93567033998e295ef7d2b086ecd9c7802407cedb",
+      "override": true
     },
     {
       "path": "skills/build-nextflow-pipeline/SKILL.md",
@@ -163,13 +163,6 @@
       "override": false
     },
     {
-      "path": "skills/enumerate-alternative-tools/SKILL.md",
-      "source": "portal/backend/src/skills/enumerate-alternative-tools/SKILL.md",
-      "source_sha256": "b9d6088591a28c09fd875425ddf2bae37d6cdbdc37ded7a37b171601ee03351d",
-      "bundled_sha256": "58e7f69ac274e558f2475f5de26d72e4e7f5f565293b2333e9c400ada6c933c8",
-      "override": false
-    },
-    {
       "path": "skills/find-alternative-tools/SKILL.md",
       "source": "portal/backend/src/skills/find-alternative-tools/SKILL.md",
       "source_sha256": "b3acbc1417255d5b26b9058d7b80fff92a1b732d218fd1b043e636fa26e223b1",
@@ -177,81 +170,11 @@
       "override": false
     },
     {
-      "path": "skills/generate-pipeline-docs/SKILL.md",
-      "source": "portal/backend/src/skills/generate-pipeline-docs/SKILL.md",
-      "source_sha256": "b132974beda02d23e9d13440270508db29f28d26e193b8a2e3b4eda336089df8",
-      "bundled_sha256": "ac5ac66e839bf9d1de7f29cfc7d926749038e2ecde56933e34b3ecd83930949a",
-      "override": false
-    },
-    {
-      "path": "skills/generate-pipeline-memory/SKILL.md",
-      "source": "portal/backend/src/skills/generate-pipeline-memory/SKILL.md",
-      "source_sha256": "af9e3e68453320f51495b74e52bf08414864655909c79c0ca43eebcaaca6713f",
-      "bundled_sha256": "97fd4f98f86086cfbf505e682a6010d0afbb1570d7a533de4f846d68a23bb3a5",
-      "override": false
-    },
-    {
-      "path": "skills/genomics-workflow-acceleration/SKILL.md",
-      "source": "portal/backend/src/skills/genomics-workflow-acceleration/SKILL.md",
-      "source_sha256": "e39653f98cf8e463aae79fa63446569cedfaaeb5ab29901030f4ecd5621236ea",
-      "bundled_sha256": "80071a6b7557d6b2dfb80d4c3019ecf16cd79dd40008587c5ccccdc2cc7abefd",
-      "override": false
-    },
-    {
-      "path": "skills/genomics-workflow-acceleration/references/comparison-checklist.md",
-      "source": "portal/backend/src/skills/genomics-workflow-acceleration/references/comparison-checklist.md",
-      "source_sha256": "ec71cab97f79b646cbecb44225fe1c519bf6b0fa68b556d8a3174465dddc0ec7",
-      "bundled_sha256": "a9a8baff5fa20b87f625fd138ba405e79e24bc9965376a0710b806e27a50ddf8",
-      "override": false
-    },
-    {
-      "path": "skills/genomics-workflow-acceleration/references/nf-core-parabricks-map.md",
-      "source": "portal/backend/src/skills/genomics-workflow-acceleration/references/nf-core-parabricks-map.md",
-      "source_sha256": "0e04ecffd2eaf31224ae232adcf095959bf901aa160de438fb8b4d1a3925785a",
-      "bundled_sha256": "de70cbc17f71de1e15ac69abed0f857c817e8bdee4bfa8cc0c91b0f15ff6dc4d",
-      "override": false
-    },
-    {
-      "path": "skills/genomics-workflow-acceleration/references/parabricks-runtime-readiness.md",
-      "source": "portal/backend/src/skills/genomics-workflow-acceleration/references/parabricks-runtime-readiness.md",
-      "source_sha256": "cc676678a44a4b239164a51da7a67a804b013410f5b3726fdee139ffa26a7f73",
-      "bundled_sha256": "a26e01a705e041d3a0471649d16da3bbaaf52bf4860e5821092173a6197cee2b",
-      "override": false
-    },
-    {
-      "path": "skills/genomics-workflow-acceleration/references/parabricks-tool-map.md",
-      "source": "portal/backend/src/skills/genomics-workflow-acceleration/references/parabricks-tool-map.md",
-      "source_sha256": "8e9fce58c786d14d5b36655ec3de980e154d9cd88b32df887e82578cba31aee1",
-      "bundled_sha256": "e9313fa4ccd0c1bcfedfee3eb39ddd6b56428f92b776e8f920102abe333f996d",
-      "override": false
-    },
-    {
-      "path": "skills/genomics-workflow-acceleration/references/step-consolidation.md",
-      "source": "portal/backend/src/skills/genomics-workflow-acceleration/references/step-consolidation.md",
-      "source_sha256": "af50bce29c29ee546b01351b441b4c74fa905fcb6cbdeac165cfd4d075b217e2",
-      "bundled_sha256": "d1f85b55d3ffe425b664026de823497ab32690130a2624f8a3cdcb1ede7f506e",
-      "override": false
-    },
-    {
-      "path": "skills/genomics-workflow-acceleration/references/workflow-frameworks.md",
-      "source": "portal/backend/src/skills/genomics-workflow-acceleration/references/workflow-frameworks.md",
-      "source_sha256": "cf34013f795b7f1b7d53a1f967ff6c7ea3ef70250f1ea9dcffaa6656f8c05890",
-      "bundled_sha256": "7fc65d06923489786dcd92568eeb430586438f43acb88b590d925fc9c9765208",
-      "override": false
-    },
-    {
-      "path": "skills/genomics-workflow-acceleration/references/workflow-layout.md",
-      "source": "portal/backend/src/skills/genomics-workflow-acceleration/references/workflow-layout.md",
-      "source_sha256": "116b01fd067c52e0842bdcae41f00a5475e2931dc4ebe133f7fc904af146cc40",
-      "bundled_sha256": "436caa5aace0a85e42b88f2bc8527ceba8b123ed274f304379129b6cc19a326f",
-      "override": false
-    },
-    {
       "path": "skills/maintain-nf-core-pipeline/SKILL.md",
       "source": "portal/backend/src/skills/maintain-nf-core-pipeline/SKILL.md",
       "source_sha256": "4ab1ec7a1ad95f4e622efe4e7f56eec650e70f6f62ebe087639be82d000c837c",
-      "bundled_sha256": "5e71dc56a0776194ef8d51ebd319a9ad57930fb848d0ec5fd1b936ca0591c978",
-      "override": false
+      "bundled_sha256": "e578f4533290689bac2aa24674ed321f4dc3e292d124cb16c1db14625f9e698e",
+      "override": true
     },
     {
       "path": "skills/maintain-nf-core-pipeline/references/nf-core-conventions.md",
@@ -387,13 +310,6 @@
       "override": false
     },
     {
-      "path": "skills/nf-aggregate/SKILL.md",
-      "source": "portal/backend/src/skills/nf-aggregate/SKILL.md",
-      "source_sha256": "5141e33b2f0938be0609664dbe45aaac52aa3dd8e2d4aaa5cfb8899d0da857de",
-      "bundled_sha256": "e52d9caacde88c46714fce856e07f7eafa15ecd04d151e8f52baab4dabc13fda",
-      "override": true
-    },
-    {
       "path": "skills/nf-data-lineage/SKILL.md",
       "source": "portal/backend/src/skills/nf-data-lineage/SKILL.md",
       "source_sha256": "81f88126cf85d2da22f03f7f5ae3c38256b63cccc5350cfc7348e55631ca92a7",
@@ -404,8 +320,8 @@
       "path": "skills/nf-docker-scripts/SKILL.md",
       "source": "portal/backend/src/skills/nf-docker-scripts/SKILL.md",
       "source_sha256": "867fbfd0d732efc9655df1e025e89a608f049bf2397b057a38fcfd1af266b249",
-      "bundled_sha256": "ef0699c6ecf08c616618a6baf047f55adfafafc57d25f74ab42dd0ebf6ba57a0",
-      "override": false
+      "bundled_sha256": "7174f3f76f853a5d0e11becb6e0b8795197113264c3f03ae5e9f3a5476e44f52",
+      "override": true
     },
     {
       "path": "skills/nf-docker-scripts/references/script-strategies-deep-dive.md",
@@ -418,8 +334,8 @@
       "path": "skills/nf-pipeline-design/SKILL.md",
       "source": "portal/backend/src/skills/nf-pipeline-design/SKILL.md",
       "source_sha256": "580d7f415a3a267fc2bd23da92848281b4cc32974a14c978b3395bdcfa6a4645",
-      "bundled_sha256": "43d4635258868faeb11e6cb1d8cf7087a847b38f0e058e5ca471fc432926809c",
-      "override": false
+      "bundled_sha256": "eeda041510141b7d6bb7df7f1231d77adc68d762bbd9a542811585c0fc2853fa",
+      "override": true
     },
     {
       "path": "skills/nf-pipeline-design/example_pipeline/conf/base.config",
@@ -590,18 +506,11 @@
       "override": false
     },
     {
-      "path": "skills/nf-pipeline-structure/SKILL.md",
-      "source": "portal/backend/src/skills/nf-pipeline-structure/SKILL.md",
-      "source_sha256": "de0db7a5017f4ccfa0db594bc945ffeab22d9090cedd799b1ffe0ccf1f431db6",
-      "bundled_sha256": "13b7371e35cd89924fd31ecdc6ef948cff64679042529a872233e4b04db0a1f4",
-      "override": false
-    },
-    {
       "path": "skills/nf-plugin-development/SKILL.md",
       "source": "portal/backend/src/skills/nf-plugin-development/SKILL.md",
       "source_sha256": "5a328e82652bbe4d0dfc3afdc3877379ce54e1fea7258b6bbf432692a31ee117",
-      "bundled_sha256": "2752a6c1d11ed9bd84c493e66c83f70c8b51288a81942f207fb7c665b5701235",
-      "override": false
+      "bundled_sha256": "56521e7530cbbc4511c28b6f5a97378b5b991d52fe0fe8d571bc51e4079f1fca",
+      "override": true
     },
     {
       "path": "skills/nf-plugin-legacy-migration/SKILL.md",
@@ -678,237 +587,6 @@
       "source": "portal/backend/src/skills/nf-v2-boolean-params/SKILL.md",
       "source_sha256": "8771e4330ea11d17aca403c9b2e3998152c5b5986a9da096daed20f1c8ba35c1",
       "bundled_sha256": "54f5cf9def8cc7dcdb3389805fb92990df5f826400c53d1e741dd08390ba6384",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/SKILL.md",
-      "source": "portal/backend/src/skills/parabricks/SKILL.md",
-      "source_sha256": "1396554300749ada2cfbea3a3589440fdfaf395b4ecd9c7e2269fca2eada7715",
-      "bundled_sha256": "d9724cb3a843428c1879bcb485912dbdad0fcba4e39d3b4d11bb720d50c8c6fe",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-applybqsr.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-applybqsr.md",
-      "source_sha256": "4297a973003613b5cf7113894068a4b38268d6f10456a27a5cb1737710b19c2b",
-      "bundled_sha256": "5b0d47ae44bcea0dbd5cb0219222373ce0d3a2fdea766c009f847d2bd407b1c7",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-bam2fq.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-bam2fq.md",
-      "source_sha256": "0b8e13247fab30d107c4921d1bd35966a25ef443fd819132100419166a0225c7",
-      "bundled_sha256": "f25355db24acf26fa70a6897eb8af11e959467ddf7b2a8827d39c268982abe3e",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-bammetrics.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-bammetrics.md",
-      "source_sha256": "d0567b0a72d2f61d04415c056fa29f36c8bea21347fe18ead7f395dafdb07aa8",
-      "bundled_sha256": "aef015daffcc1c559e5265d9ed07d24eaa33616ca4642ffd9be6854c3c442531",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-bamsort.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-bamsort.md",
-      "source_sha256": "3abf1b4aa15c9dec9b8db75b46428e2c67048071e5c9fab0c209ea72957aae0f",
-      "bundled_sha256": "72583b8934f569df51ba355e7818c9ccab8ad4f102a8cc33c18cf16a8070ab9b",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-bqsr.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-bqsr.md",
-      "source_sha256": "4f60647879928fecbcc1e3ad178cea5f9248d72e2fce1d0013dc00829d7ff6bf",
-      "bundled_sha256": "41ec65f70af072fc4601ad9b32b127a0ca17ded5dcbd23e8f72d5af327f5ce6e",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-collectmultiplemetrics.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-collectmultiplemetrics.md",
-      "source_sha256": "60a40b366492d96e5b28ec10ee88842193223c05fb3b5142dcb2478ca469cdb6",
-      "bundled_sha256": "106d5a6527e5fae25de355bcee7d65be72e15fd54f5a8c5cf63b9b5d7902809c",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-dbsnp.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-dbsnp.md",
-      "source_sha256": "f7b8b2e927d2a16606bce33499df081676476e6bd1c9557c04445be31a363166",
-      "bundled_sha256": "b742ef58e561497d8afec0f9d25d2f0f6334876c64a9a40515c439570c580414",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-deepsomatic.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-deepsomatic.md",
-      "source_sha256": "b56cae209effc7151c2523ed13d7f862fb92e07eff8c8d6a2ea007cf1c3b43d8",
-      "bundled_sha256": "dcfcdd90c604fbd6d91ec254d9960eb356624eebd5f812a544644a0953781813",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-deepvariant.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-deepvariant.md",
-      "source_sha256": "2c419d9e0e7963e8d6f8e49f75884d25661f6e3dd5455a02e5eebce2ecd8967f",
-      "bundled_sha256": "07c14ceeef8edc766fc24f299bc5d0d52f0c34a759151a01e4b660ed5f6e042a",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-deepvariant_germline.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-deepvariant_germline.md",
-      "source_sha256": "a0a49bd42d381535090b39f36ba22296c0631ce309a2746fb2dbc29fafa1cd06",
-      "bundled_sha256": "e291d60710b1a0f3c8f80063595afbab0753b2d8d885e68a297d299c3611450b",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-fq2bam.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-fq2bam.md",
-      "source_sha256": "f8fbbaf6128fb427c6ab85c61130f4864cc310195223015923071304d3a5f62f",
-      "bundled_sha256": "eb6b1ba5a2eba38cf6abbda8408e074acbbc8ee576c88fd683416735a26b88a9",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-fq2bam_meth.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-fq2bam_meth.md",
-      "source_sha256": "e3ceecffffe5de9f00955a6e02e9d4f03e6773998dc70b2d1beb51a41e918499",
-      "bundled_sha256": "8736f664e66fb1d879da9b1cbcb0b80b583eed2d843992dafa804ed9b069e8b3",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-genotypegvcf.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-genotypegvcf.md",
-      "source_sha256": "f86947076b6cbbc1a3a53584801f92a30020ec7622f08eedc9a0a2730263d7e1",
-      "bundled_sha256": "07a3e00213dcf1746345d7455d46f6ea2c74dcbd5db933a49654f6d9be1e782d",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-germline.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-germline.md",
-      "source_sha256": "5455552404b286789938067c1822695f9dad668bcff7ff7f7ffcfe97b1ae3403",
-      "bundled_sha256": "b937f0e1e7f38f71688d6a57ad63969b56c48709e36bcdc8bdf4999c03af4aa0",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-giraffe.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-giraffe.md",
-      "source_sha256": "eed3527455406cdcde781bf66c6c9037ca4829bc812a05d9b94d00865e39fb03",
-      "bundled_sha256": "1f65f2c8af571a0bdbc94703aba4bef5e5e03c4798f45882b38a01692faf9d29",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-haplotypecaller.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-haplotypecaller.md",
-      "source_sha256": "6d1b4b8daa14de0463c6fcb7a6566a2aff5b0ed08bbf96ec06f3aaac549abb77",
-      "bundled_sha256": "fdf4a580e784165d96a9306775b21fcfb68ab3787ba7b980ed44849e442e50ae",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-indexgvcf.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-indexgvcf.md",
-      "source_sha256": "de085df4abf6090ce53279f255f7435c4cc147ac4fb41065ae63fa82867d7421",
-      "bundled_sha256": "941f1c0742c9f53818aeaa5032fe527adf4ea28b69271e1b1c23dcb21af72dbb",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-markdup.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-markdup.md",
-      "source_sha256": "5b38d9a890f4025941925e63619af9b5193f09bf9625a332017d7d7ee993bec6",
-      "bundled_sha256": "0fc78c3b47f4f2bbaf401373bad6f6d48537fb44ce64654511e8c2c8e4b49a06",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-minimap2.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-minimap2.md",
-      "source_sha256": "c45594ad6eeee6e17dfdfcce669312005f130b33c64b8ebcec332dbddb7ebeec",
-      "bundled_sha256": "0eebd6c2a6959ddd82eabca7e1cd86e5289d116e499870e1b1013d6ecfe218f4",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-mutectcaller.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-mutectcaller.md",
-      "source_sha256": "b6fa96b70fd418f367d7736a88ae3b66643ca3b740eaf03f9f7d6c6e231ca352",
-      "bundled_sha256": "ab24c9dd0e5c9ba462dcaa8dbcaf2a0c689006e8450ffc8506934a679a67fc92",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-ont_germline.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-ont_germline.md",
-      "source_sha256": "8252eb34afdd6ebac23f645d84d3f4909363c66d26ced93eb203a0631113ba2b",
-      "bundled_sha256": "b0430d9a18f0aceea768f0beeed73795d859655edbb599b37d5bd15923c65979",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-pacbio_germline.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-pacbio_germline.md",
-      "source_sha256": "fc02cfd486a3b267bac1e63c61ce7fb3ce6c6347ed2e9b694eccb6f1a0edd99b",
-      "bundled_sha256": "ef11284cfbd4adb3ee9f4413590cee6ab7855071fdff7cc34273b45d16ae56ab",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-pangenome_aware_deepvariant.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-pangenome_aware_deepvariant.md",
-      "source_sha256": "cd46ab9c052035a3d62f5a0ab309fbafa3471c4b76e0c84823517c08a3039956",
-      "bundled_sha256": "c18f60c47574538e57cd989ec7634b08746d70e3070e3cc7322e688174205360",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-pangenome_germline.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-pangenome_germline.md",
-      "source_sha256": "1df400ea887925a7fa2e13ab7cacd01944317a7c771ea6d7d11ced5528e1276c",
-      "bundled_sha256": "d64d3f602777881929ceb5070aa1f0869cf0b5dd50c79b5a25d5b7841803f530",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-postpon.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-postpon.md",
-      "source_sha256": "6eb3485e7c5cd0200b54b1c83a7437ad478b0680f11a6d7f8a9f1a2c9c4a5696",
-      "bundled_sha256": "1b4c180052ac877e9b6cf968009158375ae4d243ae9ec26de96325a8fcc5d236",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-prepon.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-prepon.md",
-      "source_sha256": "90c4968735ba850c099a51fb32d8ce2d198e728949d5d1346d21f883c5ee086d",
-      "bundled_sha256": "c1aa159ac7e98156db46102da0694513de32d680995fb6ccbfcbb06f3f958257",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-rna_fq2bam.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-rna_fq2bam.md",
-      "source_sha256": "824627d06f94462042d52b386836a30c388e3e0866faebbf751c96f137985572",
-      "bundled_sha256": "050a7f3c1f74047a305a9aafff7cd14143d040c4f9046e2ee4050599a4f1867e",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-somatic.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-somatic.md",
-      "source_sha256": "3da84728fc3c5048de4e54a8ff01bb64fe4fa8e32a6d428a6dec7529d5bd4d35",
-      "bundled_sha256": "c10cd0241bf2261f60c68dab83987fd9e80b303d9bc1be16bdab1ac86d47bf14",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/pbrun-starfusion.md",
-      "source": "portal/backend/src/skills/parabricks/references/pbrun-starfusion.md",
-      "source_sha256": "df443abae11514958079a5b85548d85afe346cf8c170384bbc638279075127c2",
-      "bundled_sha256": "1c9c9ecaa1e99714482c3eddb7c947e2f5a82de67c0290d2797ef1b020a6c410",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/runtime-environment.md",
-      "source": "portal/backend/src/skills/parabricks/references/runtime-environment.md",
-      "source_sha256": "cd5221de3be4cdcb93f2bc1efe9dcb4f0ee0cef6c07043d55c515bd1d8a54426",
-      "bundled_sha256": "3348f231ff90f8cd1908bc429e5a6d02c54e360ed4cee8b7014079fed3f31640",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/references/tool-index.md",
-      "source": "portal/backend/src/skills/parabricks/references/tool-index.md",
-      "source_sha256": "43bbefbb1249bffb646e2e5ac75214595064e35dde38ef48ed3f9d4a1a1c45e6",
-      "bundled_sha256": "1606c06606ee191849c4f8d820d9302920b4b4c0e9509f2567144c189f6b894d",
-      "override": false
-    },
-    {
-      "path": "skills/parabricks/scripts/check_parabricks_runtime.py",
-      "source": "portal/backend/src/skills/parabricks/scripts/check_parabricks_runtime.py",
-      "source_sha256": "316233a9431471041ffbd99179ddc2d034b3b5f7cedcae7d814995f456976bcf",
-      "bundled_sha256": "316233a9431471041ffbd99179ddc2d034b3b5f7cedcae7d814995f456976bcf",
       "override": false
     },
     {
@@ -1009,13 +687,6 @@
       "source": "portal/.agents/skills/nf-migrate-25-04/scripts/find_shell_blocks.py",
       "source_sha256": "13efcf3abb1510b88694d973d8d98be643c43fb189774a05fc3810453dab3a70",
       "bundled_sha256": "13efcf3abb1510b88694d973d8d98be643c43fb189774a05fc3810453dab3a70",
-      "override": false
-    },
-    {
-      "path": "skills/nf-storedir/SKILL.md",
-      "source": "portal/.agents/skills/nf-storedir/SKILL.md",
-      "source_sha256": "fac227ef93d6e4dfe3ea8a7402ac6040aae456d574c30311bc8070efb0a6b054",
-      "bundled_sha256": "d9d1d08183d54971af6ee1f0086a47d8ef260af0e1caa8d4ce625c7c5c809992",
       "override": false
     },
     {
@@ -1170,20 +841,6 @@
       "source": "bio-research/nextflow-development/scripts/utils/validators.py",
       "source_sha256": "2572671195244a3ac7e67a6ebe4c44bbd541fbaa1afe3ebab1f81a46b29feea1",
       "bundled_sha256": "68d0823c95f113572e5c59e4a39e71b615e4a9ac567a8a090e0284215fe5be39",
-      "override": false
-    },
-    {
-      "path": "skills/seqera-cli-agent/README.md",
-      "source": "portal/.agents/skills/seqera-cli-agent/README.md",
-      "source_sha256": "cc7d4ebd00041d644a14acf5f4ff93ce225dd59c940ea6072354c110298efdfc",
-      "bundled_sha256": "dc9041aadaaf96ef817cc586bee3aaf4dc01720d443a9560e68147e9b47bd277",
-      "override": false
-    },
-    {
-      "path": "skills/seqera-cli-agent/SKILL.md",
-      "source": "portal/.agents/skills/seqera-cli-agent/SKILL.md",
-      "source_sha256": "bcac2445f7a7a58052ee184c703fa2b4038635360d6bea8e0c7a6659f913096b",
-      "bundled_sha256": "29e0c445086546b5d1e5094651be9da1d4e84459653943511641ed5e695a7fdc",
       "override": false
     },
     {
@@ -1472,5 +1129,26 @@
     "to": "Apache-2.0",
     "by": "Seqera Labs, S.L.",
     "note": "Portal-derived files bundled in this plugin are distributed under Apache-2.0; see LICENSE and NOTICE."
+  },
+  "claude_curation": {
+    "excluded_skills": [
+      "enumerate-alternative-tools",
+      "generate-pipeline-docs",
+      "generate-pipeline-memory",
+      "genomics-workflow-acceleration",
+      "nf-aggregate",
+      "nf-pipeline-structure",
+      "nf-storedir",
+      "parabricks",
+      "seqera-cli-agent"
+    ],
+    "edited_files": [
+      "skills/audit-conversion-readiness/SKILL.md",
+      "skills/audit-conversion-readiness/references/tool-availability.md",
+      "skills/maintain-nf-core-pipeline/SKILL.md",
+      "skills/nf-docker-scripts/SKILL.md",
+      "skills/nf-pipeline-design/SKILL.md",
+      "skills/nf-plugin-development/SKILL.md"
+    ]
   }
 }

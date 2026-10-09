@@ -9,10 +9,10 @@ description: >
   "refactor this workflow", "is this a module or a subworkflow", "where does
   this logic belong", "clean up AI-generated Nextflow", "make this more
   cloud-efficient", "module boundary", "subworkflow boundary", "channel
-  shape", "tuple shape", "operator vs module". Pair with `nf-pipeline-structure`
-  (which analyzes existing pipelines); this skill prescribes the rules for
-  writing them. Use this skill before writing any new `.nf` file in an
-  unfamiliar layout.
+  shape", "tuple shape", "operator vs module". Also use it to analyze how an
+  existing pipeline is organized — processes, modules, subworkflows, channels
+  and data flow — when the user asks how a pipeline works or before changing
+  it. Use this skill before writing any new `.nf` file in an unfamiliar layout.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
@@ -35,7 +35,7 @@ manages OAuth for the connected MCP server.
 
 When a structural decision depends on a non-structural one, chain to:
 
-- `enumerate-alternative-tools` — tool choice at a branch
+- `find-alternative-tools` — tool choice at a branch
 - `search-existing-modules` — reuse vs author a module
 - `triage-pipeline-parameters` — param schema before `main.nf`
 

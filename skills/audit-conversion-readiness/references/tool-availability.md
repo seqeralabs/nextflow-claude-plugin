@@ -67,7 +67,7 @@ just the Dockerfile:
   cannot fetch these unattended; they become a staged input or a data link.
 - **GPU-only** — a GPU requirement constrains the compute environment. Record the
   CUDA/driver expectation. If the target environment has no GPU, route to
-  `enumerate-alternative-tools` for a CPU path.
+  `find-alternative-tools` for a CPU path.
 - **Interactive or GUI-only** — cannot be a pipeline step at all. It needs either
   a headless mode or removal from scope.
 - **Abandoned with no image and no source release** — treat like a missing tool

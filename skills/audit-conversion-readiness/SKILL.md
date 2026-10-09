@@ -150,7 +150,7 @@ With the audit answered, route onward:
 - `create-container` or `nf-docker-scripts` — tools
   with no usable image
 - `search-existing-modules` — tools that may already have a module
-- `enumerate-alternative-tools` — tools blocked by license, GPU
+- `find-alternative-tools` — tools blocked by license, GPU
   requirements, or abandonment
 - `seqera-data-links` — cloud data the pipeline must read
 - Then the conversion skill itself: `convert-python-script`, `convert-r-script`,

@@ -96,7 +96,7 @@ If the residual work is a syntax migration:
 - `nf-schema-migration` — schema updates required by v2
 
 For structural analysis of an unfamiliar pipeline before editing:
-- `nf-pipeline-structure`
+- `nf-pipeline-design`
 
 ## References
 

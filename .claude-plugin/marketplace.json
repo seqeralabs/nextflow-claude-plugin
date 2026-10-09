@@ -13,7 +13,7 @@
       "name": "nextflow",
       "source": "./",
       "description": "Build, migrate, test, debug, and run Nextflow pipelines with Seqera Platform, Wave, and nf-core.",
-      "version": "0.1.6",
+      "version": "0.2.0",
       "author": {
         "name": "Seqera",
         "url": "https://seqera.io"

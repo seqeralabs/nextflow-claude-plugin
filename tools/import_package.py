@@ -11,6 +11,7 @@ Usage:
 """
 
 import argparse
+import hashlib
 import json
 import shutil
 import sys
@@ -31,6 +32,55 @@ LICENSE = "Apache-2.0"
 # (the portal itself stays under BSL-1.1), so the portal license file is not distributed.
 PORTAL_LICENSE = "licenses/portal-BSL-1.1.txt"
 AUTHOR = {"name": "Seqera", "url": "https://seqera.io"}
+
+# Version of the Claude plugin. It is released independently of the generic package
+# because the Claude build curates the skill set below; bump it on every release.
+VERSION = "0.2.0"
+
+# Skills from the generic package that are not shipped in the Claude plugin.
+EXCLUDED_SKILLS = [
+    "enumerate-alternative-tools",  # duplicate of find-alternative-tools
+    "generate-pipeline-docs",
+    "generate-pipeline-memory",
+    "genomics-workflow-acceleration",
+    "nf-aggregate",
+    "nf-pipeline-structure",  # folded into nf-pipeline-design
+    "nf-storedir",
+    "parabricks",
+    "seqera-cli-agent",
+]
+
+# Exact text edits so the remaining skills don't point at excluded ones. Each edit must
+# match exactly once, so upstream wording changes fail the import instead of slipping through.
+EDITS = [
+    ("skills/audit-conversion-readiness/SKILL.md",
+     "- `enumerate-alternative-tools` — tools blocked by license, GPU",
+     "- `find-alternative-tools` — tools blocked by license, GPU"),
+    ("skills/audit-conversion-readiness/references/tool-availability.md",
+     "`enumerate-alternative-tools` for a CPU path.",
+     "`find-alternative-tools` for a CPU path."),
+    ("skills/nf-pipeline-design/SKILL.md",
+     "- `enumerate-alternative-tools` — tool choice at a branch",
+     "- `find-alternative-tools` — tool choice at a branch"),
+    ("skills/nf-pipeline-design/SKILL.md",
+     """  shape", "tuple shape", "operator vs module". Pair with `nf-pipeline-structure`
+  (which analyzes existing pipelines); this skill prescribes the rules for
+  writing them. Use this skill before writing any new `.nf` file in an
+  unfamiliar layout.""",
+     """  shape", "tuple shape", "operator vs module". Also use it to analyze how an
+  existing pipeline is organized — processes, modules, subworkflows, channels
+  and data flow — when the user asks how a pipeline works or before changing
+  it. Use this skill before writing any new `.nf` file in an unfamiliar layout."""),
+    ("skills/maintain-nf-core-pipeline/SKILL.md",
+     "- `nf-pipeline-structure`",
+     "- `nf-pipeline-design`"),
+    ("skills/nf-docker-scripts/SKILL.md",
+     "- `nf-pipeline-structure` — understanding pipeline layout including shared helper commands",
+     "- `nf-pipeline-design` — understanding pipeline layout including shared helper commands"),
+    ("skills/nf-plugin-development/SKILL.md",
+     "- `nf-pipeline-structure` — Standard pipeline organization",
+     "- `nf-pipeline-design` — Standard pipeline organization"),
+]
 MCP_URL = "https://mcp.seqera.io/mcp"
 
 
@@ -75,6 +125,42 @@ def relicense_portal_files() -> None:
     write_json(path, sources)
 
 
+def curate_skills() -> None:
+    for skill in EXCLUDED_SKILLS:
+        path = REPO / "skills" / skill
+        if not path.is_dir():
+            sys.exit(f"excluded skill not found in package: {skill}")
+        shutil.rmtree(path)
+
+    edited = set()
+    for rel, old, new in EDITS:
+        path = REPO / rel
+        text = path.read_text()
+        if text.count(old) != 1:
+            sys.exit(f"edit for {rel} matched {text.count(old)} times; update EDITS")
+        path.write_text(text.replace(old, new))
+        edited.add(rel)
+
+    for skill in EXCLUDED_SKILLS:
+        for path in (REPO / "skills").rglob("*"):
+            if path.is_file() and f"`{skill}`" in path.read_text(errors="ignore"):
+                sys.exit(f"{path.relative_to(REPO)} still references excluded skill {skill}; add an edit")
+
+    path = REPO / "sources.json"
+    sources = json.loads(path.read_text())
+    files = []
+    for entry in sources["files"]:
+        if entry["path"].split("/")[:2] in [["skills", s] for s in EXCLUDED_SKILLS]:
+            continue
+        if entry["path"] in edited:
+            entry["bundled_sha256"] = hashlib.sha256((REPO / entry["path"]).read_bytes()).hexdigest()
+            entry["override"] = True
+        files.append(entry)
+    sources["files"] = files
+    sources["claude_curation"] = {"excluded_skills": EXCLUDED_SKILLS, "edited_files": sorted(edited)}
+    write_json(path, sources)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("source", type=Path, help="generic package directory or .zip")
@@ -98,12 +184,13 @@ def main() -> None:
                 shutil.copy2(src, dst)
 
         relicense_portal_files()
+        curate_skills()
 
         review = generic.get("extensions", {}).get("com.openai", {}).get("review", {}).get("test_cases")
         if review:
             write_json(REPO / "evals" / "review-cases.json", review)
 
-    name, version, description = generic["name"], generic["version"], generic["description"]
+    name, version, description = generic["name"], VERSION, generic["description"]
 
     write_json(REPO / ".claude-plugin" / "plugin.json", {
         "name": name,
