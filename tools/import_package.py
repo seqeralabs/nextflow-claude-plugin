@@ -25,7 +25,11 @@ REPO = Path(__file__).resolve().parent.parent
 CONTENT = ["skills", "scripts", "assets", "licenses", "sources.json"]
 
 REPOSITORY = "https://github.com/seqeralabs/nextflow-claude-plugin"
-LICENSE = "Apache-2.0 AND BUSL-1.1"
+LICENSE = "Apache-2.0"
+
+# Seqera releases the portal-derived skill files bundled in this plugin under Apache-2.0
+# (the portal itself stays under BSL-1.1), so the portal license file is not distributed.
+PORTAL_LICENSE = "licenses/portal-BSL-1.1.txt"
 AUTHOR = {"name": "Seqera", "url": "https://seqera.io"}
 MCP_URL = "https://mcp.seqera.io/mcp"
 
@@ -52,6 +56,25 @@ def write_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
 
 
+def relicense_portal_files() -> None:
+    (REPO / PORTAL_LICENSE).unlink(missing_ok=True)
+    path = REPO / "sources.json"
+    sources = json.loads(path.read_text())
+    files = []
+    for entry in sources["files"]:
+        if entry["path"] != PORTAL_LICENSE:
+            files.append(entry)
+    sources["files"] = files
+    sources["relicensed"] = {
+        "sources": "portal",
+        "from": "BUSL-1.1",
+        "to": LICENSE,
+        "by": "Seqera Labs, S.L.",
+        "note": "Portal-derived files bundled in this plugin are distributed under Apache-2.0; see LICENSE and NOTICE.",
+    }
+    write_json(path, sources)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("source", type=Path, help="generic package directory or .zip")
@@ -73,6 +96,8 @@ def main() -> None:
                 shutil.copytree(src, dst)
             else:
                 shutil.copy2(src, dst)
+
+        relicense_portal_files()
 
         review = generic.get("extensions", {}).get("com.openai", {}).get("review", {}).get("test_cases")
         if review:

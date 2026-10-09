@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/seqeralabs/nextflow-claude-plugin",
   "repository": "https://github.com/seqeralabs/nextflow-claude-plugin",
-  "license": "Apache-2.0 AND BUSL-1.1",
+  "license": "Apache-2.0",
   "keywords": [
     "nextflow",
     "seqera",

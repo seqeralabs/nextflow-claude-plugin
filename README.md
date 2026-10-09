@@ -53,9 +53,8 @@ To make the plugin available to everyone working in a repository, add it to that
 
 ## Licensing
 
-This repository contains material under more than one license. See [`licenses/`](licenses/)
-and the `LICENSE.txt` files inside individual skill directories. Per-file origin is recorded in
-[`sources.json`](sources.json).
+Licensed under the [Apache License, Version 2.0](LICENSE). Third-party attributions are in
+[`NOTICE`](NOTICE), and per-file origin is recorded in [`sources.json`](sources.json).
 
 ## Development
 

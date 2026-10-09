@@ -1187,13 +1187,6 @@
       "override": false
     },
     {
-      "path": "licenses/portal-BSL-1.1.txt",
-      "source": "portal/LICENSE",
-      "source_sha256": "b2d913bc65ab0517e2a3d22c3aef9c0521f2fe2b7b31995ec9fef63f7658dcb2",
-      "bundled_sha256": "b2d913bc65ab0517e2a3d22c3aef9c0521f2fe2b7b31995ec9fef63f7658dcb2",
-      "override": false
-    },
-    {
       "path": "licenses/nextflow-agent-skills-Apache-2.0.txt",
       "source": "https://github.com/nextflow-io/agent-skills/blob/1edf73763da408c410074568f228a75fc6d42864/COPYING",
       "source_sha256": "5df2a0d87d6c562f0ea11c688ac52532aa28d744cabc7994ff0537f64b3b3320",
@@ -1472,5 +1465,12 @@
       "skills/triage-pipeline-parameters/SKILL.md"
     ],
     "description": "Generic host instructions with no prescribed filesystem paths, directory layouts, storage destinations or path-based setup recipes. Locations come from the user and execution context."
+  },
+  "relicensed": {
+    "sources": "portal",
+    "from": "BUSL-1.1",
+    "to": "Apache-2.0",
+    "by": "Seqera Labs, S.L.",
+    "note": "Portal-derived files bundled in this plugin are distributed under Apache-2.0; see LICENSE and NOTICE."
   }
 }
