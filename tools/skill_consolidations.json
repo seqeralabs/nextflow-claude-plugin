@@ -578,5 +578,62 @@
         }
       ]
     }
+  ],
+  "post_edits": [
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "### Implement branching between as many alternative tools as possible\n\nFor each subworkflow, explicitly list the alternative tools considered (e.g. for multiple sequence alignment: MAFFT, MUSCLE, Clustal Omega, T-Coffee, HHblits; for folding: Boltz, OpenFold3, AlphaFold3) and then **implement the branching between them in the subworkflow**, not just pick one.\n\nThe default assumption is that every step with multiple credible tools becomes a workflow-level `if/else` on an explicit parameter, with each branch calling one module. This is not a \"nice to have\" — it's what makes the pipeline actually useful:\n\n- The original source material reflects *one* author's choice at *one* point in time. Alternatives are often better for other datasets, other organisms, other budgets, or simply newer than the paper.\n- Tool choice is typically the single biggest determinant of output quality and runtime. Exposing it as a knob turns the pipeline into an experiment platform instead of a fixed recipe.\n- Adding a second branch is cheap when you're writing the subworkflow; adding one later means reworking the subworkflow's input/output contracts under pressure.\n- You are going through the container/module-building loop anyway (Phase 4). Doing it for 2–4 tools in one pass is only marginally more work than doing it for one.\n\nConcretely, this means:\n\n1. Surface the tool choice as a parameter in `nextflow_schema.json` with an `enum` listing every implemented option (see Phase 1 — this is exactly the kind of knob that belongs at the top level).\n2. Structure the subworkflow as a workflow-level `if/else` over that parameter, with a final `else error \"Unsupported <choice>: ${choice}\"` branch. See the `RUN_FOLDING` example in `nf-pipeline-design` for the exact shape.\n3. Harmonize inputs *upstream* of the branch and outputs *downstream* of the branch, so each tool module sees the same input shape and emits the same output shape. The subworkflow, not the caller, owns this normalization.\n4. Build and verify containers for **every** implemented branch during Phase 4. A branch that exists in code but was never run once is technical debt, not a feature.\n\nSkip a branch only when the tool is genuinely obsolete, proprietary-licensed in a way the pipeline cannot accept, or architecturally incompatible (e.g. needs GPUs the target executor doesn't have). Record the reason for every tool you considered and did *not* implement — this document survives longer than the planning conversation and prevents the same alternative being revisited every six months.\n\n**Delegate the enumeration when available.** For each analysis step in the data flow map, use the `find-alternative-tools` skill with the analysis step name plus any constraints (target executor, GPU availability, license restrictions). These tasks are independent and can run in parallel with one subagent per analysis step. Collect the ranked lists back into the planning document's \"Alternative tools\" section.\n\nThen **merge the suggested `enum` values into `nextflow_schema.json`** for each tool-choice parameter (e.g. `msa_tool: [\"mafft\", \"muscle\", \"clustalo\"]`). This is the first planned augmentation of the schema after Phase 1's draft — update `nextflow.config`'s `params {}` block alongside so defaults stay in sync. Also note any **nf-core module hints** the enumerate subagents flagged in their per-tool blocks; you will pass those forward to the next step as fast-path hints.\n\n",
+      "new": "### Select tools without expanding scope\n\nUse the tool requested by the user or required to preserve the source analysis. If none is specified, recommend one suitable default and resolve material license, compute or output-contract constraints before implementation.\n\nUse `find-alternative-tools` only when the user requests a comparison or the selected tool is blocked. Research produces candidates; it does not authorize implementing them.\n\nAdd multiple tool branches only when the user explicitly requests or approves them. For approved branches:\n\n1. Add only implemented choices to the schema's `enum`, keeping config defaults aligned.\n2. Put tool selection in the subworkflow and reject unsupported choices explicitly.\n3. Normalize inputs and outputs around the selected modules.\n4. Verify every implemented branch's command, container and representative outputs.\n\nRecord the selected tool and rationale. A single-tool pipeline does not need an alternative-tool parameter or exhaustive rejected-tool inventory.\n\n"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "| Enumerating alternative tools for each analysis step | **Yes — one subagent per analysis step, in parallel** | `find-alternative-tools` |",
+      "new": "| Comparing alternatives, only when requested or the selected tool is blocked | **Optional** — delegate the bounded comparison when useful | `find-alternative-tools` |"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "augmented in Phase 3 with `enum` values from `find-alternative-tools` and any new tool-argument parameters revealed by module search.",
+      "new": "augmented in Phase 3 with approved implemented tool choices (if any) and relevant tool arguments revealed by module search."
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "`enum` values after tool enumeration",
+      "new": "`enum` values for approved implemented alternatives"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "For every tool chosen as a branch, search for existing implementations",
+      "new": "For each selected tool, search for existing implementations"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "data flow map, samplesheet design, channels, alternative tools, module sourcing, test inputs, container verification",
+      "new": "data flow map, samplesheet design, channels, selected tools (alternatives only if requested), module sourcing, test inputs, container verification"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "- [ ] `nextflow_schema.json` is available to the user's pipeline, with defaults, descriptions, and `enum` values merged in after alternative-tool enumeration",
+      "new": "- [ ] `nextflow_schema.json` is available with defaults and descriptions; any tool-choice `enum` lists only approved implemented branches"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "- [ ] Alternative-tool enumeration ran for every analysis step with credible alternatives, using `find-alternative-tools`",
+      "new": "- [ ] The selected tools match the requested analysis; any additional implemented branches were explicitly requested or approved"
+    },
+    {
+      "path": "skills/find-alternative-tools/SKILL.md",
+      "old": "Output is a structured list designed to feed directly into Nextflow subworkflow branching decisions.",
+      "new": "Output is a structured comparison to inform tool selection; research does not authorize implementation of additional branches."
+    },
+    {
+      "path": "skills/find-alternative-tools/SKILL.md",
+      "old": "The caller wants to turn \"do MSA\" into a subworkflow with `if/else` over a `msa_tool` parameter, with multiple real branches. That means you are *not* choosing one winner — you are enumerating every tool a reasonable pipeline author would consider exposing as an option, and giving the caller what they need to pick which branches to implement.",
+      "new": "Compare credible tools for the requested analysis and constraints. Recommend one default and explain when alternatives are justified. The caller decides which candidate to use; implementing additional branches requires explicit user approval. An alternatives report is research, not a pipeline implementation plan."
+    },
+    {
+      "path": "skills/find-alternative-tools/SKILL.md",
+      "old": "Suggest the `enum` value set for the schema parameter (e.g. `msa_tool: enum [mafft, muscle, clustalo, tcoffee, hhblits]`). Use short, lowercase, conventional names — whatever the tool's own CLI command is, typically.",
+      "new": "Suggest schema `enum` values only for branches explicitly approved for implementation. A research shortlist must not become the pipeline's advertised supported choices. Use short, lowercase, conventional tool names for approved choices."
+    }
   ]
 }

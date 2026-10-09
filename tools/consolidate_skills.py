@@ -108,6 +108,15 @@ def apply_consolidations(root: Path, plan: dict, assets: Path) -> None:
                 body = re.sub(pattern, lambda _: f"[{fold['label']}]({relative})", body)
             path.write_text(frontmatter + body)
 
+    # Behavioral adaptations run after all references have been relocated.
+    for edit in plan.get("post_edits", []):
+        path = root / edit["path"]
+        text = path.read_text()
+        if text.count(edit["old"]) == 1:
+            path.write_text(text.replace(edit["old"], edit["new"]))
+        elif text.count(edit["old"]) != 0 or text.count(edit["new"]) != 1:
+            raise ValueError(f"post-edit for {edit['path']} must match exactly once")
+
     for entry in entries.values():
         path = root / entry["path"]
         digest = hashlib.sha256(path.read_bytes()).hexdigest()

@@ -33,7 +33,7 @@
       "path": "skills/build-nextflow-pipeline/SKILL.md",
       "source": "portal/backend/src/skills/build-nextflow-pipeline/SKILL.md",
       "source_sha256": "4dcc9dcaa19a74f8b9d05272271b5a55317ca8fd0e3ca11b3eb0edb43fe4dcad",
-      "bundled_sha256": "4522be3158f1f908ae70090506c552efdf8ec85a12b377cf6b8ded042e949616",
+      "bundled_sha256": "65d44a56973b99258a081a5fd58f4a3a978cdc11bfa198fd60342b7bec42455a",
       "override": true
     },
     {
@@ -131,7 +131,7 @@
       "path": "skills/find-alternative-tools/SKILL.md",
       "source": "portal/backend/src/skills/find-alternative-tools/SKILL.md",
       "source_sha256": "b3acbc1417255d5b26b9058d7b80fff92a1b732d218fd1b043e636fa26e223b1",
-      "bundled_sha256": "e1c6742dc07a9342e8a76578f844c2255db2f0c313ab8c75324f1f2a0d2f82b8",
+      "bundled_sha256": "a3afb0b68ba4638f9ff0b6d2b27588a627040bb6b04e80e07d275c2ec65e7d35",
       "override": true
     },
     {

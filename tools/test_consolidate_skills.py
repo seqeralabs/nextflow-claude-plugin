@@ -79,6 +79,16 @@ class ConsolidationTests(unittest.TestCase):
         after = {str(path.relative_to(self.root)): path.read_bytes() for path in self.root.rglob("*") if path.is_file()}
         self.assertEqual(after, before)
 
+    def test_behavioral_edit_is_applied_and_replayable(self):
+        plan = json.loads(self.plan.read_text())
+        plan["post_edits"] = [{"path": "skills/owner/SKILL.md", "old": "# Current task", "new": "# Scoped task"}]
+        self.plan.write_text(json.dumps(plan))
+        self.assertEqual(self.run_cli().returncode, 0)
+        self.assertIn("# Scoped task", (self.root / "skills/owner/SKILL.md").read_text())
+        before = (self.root / "sources.json").read_bytes()
+        self.assertEqual(self.run_cli().returncode, 0)
+        self.assertEqual((self.root / "sources.json").read_bytes(), before)
+
     def test_missing_source_and_guide_fails_explicitly(self):
         import shutil
         shutil.rmtree(self.root / "skills/old")
