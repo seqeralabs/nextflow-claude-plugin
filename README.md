@@ -1,7 +1,7 @@
-# Nextflow plugin for Claude
+# Nextflow plugin for Claude and Codex
 
 Build, migrate, test, debug and run [Nextflow](https://www.nextflow.io) pipelines with
-Claude, connected to [Nextflow Platform](https://seqera.io), Wave containers and nf-core.
+Claude or Codex, connected to [Nextflow Platform](https://seqera.io), Wave containers and nf-core.
 
 The plugin bundles 28 skills and the hosted Seqera MCP server (`https://mcp.seqera.io/mcp`).
 
@@ -39,6 +39,19 @@ To make the plugin available to everyone working in a repository, add it to that
 }
 ```
 
+### Codex
+
+In the Codex app, open **Plugins → Add → Add plugin marketplace**, enter
+`seqeralabs/nextflow-claude-plugin` as the source and install **Nextflow**. Or from a shell:
+
+```bash
+codex plugin marketplace add seqeralabs/nextflow-claude-plugin
+codex plugin add nextflow@nextflow-claude-plugin
+```
+
+The same repository serves both hosts: Codex reads the Claude marketplace and plugin layout,
+and takes its listing (name, logo, starter prompts) from `.codex-plugin/plugin.json`.
+
 ## What's included
 
 | Area | Skills |
@@ -70,7 +83,8 @@ claude plugin validate --strict .
 ```
 
 `import_package.py` replaces `skills/`, `scripts/`, `assets/`, `licenses/` and `sources.json`, and
-regenerates `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` and `.mcp.json`.
+regenerates `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`,
+`.codex-plugin/plugin.json` and `.mcp.json`.
 Do not edit those paths by hand; change the upstream package instead.
 
 The importer also drops the skills listed in `EXCLUDED_SKILLS` and applies the text edits in
