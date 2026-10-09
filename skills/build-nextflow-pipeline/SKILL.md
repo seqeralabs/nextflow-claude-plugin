@@ -73,7 +73,7 @@ organization. The useful artifacts are:
 - **`nextflow_schema.json`** — the parameter contract. First-pass draft from Phase 1 (produced by `nextflow-schema`), augmented in Phase 3 with `enum` values from `find-alternative-tools` and any new tool-argument parameters revealed by module search. Always the source of truth for what the pipeline accepts.
 - **`nextflow.config`** — mirrors schema defaults, declares profiles, loads `modules.config`. First-drafted in Phase 1 alongside the schema; stays in sync with it.
 - **`modules.config`** — plumbs surfaced parameters into `ext.args` per module. Drafted in Phase 3 once tools are picked.
-- **`tower.yml`**, when Platform report integration is requested, maps the pipeline's primary published human-readable outputs to Seqera Platform report entries. Draft it from the planned output layout and verify every pattern against a real run.
+- **`tower.yml`**, when Platform report integration is requested, maps the pipeline's primary published human-readable outputs to Nextflow Platform report entries. Draft it from the planned output layout and verify every pattern against a real run.
 - **the sample-sheet schema** — samplesheet schema, validates each row of the samplesheet at launch. Separate from `nextflow_schema.json` (which validates parameters, not rows). Drafted in Phase 1 once "what is a sample" is settled.
 - **the user's selected test data** — small, representative test inputs per tool. Identified during Phase 1 (the triage subagent returns a test-inputs manifest as a secondary artifact) and consumed by `create-container` subagents in Phase 4.
 

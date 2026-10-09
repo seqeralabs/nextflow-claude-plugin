@@ -622,7 +622,7 @@ Use optional outputs only when absence is a valid, expected state of the computa
 
 ### Tag every process for useful logs
 
-The `tag` directive labels each task in the execution log and the Seqera Platform run view. Without it, a failed task shows up as `FORMAT_FASTA (1)` and it's unclear which sample broke. With it, you get `FORMAT_FASTA (sample_42)` — immediately actionable.
+The `tag` directive labels each task in the execution log and the Nextflow Platform run view. Without it, a failed task shows up as `FORMAT_FASTA (1)` and it's unclear which sample broke. With it, you get `FORMAT_FASTA (sample_42)` — immediately actionable.
 
 ```nextflow
 tag "${meta.id}"
@@ -1103,7 +1103,7 @@ The config-driven `publishDir` in `withName:` blocks (as used by existing nf-cor
 
 See https://docs.seqera.io/nextflow/workflow for the full syntax.
 
-### Make published reports visible in Seqera Platform
+### Make published reports visible in Nextflow Platform
 
 For a new pipeline, provide a `tower.yml` that exposes its primary
 human-readable outputs in the run's Reports tab. Platform can only list files

@@ -1,7 +1,7 @@
 ---
 name: seqera-mcp
 description: >
-  Seqera Platform tools via MCP (Model Context Protocol). Use for structured
+  Nextflow Platform tools via MCP (Model Context Protocol). Use for structured
   operations on workflows, pipelines, compute envs, datasets, and data links,
   including resuming a failed Platform run.
 ---
@@ -22,7 +22,7 @@ manages OAuth for the connected MCP server.
 
 # Seqera MCP Skill
 
-Access Seqera Platform, Wave, and SeqeraHub
+Access Nextflow Platform, Wave, and SeqeraHub
 through the MCP server. Connect to https://mcp.seqera.io/mcp using the host's OAuth sign-in.
 The host manages credentials; never paste or package access tokens.
 

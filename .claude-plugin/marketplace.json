@@ -6,13 +6,13 @@
     "url": "https://seqera.io"
   },
   "metadata": {
-    "description": "Nextflow and Seqera Platform plugin for Claude Code"
+    "description": "Nextflow plugin for Claude Code"
   },
   "plugins": [
     {
       "name": "nextflow",
       "source": "./",
-      "description": "Build, migrate, test, debug, and run Nextflow pipelines with Seqera Platform, Wave, and nf-core.",
+      "description": "Build, migrate, test, debug, and run Nextflow pipelines with Nextflow Platform, Wave, and nf-core.",
       "version": "0.2.0",
       "author": {
         "name": "Seqera",

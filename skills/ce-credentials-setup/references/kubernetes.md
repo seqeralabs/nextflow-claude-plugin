@@ -1,7 +1,7 @@
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 # Kubernetes Compute Environment Setup
 
-Complete procedure for setting up a Kubernetes compute environment on Seqera Platform.
+Complete procedure for setting up a Kubernetes compute environment on Nextflow Platform.
 
 ## Prerequisites
 

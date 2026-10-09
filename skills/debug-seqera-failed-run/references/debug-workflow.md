@@ -1,7 +1,7 @@
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
-# Seqera Platform Run Debug Workflow
+# Nextflow Platform Run Debug Workflow
 
-Use this workflow when diagnosing a failed Seqera Platform run.
+Use this workflow when diagnosing a failed Nextflow Platform run.
 
 ## 1. Resolve the workflow
 

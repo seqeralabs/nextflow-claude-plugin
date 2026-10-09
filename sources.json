@@ -33,36 +33,36 @@
       "path": "skills/build-nextflow-pipeline/SKILL.md",
       "source": "portal/backend/src/skills/build-nextflow-pipeline/SKILL.md",
       "source_sha256": "4dcc9dcaa19a74f8b9d05272271b5a55317ca8fd0e3ca11b3eb0edb43fe4dcad",
-      "bundled_sha256": "99d16e554955d7d7225e8b093b1363f7b910a9f17906a9248c37b941025d8093",
-      "override": false
+      "bundled_sha256": "660210dd93f801eb52bcdb15ac58cac9a194f677bd145d42258d47bc80fc1944",
+      "override": true
     },
     {
       "path": "skills/ce-credentials-setup/SKILL.md",
       "source": "portal/backend/src/skills/ce-credentials-setup/SKILL.md",
       "source_sha256": "179ed50da55eb509086eaf9e3228d063bd4d8334c0f8fff38c0f31e0e327e4e9",
-      "bundled_sha256": "719b7572a2ba26fd274c485c4d36d469fe66faf87f02b07e49fcaf7821a44fb9",
-      "override": false
+      "bundled_sha256": "51849d8bc50d4f9058c4ea564517983f16ac7ad4b7f2df33fd871bd3ecc6d281",
+      "override": true
     },
     {
       "path": "skills/ce-credentials-setup/references/aws-batch.md",
       "source": "portal/backend/src/skills/ce-credentials-setup/references/aws-batch.md",
       "source_sha256": "0b72204b432f9c6a9f8ac476339a0639a300f137c83c362553a20deb426dba8f",
-      "bundled_sha256": "d0e2c1a8507e0312deb2f9fa189640b3a8d2e15b7716efdf8ccd31a4cc8a1255",
-      "override": false
+      "bundled_sha256": "93cf12538472e936f82267f8756a390f5d472c0069f33d851b4d8653b8f617f4",
+      "override": true
     },
     {
       "path": "skills/ce-credentials-setup/references/kubernetes.md",
       "source": "portal/backend/src/skills/ce-credentials-setup/references/kubernetes.md",
       "source_sha256": "1b55a04577e070016fec281df80294ccdc9e738485ce3fd3b82b02502d02af65",
-      "bundled_sha256": "e442dc381ef630926fdd5007a316c56bca5ad08f045f971fbc8369f06f98bd4d",
-      "override": false
+      "bundled_sha256": "2b01d8a4c1ba9a46887274d395183f8d732eb9ffd7d108f4e83192aca516dd96",
+      "override": true
     },
     {
       "path": "skills/ce-credentials-setup/references/seqera-compute.md",
       "source": "portal/backend/src/skills/ce-credentials-setup/references/seqera-compute.md",
       "source_sha256": "b76087e0b06de0984c3f22228846b19dc3561bbba27fd18c1162fe27fab78752",
-      "bundled_sha256": "85081dda02e991baf08e0c0e6eb97af51eb48e4349da4445359058a74967b49c",
-      "override": false
+      "bundled_sha256": "b1e39e794db10b38beb6079b7d82ee49c2c302f0480b676d06fa9ce0caebd1ac",
+      "override": true
     },
     {
       "path": "skills/convert-jupyter-notebook/SKILL.md",
@@ -117,15 +117,15 @@
       "path": "skills/debug-seqera-failed-run/SKILL.md",
       "source": "portal/backend/src/skills/debug-seqera-failed-run/SKILL.md",
       "source_sha256": "6825762051ab014d6b3fa6a8a4db12e79333a00e9cb0a746659167181c8b93a3",
-      "bundled_sha256": "f47505530d7ef69673bb82b6875eb0018bb559903e68fc62f711d6957d275588",
-      "override": false
+      "bundled_sha256": "295f4726acde95df63ce44e0cc6223c0c158a8ecce0b68ac6471ea9057d8ada3",
+      "override": true
     },
     {
       "path": "skills/debug-seqera-failed-run/references/debug-workflow.md",
       "source": "portal/backend/src/skills/debug-seqera-failed-run/references/debug-workflow.md",
       "source_sha256": "6f4fd73838dc38c73a4b90fcabc26a610b8855b9ac4f1bf416bda3383f2c957d",
-      "bundled_sha256": "a4d1b16649008ad7901b15df9f1db43e926c03a817159ceb2732adfdf81a06fd",
-      "override": false
+      "bundled_sha256": "ec90a2d403b0a534e88e5c58816689d8982a7d8f4a788e7badb540786b4de361",
+      "override": true
     },
     {
       "path": "skills/debug-seqera-failed-run/references/failure-patterns.md",
@@ -250,8 +250,8 @@
       "path": "skills/nextflow-config/SKILL.md",
       "source": "portal/backend/src/skills/nextflow-config/SKILL.md",
       "source_sha256": "1c421137313d594b23128d5bb74768ba8c68617f23f612f9961292a359f4b8dd",
-      "bundled_sha256": "054607631071c8936e7b4658e13c9bac014321bed3eed4eaf1a836e6a033b5b8",
-      "override": false
+      "bundled_sha256": "4404ac52c2a446d28c8ea1c7506ea2f17a96b7c483fd9e524760bb4f5a58dfe9",
+      "override": true
     },
     {
       "path": "skills/nextflow-config/references/config-guide.md",
@@ -264,8 +264,8 @@
       "path": "skills/nextflow-config/references/config-options.md",
       "source": "portal/backend/src/skills/nextflow-config/references/config-options.md",
       "source_sha256": "579dec8305ce40d539b1627dee647ed4ffa0520861847ea60c6dca938ccc0d32",
-      "bundled_sha256": "faf5cb0be2f36f7b5cedc7cfd0ee20c3646091c017c3e3355724347a14f1651b",
-      "override": false
+      "bundled_sha256": "6daf6043a2d29ee597712b1d0ab75ce15362f0212f8c9f2bc58d90f4fc4a4fb3",
+      "override": true
     },
     {
       "path": "skills/nextflow-history/SKILL.md",
@@ -334,7 +334,7 @@
       "path": "skills/nf-pipeline-design/SKILL.md",
       "source": "portal/backend/src/skills/nf-pipeline-design/SKILL.md",
       "source_sha256": "580d7f415a3a267fc2bd23da92848281b4cc32974a14c978b3395bdcfa6a4645",
-      "bundled_sha256": "eeda041510141b7d6bb7df7f1231d77adc68d762bbd9a542811585c0fc2853fa",
+      "bundled_sha256": "8f328aded8e5f403567e75b52600680ce0fdad27f2eff7b40cc4c3ac29064457",
       "override": true
     },
     {
@@ -621,15 +621,15 @@
       "path": "skills/seqera-data-links/SKILL.md",
       "source": "portal/backend/src/skills/seqera-data-links/SKILL.md",
       "source_sha256": "1ac21b9aa3cc01ab4c05497675b439da3eebe85b17ceb326e953a586681a04fb",
-      "bundled_sha256": "d2acedd3b934beec39e3f6812d205b4f9d3d525405c49c470206d0a2cb350023",
+      "bundled_sha256": "7c1fc42107a2a16e3ff848c1c4c091a9fd671f65eb07c91597e846b0a842374b",
       "override": true
     },
     {
       "path": "skills/seqera-mcp/SKILL.md",
       "source": "portal/backend/src/skills/seqera-mcp/SKILL.md",
       "source_sha256": "1315cd22bcacef7660c2e853307956e681c2599bd8d0d6a2bf980da831433e18",
-      "bundled_sha256": "91184bbdea7dba1e0d8d1640c4e2ef0d0d4a44a4393f1393f7aeca6bc006f693",
-      "override": false,
+      "bundled_sha256": "a12d5ac50f4ef61227675b24599889ab3bb77275af59a1492333078b1b205c59",
+      "override": true,
       "review_preparation_adaptation": true
     },
     {
@@ -644,8 +644,8 @@
       "path": "skills/seqerakit/SKILL.md",
       "source": "portal/backend/src/skills/seqerakit/SKILL.md",
       "source_sha256": "4e70348d52b774e716d4e48091317b5b22c48c7c6482712543d32ecb6898ecf7",
-      "bundled_sha256": "f322fd684cbe3318f8f62cf028c867317919c20c959996f5764ba0ee0de123d9",
-      "override": false
+      "bundled_sha256": "f89f87ebd46dc03c0b4aea83df2e8ce4aadeba0177e225ea0269122b46c4e455",
+      "override": true
     },
     {
       "path": "skills/triage-pipeline-parameters/SKILL.md",
@@ -882,7 +882,7 @@
       "path": "skills/launch-workflow/SKILL.md",
       "source": "https://github.com/nextflow-io/agent-skills/blob/1edf73763da408c410074568f228a75fc6d42864/skills/launch-workflow/SKILL.md",
       "source_sha256": "40ee0cca1679931ecdc284e86193b34a400d861f25d341cf3a358d4dce310cd3",
-      "bundled_sha256": "18695dedc2253adcc659d43873174ea53b8aaa4520962f8bcfa7ad4feb675e4e",
+      "bundled_sha256": "747bf20bf90755f06017fa6ef5272842ea0360d0c118d4a1ce54b996bc8e015d",
       "override": true
     },
     {
@@ -1142,13 +1142,32 @@
       "parabricks",
       "seqera-cli-agent"
     ],
+    "renames": [
+      {
+        "from": "Seqera Platform",
+        "to": "Nextflow Platform"
+      }
+    ],
     "edited_files": [
       "skills/audit-conversion-readiness/SKILL.md",
       "skills/audit-conversion-readiness/references/tool-availability.md",
+      "skills/build-nextflow-pipeline/SKILL.md",
+      "skills/ce-credentials-setup/SKILL.md",
+      "skills/ce-credentials-setup/references/aws-batch.md",
+      "skills/ce-credentials-setup/references/kubernetes.md",
+      "skills/ce-credentials-setup/references/seqera-compute.md",
+      "skills/debug-seqera-failed-run/SKILL.md",
+      "skills/debug-seqera-failed-run/references/debug-workflow.md",
+      "skills/launch-workflow/SKILL.md",
       "skills/maintain-nf-core-pipeline/SKILL.md",
+      "skills/nextflow-config/SKILL.md",
+      "skills/nextflow-config/references/config-options.md",
       "skills/nf-docker-scripts/SKILL.md",
       "skills/nf-pipeline-design/SKILL.md",
-      "skills/nf-plugin-development/SKILL.md"
+      "skills/nf-plugin-development/SKILL.md",
+      "skills/seqera-data-links/SKILL.md",
+      "skills/seqera-mcp/SKILL.md",
+      "skills/seqerakit/SKILL.md"
     ]
   }
 }

@@ -50,6 +50,9 @@ EXCLUDED_SKILLS = [
     "seqera-cli-agent",
 ]
 
+# Product names renamed throughout the shipped skills and the plugin description.
+RENAMES = [("Seqera Platform", "Nextflow Platform")]
+
 # Exact text edits so the remaining skills don't point at excluded ones. Each edit must
 # match exactly once, so upstream wording changes fail the import instead of slipping through.
 EDITS = [
@@ -125,6 +128,12 @@ def relicense_portal_files() -> None:
     write_json(path, sources)
 
 
+def rename(text: str) -> str:
+    for old, new in RENAMES:
+        text = text.replace(old, new)
+    return text
+
+
 def curate_skills() -> None:
     for skill in EXCLUDED_SKILLS:
         path = REPO / "skills" / skill
@@ -140,6 +149,15 @@ def curate_skills() -> None:
             sys.exit(f"edit for {rel} matched {text.count(old)} times; update EDITS")
         path.write_text(text.replace(old, new))
         edited.add(rel)
+
+    for path in sorted((REPO / "skills").rglob("*")):
+        if not path.is_file() or path.suffix not in (".md", ".txt", ".py", ".sh", ".json", ".yml", ".yaml"):
+            continue
+        text = path.read_text()
+        renamed = rename(text)
+        if renamed != text:
+            path.write_text(renamed)
+            edited.add(str(path.relative_to(REPO)))
 
     for skill in EXCLUDED_SKILLS:
         for path in (REPO / "skills").rglob("*"):
@@ -157,7 +175,11 @@ def curate_skills() -> None:
             entry["override"] = True
         files.append(entry)
     sources["files"] = files
-    sources["claude_curation"] = {"excluded_skills": EXCLUDED_SKILLS, "edited_files": sorted(edited)}
+    sources["claude_curation"] = {
+        "excluded_skills": EXCLUDED_SKILLS,
+        "renames": [{"from": old, "to": new} for old, new in RENAMES],
+        "edited_files": sorted(edited),
+    }
     write_json(path, sources)
 
 
@@ -190,7 +212,7 @@ def main() -> None:
         if review:
             write_json(REPO / "evals" / "review-cases.json", review)
 
-    name, version, description = generic["name"], VERSION, generic["description"]
+    name, version, description = generic["name"], VERSION, rename(generic["description"])
 
     write_json(REPO / ".claude-plugin" / "plugin.json", {
         "name": name,
@@ -207,7 +229,7 @@ def main() -> None:
         "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
         "name": "nextflow-claude-plugin",
         "owner": AUTHOR,
-        "metadata": {"description": "Nextflow and Seqera Platform plugin for Claude Code"},
+        "metadata": {"description": "Nextflow plugin for Claude Code"},
         "plugins": [{
             "name": name,
             "source": "./",

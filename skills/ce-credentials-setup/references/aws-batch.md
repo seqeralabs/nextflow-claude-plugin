@@ -1,7 +1,7 @@
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 # AWS Batch Compute Environment Setup
 
-Complete procedure for setting up an AWS Batch compute environment on Seqera Platform.
+Complete procedure for setting up an AWS Batch compute environment on Nextflow Platform.
 
 ## Prerequisites
 

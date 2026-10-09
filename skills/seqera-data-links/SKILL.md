@@ -1,7 +1,7 @@
 ---
 name: seqera-data-links
 description: >
-  Add, list, inspect, browse, update, and delete data links in Seqera Platform
+  Add, list, inspect, browse, update, and delete data links in Nextflow Platform
   workspaces. Use when asked to connect S3/GCS/Azure storage, manage Data Explorer
   entries, create data links, or troubleshoot bucket validation and storage access.
 ---
@@ -22,7 +22,7 @@ manages OAuth for the connected MCP server.
 
 # Seqera Data Links
 
-Manage Data Explorer entries in the user's existing Seqera Platform workspace
+Manage Data Explorer entries in the user's existing Nextflow Platform workspace
 through the production Seqera MCP connection. The client completes OAuth when
 connecting; the MCP server handles Platform authentication. Never request,
 print, or copy access tokens, bearer headers, cloud keys, or credential contents.

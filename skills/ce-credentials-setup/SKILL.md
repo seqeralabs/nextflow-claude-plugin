@@ -1,11 +1,11 @@
 ---
 name: ce-credentials-setup
 description: >
-  Set up Seqera Platform compute environments (Seqera Compute, AWS Batch, Kubernetes)
+  Set up Nextflow Platform compute environments (Seqera Compute, AWS Batch, Kubernetes)
   and the cloud or cluster credentials they need. Walks through gathering prerequisites
   — IAM keys, bearer tokens, certificates, regions, work directories — and then
   calling platform_create_credentials and platform_create_compute_env. Use this skill
-  whenever a user wants to wire Seqera Platform to any compute backend, troubleshoots
+  whenever a user wants to wire Nextflow Platform to any compute backend, troubleshoots
   a failing CE, asks about Seqera Compute as a managed option, or talks about
   "connecting my AWS account", "adding my cluster", or "using my own compute" — even
   if they don't explicitly say "compute environment" or "credentials".
@@ -27,12 +27,12 @@ manages OAuth for the connected MCP server.
 
 # Compute Environment & Credentials Setup
 
-Step-by-step procedures for gathering prerequisites before creating CEs and credentials on Seqera Platform.
+Step-by-step procedures for gathering prerequisites before creating CEs and credentials on Nextflow Platform.
 
 ## When to Use
 
 Load this skill when the user wants to:
-- Set up a new compute environment on Seqera Platform
+- Set up a new compute environment on Nextflow Platform
 - Create cloud or Kubernetes credentials
 - Understand what values are needed for a specific platform
 - Troubleshoot CE creation failures (wrong token, missing permissions, etc.)

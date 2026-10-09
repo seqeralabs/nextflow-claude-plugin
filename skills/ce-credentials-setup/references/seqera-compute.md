@@ -1,7 +1,7 @@
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 # Seqera Compute Environment Setup
 
-Complete procedure for setting up a Seqera Compute environment on Seqera Platform.
+Complete procedure for setting up a Seqera Compute environment on Nextflow Platform.
 
 Seqera Compute is a fully managed compute environment available on Seqera Cloud. Seqera automatically provisions and manages all underlying resources including AWS accounts, credentials, roles, compute environments, and S3 storage buckets. Users do not need to provide cloud credentials or configure infrastructure.
 

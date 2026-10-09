@@ -33,7 +33,7 @@ Load this skill when the user wants to:
 - Define process resource requirements (cpus, memory, time)
 - Create config profiles (test, production, cloud, hpc)
 - Debug config issues or understand config precedence
-- Configure Seqera Platform (tower) integration
+- Configure Nextflow Platform (tower) integration
 - Set up retry strategies and error handling
 
 ## References
@@ -129,7 +129,7 @@ aws {
 // Set workDir to the work storage selected for the user's execution environment.
 ```
 
-### Seqera Platform (Tower) Config
+### Nextflow Platform (Tower) Config
 
 ```groovy
 tower {
@@ -294,7 +294,7 @@ When generating a config:
 1. **Ask about the execution environment** — local, HPC (slurm/sge/pbs), cloud (aws/gcp/azure)?
 2. **Ask about container runtime** — docker, singularity, apptainer, conda?
 3. **Ask about resource needs** — typical cpu/memory/time for processes?
-4. **Ask about Seqera Platform** — tower integration needed?
+4. **Ask about Nextflow Platform** — tower integration needed?
 5. **Use profiles** — separate environments into profiles (test, dev, production)
 6. **Use labels** — group processes by resource needs, not individual withName selectors
 7. **Dynamic resources** — use `task.attempt` multiplier for retry strategies
@@ -318,7 +318,7 @@ When generating a config:
 | `azure` | Azure Batch/Storage settings |
 | `google` | Google Cloud Batch/Storage settings |
 | `wave` | Seqera Wave container settings |
-| `tower` | Seqera Platform settings |
+| `tower` | Nextflow Platform settings |
 | `mail` | Email notification settings |
 | `manifest` | Pipeline metadata |
 | `report` / `timeline` / `trace` / `dag` | Execution reports |

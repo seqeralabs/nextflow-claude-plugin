@@ -1533,25 +1533,25 @@ The following settings are available:
 
 ## `tower`
 
-The `tower` scope controls the settings for [Seqera Platform](https://seqera.io) (formerly Tower Cloud).
+The `tower` scope controls the settings for [Nextflow Platform](https://seqera.io) (formerly Tower Cloud).
 
 The following settings are available:
 
 `tower.accessToken`
-: The unique access token for your Seqera Platform account.
-: Your `accessToken` can be obtained from your Seqera Platform instance in the [Tokens page](https://cloud.seqera.io/tokens).
+: The unique access token for your Nextflow Platform account.
+: Your `accessToken` can be obtained from your Nextflow Platform instance in the [Tokens page](https://cloud.seqera.io/tokens).
 
 `tower.computeEnvId`
-: The compute environment ID in your Seqera Platform account used to launch pipelines (default: the primary compute environment in the selected workspace).
+: The compute environment ID in your Nextflow Platform account used to launch pipelines (default: the primary compute environment in the selected workspace).
 
 `tower.enabled`
-: Enable workflow monitoring with Seqera Platform (default: `false`).
+: Enable workflow monitoring with Nextflow Platform (default: `false`).
 
 `tower.endpoint`
-: The endpoint of your Seqera Platform instance (default: `https://api.cloud.seqera.io`).
+: The endpoint of your Nextflow Platform instance (default: `https://api.cloud.seqera.io`).
 
 `tower.workspaceId`
-: The workspace ID in Seqera Platform in which to save the run (default: the launching user's personal workspace).
+: The workspace ID in Nextflow Platform in which to save the run (default: the launching user's personal workspace).
 : The workspace ID can also be specified using the environment variable `TOWER_WORKSPACE_ID` (config file has priority over the environment variable).
 
 (config-trace)=
@@ -1747,7 +1747,7 @@ The following settings are available:
 
 `wave.build.cacheRepository`
 : The container repository used to cache image layers built by the Wave service.
-: The corresponding credentials must be provided in your Seqera Platform account.
+: The corresponding credentials must be provided in your Nextflow Platform account.
 
 `wave.build.compression.mode`
 : :::{versionadded} 25.05.0-edge
@@ -1780,7 +1780,7 @@ The following settings are available:
 
 `wave.build.repository`
 : The container repository where images built by Wave are uploaded.
-: The corresponding credentials must be provided in your Seqera Platform account.
+: The corresponding credentials must be provided in your Nextflow Platform account.
 
 `wave.build.template`
 : :::{versionadded} 25.12.0-edge

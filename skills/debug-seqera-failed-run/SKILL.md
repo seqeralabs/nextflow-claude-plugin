@@ -1,7 +1,7 @@
 ---
 name: debug-seqera-failed-run
 description: >
-  Debug failed Seqera Platform pipeline runs. Fetches workflow details, failed
+  Debug failed Nextflow Platform pipeline runs. Fetches workflow details, failed
   tasks, and logs to identify root causes and suggest fixes. Use when the user
   asks why a Platform run failed, to debug the last run, to diagnose a
   Seqera workflow error, or to triage recurring failures across runs and
@@ -24,13 +24,13 @@ manages OAuth for the connected MCP server.
 
 # Debug Seqera Failed Run
 
-Systematic analysis of Seqera Platform pipeline failures using MCP tools.
+Systematic analysis of Nextflow Platform pipeline failures using MCP tools.
 
 ## When to Use
 
 Load this skill when the user wants to:
 - Debug why their last Platform run failed
-- Analyze failed tasks on Seqera Platform
+- Analyze failed tasks on Nextflow Platform
 - Understand resource, storage, credential, configuration, or input-data issues
 - Get actionable fixes for a workflow error
 
@@ -96,5 +96,5 @@ Load this skill when the user wants to:
 
 ## External References
 
-- [Seqera Platform troubleshooting](https://docs.seqera.io/platform/latest/troubleshooting)
+- [Nextflow Platform troubleshooting](https://docs.seqera.io/platform/latest/troubleshooting)
 - [Nextflow process error strategies](https://www.nextflow.io/docs/latest/process.html#error-strategy)

@@ -1,6 +1,6 @@
 ---
 name: launch-workflow
-description: Launch Nextflow pipeline executions on cloud and HPC clusters via Seqera Platform. Use when the user wants to run/launch/submit a pipeline on a cloud or cluster compute environment, configure a compute environment, push pipeline changes to GitHub before launching, or sign in to Seqera Platform.
+description: Launch Nextflow pipeline executions on cloud and HPC clusters via Nextflow Platform. Use when the user wants to run/launch/submit a pipeline on a cloud or cluster compute environment, configure a compute environment, push pipeline changes to GitHub before launching, or sign in to Nextflow Platform.
 ---
 <!-- Modified for the Nextflow plugin: generic host tools and companion guidance. -->
 
@@ -17,20 +17,20 @@ describe API operations. Discover their exact names and parameter schemas with
 manages OAuth for the connected MCP server.
 
 
-# Launch Pipeline on Seqera Platform
+# Launch Pipeline on Nextflow Platform
 
-Launch Nextflow pipeline executions on cloud (AWS, Google Cloud, Azure) and HPC clusters (Slurm, LSF, etc.) through Seqera Platform. Seqera Platform manages the target compute environment, executes the pipeline from a remote Git repository, and provides monitoring.
+Launch Nextflow pipeline executions on cloud (AWS, Google Cloud, Azure) and HPC clusters (Slurm, LSF, etc.) through Nextflow Platform. Nextflow Platform manages the target compute environment, executes the pipeline from a remote Git repository, and provides monitoring.
 
 **Requires Nextflow 26.04 or later** (for the `nextflow auth` and `nextflow launch` commands).
 
 ## Main Flow
 
-1. **Configure the compute environment** — select a Seqera Platform compute environment for the target cloud or cluster.
-2. **Ensure the pipeline is in a remote Git repository** — Seqera Platform launches pipelines from GitHub (or a compatible Git host such as GitLab or Bitbucket). If the local pipeline is not yet hosted, assist the user in setting up the repository.
+1. **Configure the compute environment** — select a Nextflow Platform compute environment for the target cloud or cluster.
+2. **Ensure the pipeline is in a remote Git repository** — Nextflow Platform launches pipelines from GitHub (or a compatible Git host such as GitLab or Bitbucket). If the local pipeline is not yet hosted, assist the user in setting up the repository.
 3. **Upload local changes** — push any uncommitted local changes to the remote so the launched run reflects the user's current code.
 4. **Launch with `nextflow launch`** — submit the pipeline by passing the Git repository URL and the expected parameters.
 
-## Step 1: Authenticate with Seqera Platform
+## Step 1: Authenticate with Nextflow Platform
 
 Check whether the user is already authenticated:
 
@@ -67,7 +67,7 @@ Selecting the compute environment:
 
 ## Step 3: Ensure the Pipeline Is in a Remote Git Repository
 
-Seqera Platform launches pipelines from a remote Git URL — it cannot launch directly from a local path. Verify the pipeline directory is a Git repository connected to a remote on GitHub (or a compatible host like GitLab or Bitbucket).
+Nextflow Platform launches pipelines from a remote Git URL — it cannot launch directly from a local path. Verify the pipeline directory is a Git repository connected to a remote on GitHub (or a compatible host like GitLab or Bitbucket).
 
 Check the current state:
 
@@ -113,7 +113,7 @@ pipeline; it does not determine the user's inputs or output destination.
 
 ## Step 6: Monitor the Execution
 
-`nextflow launch` returns a run URL on Seqera Platform. Present this URL to the user so they can monitor progress in the Platform UI.
+`nextflow launch` returns a run URL on Nextflow Platform. Present this URL to the user so they can monitor progress in the Platform UI.
 
 ## Critical Rules
 

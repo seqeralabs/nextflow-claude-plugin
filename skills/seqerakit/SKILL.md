@@ -1,7 +1,7 @@
 ---
 name: seqerakit
 description: >
-  Write seqerakit YAML configuration files for automating Seqera Platform setup.
+  Write seqerakit YAML configuration files for automating Nextflow Platform setup.
   Covers pipelines, launch, compute-envs, datasets, credentials, and other entity types.
   Trigger: "seqerakit", "seqerakit YAML", "write seqerakit config", "automate platform setup",
   "tw YAML", "infrastructure as code for Seqera".

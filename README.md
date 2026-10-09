@@ -1,7 +1,7 @@
 # Nextflow plugin for Claude
 
 Build, migrate, test, debug and run [Nextflow](https://www.nextflow.io) pipelines with
-Claude, connected to [Seqera Platform](https://seqera.io), Wave containers and nf-core.
+Claude, connected to [Nextflow Platform](https://seqera.io), Wave containers and nf-core.
 
 The plugin bundles 41 skills and the hosted Seqera MCP server (`https://mcp.seqera.io/mcp`).
 
@@ -22,7 +22,7 @@ claude plugin install nextflow@nextflow-claude-plugin
 ```
 
 Restart Claude Code after installing. The first time a Seqera tool is used, Claude Code opens
-the Seqera Platform sign-in (OAuth). Skills that only work with local files and Nextflow do
+the Nextflow Platform sign-in (OAuth). Skills that only work with local files and Nextflow do
 not need a Seqera account.
 
 To make the plugin available to everyone working in a repository, add it to that repository's
@@ -47,7 +47,7 @@ To make the plugin available to everyone working in a repository, add it to that
 | Convert to Nextflow | `convert-python-script`, `convert-r-script`, `convert-jupyter-notebook`, `migrate-from-snakemake`, `audit-conversion-readiness`, `triage-pipeline-parameters`, `find-alternative-tools` |
 | Migrate and modernise | `migrate-nextflow-code`, `nextflow-26-syntax`, `nf-migrate-25-04`, `nf-schema-migration`, `nf-v2-boolean-params`, `nf-plugin-development`, `nf-plugin-legacy-migration`, `maintain-nf-core-pipeline` |
 | Test and debug | `nf-test`, `repair-nf-test`, `repair-workflow`, `nf-debug`, `debug-local-run`, `debug-seqera-failed-run`, `nextflow-history`, `nf-run-history`, `nf-data-lineage`, `nf-docker-scripts` |
-| Seqera Platform | `launch-workflow`, `seqera-mcp`, `ce-credentials-setup`, `seqera-data-links`, `seqerakit` |
+| Nextflow Platform | `launch-workflow`, `seqera-mcp`, `ce-credentials-setup`, `seqera-data-links`, `seqerakit` |
 | General | `nextflow-development`, `install-nextflow` |
 
 ## Licensing
