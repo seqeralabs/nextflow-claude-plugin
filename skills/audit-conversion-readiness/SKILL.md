@@ -145,7 +145,7 @@ exists to prevent.
 
 With the audit answered, route onward:
 
-- `triage-pipeline-parameters` — turn the surviving paths and
+- [parameter triage](../nextflow-schema/references/triage-pipeline-parameters/README.md) — turn the surviving paths and
   constants into a parameter surface and schema
 - `create-container` or `nf-docker-scripts` — tools
   with no usable image
@@ -165,5 +165,5 @@ With the audit answered, route onward:
 - Never treat a missing file as a reason to drop the step from the conversion —
   it is a question for the user.
 - Hardcoded paths are findings, not bugs to fix in place. The pipeline's
-  parameter surface is where they get resolved, in `triage-pipeline-parameters`.
+  parameter surface is where they get resolved, in [parameter triage](../nextflow-schema/references/triage-pipeline-parameters/README.md).
 - Keep the audit read-only. No edits to the source material, no scaffolding.

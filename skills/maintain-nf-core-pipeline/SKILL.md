@@ -93,7 +93,7 @@ residue is genuinely pipeline-specific.
 If the residual work is a syntax migration:
 - `nextflow-26-syntax` — strict-syntax rules for typed processes / channels
 - `nf-v2-boolean-params` — boolean-param migration (common v2 failure)
-- `nf-schema-migration` — schema updates required by v2
+- [schema migration](../nextflow-schema/references/nf-schema-migration/README.md) — schema updates required by v2
 
 For structural analysis of an unfamiliar pipeline before editing:
 - `nf-pipeline-design`

@@ -37,7 +37,7 @@ When a structural decision depends on a non-structural one, chain to:
 
 - `find-alternative-tools` — tool choice at a branch
 - `search-existing-modules` — reuse vs author a module
-- `triage-pipeline-parameters` — param schema before `main.nf`
+- [parameter triage](../nextflow-schema/references/triage-pipeline-parameters/README.md) — param schema before `main.nf`
 
 ## Canonical Nextflow baseline
 

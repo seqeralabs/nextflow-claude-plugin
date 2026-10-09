@@ -1,7 +1,3 @@
----
-name: triage-pipeline-parameters
-description: Given source material for a Nextflow pipeline in progress (scripts, repository, Jupyter/R notebook, paper methods section, tool CLI docs), extract every knob that has an observable effect on output, triage each into top-level parameter vs. pinned internal constant vs. profile override, produce a drafted `nextflow_schema.json` with a companion `nextflow.config` skeleton, and as a secondary output identify a minimal representative test input per heavy tool that the container-build phase will consume. Use whenever you are handed source material and asked to "identify the parameters", "draft the schema", "figure out what should be user-facing", or when working as a subagent inside the build-nextflow-pipeline planning flow at the parameter-surface step. Designed for subagent invocation — the task is fully self-contained given the source material; no prior conversation context is needed.
----
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
 ## Using this skill

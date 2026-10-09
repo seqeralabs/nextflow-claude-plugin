@@ -114,6 +114,46 @@
           "new": "- [ ] String interpolation escaped correctly (`\\$` for shell/Python vars)\n- [ ] Representative execution matches the source's expected scientific outputs, using justified numerical tolerances when needed"
         }
       ]
+    },
+    {
+      "folds": [
+        {
+          "from": "triage-pipeline-parameters",
+          "to": "nextflow-schema",
+          "heading": "Source-material parameter triage",
+          "when": "When deriving parameters from scripts, notebooks, papers or CLI documentation, produce the source audit, schema, config outline and representative test-input manifest.",
+          "label": "parameter triage"
+        },
+        {
+          "from": "nf-schema-migration",
+          "to": "nextflow-schema",
+          "heading": "Legacy schema migration",
+          "when": "When upgrading nf-validation or draft-07 schemas, preserve validation, samplesheet tuple shape, help behavior and representative execution.",
+          "label": "schema migration"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/nextflow-schema/SKILL.md",
+          "old": "  and nf-schema v2 (JSON Schema 2020-12) compliance.",
+          "new": "  nf-schema v2 (JSON Schema 2020-12) compliance, source-material parameter triage,\n  and migration from nf-validation or draft-07 schemas."
+        },
+        {
+          "path": "skills/nextflow-schema/SKILL.md",
+          "old": "## Discovering parameters from raw source material",
+          "new": "## Discovering parameters from raw source material\n\nRead [parameter triage](references/triage-pipeline-parameters/README.md) for the bounded source-audit task, including the config outline and representative test-input manifest."
+        },
+        {
+          "path": "skills/nextflow-schema/SKILL.md",
+          "old": "For migrating existing pipelines from nf-validation to nf-schema, see the `nf-schema-migration` skill.",
+          "new": "For migrating existing pipelines from nf-validation to nf-schema, read [schema migration](references/nf-schema-migration/README.md) before editing. Schema syntax validation alone does not prove samplesheet or pipeline equivalence."
+        },
+        {
+          "path": "skills/nf-schema-migration/SKILL.md",
+          "old": "Consult the bundled migration-guide.md reference for additional migration details.",
+          "new": "Consult [migration details](references/migration-guide.md) for legacy keyword examples. This is a historical reference: verify current nf-core tooling compatibility rather than treating its dated support warning as current."
+        }
+      ]
     }
   ]
 }

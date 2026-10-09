@@ -51,6 +51,6 @@ Video: https://youtu.be/LBB9NueK-vk
 
 - **Run `prek install --overwrite` after merge** to switch the repo's git hooks from `pre-commit` to `prek`.
 - **Webhook config migration is mandatory** — existing pipelines with Slack webhooks need to switch to the `nf-slack` plugin. The template removes the webhook section entirely; don't try to keep it.
-- **Strict syntax is required**, not optional, for tools 4.0+. After merge, run `nextflow lint` and chain `nextflow-26-syntax` / `nf-v2-boolean-params` / `nf-schema-migration` if there are residual failures.
+- **Strict syntax is required**, not optional, for tools 4.0+. After merge, run `nextflow lint` and chain `nextflow-26-syntax` / `nf-v2-boolean-params` / [schema migration](../../../nextflow-schema/references/nf-schema-migration/README.md) if there are residual failures.
 - **No prefix-free `nf-core` commands** — any docs, scripts, or CI invoking `nf-core create`, `nf-core lint`, etc. must be updated to `nf-core pipelines create`, `nf-core pipelines lint`, etc.
 - **`--migrate-pytest` is gone**. If you still have pytest-based tests waiting to migrate to `nf-test`, do that conversion outside the sync PR.

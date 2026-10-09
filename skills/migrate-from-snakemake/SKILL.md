@@ -78,7 +78,7 @@ Treat this as your spec. The rulegraph is your conversion roadmap — each node 
 - Translate the main `Snakefile` into `main.nf` + `nextflow.config` skeleton.
 - Map global config and top-level DAG flow before implementing every rule detail.
 - Keep process stubs minimal but executable so the workflow compiles early.
-- For non-trivial param surfaces: `triage-pipeline-parameters` before locking `nextflow.config`.
+- For non-trivial param surfaces: [parameter triage](../nextflow-schema/references/triage-pipeline-parameters/README.md) before locking `nextflow.config`.
 
 ### 4) Decompose by responsibility
 
