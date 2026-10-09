@@ -56,6 +56,22 @@ class ConsolidationTests(unittest.TestCase):
         for entry in sources["files"]:
             self.assertEqual(entry["bundled_sha256"], hashlib.sha256((self.root / entry["path"]).read_bytes()).hexdigest())
 
+    def test_short_reference_replaces_guide_and_drops_mirrored_schema(self):
+        (self.root / "connection.md").write_text("# Connection\n\nUse live tool schemas.\n")
+        plan = json.loads(self.plan.read_text())
+        fold = plan["groups"][0]["folds"][0]
+        fold["guide_override"] = "connection.md"
+        fold["drop"] = ["references/details.md"]
+        self.plan.write_text(json.dumps(plan))
+        result = self.run_cli()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        destination = self.root / "skills/owner/references/old"
+        self.assertEqual((destination / "README.md").read_text(), "# Connection\n\nUse live tool schemas.\n")
+        self.assertFalse((destination / "references/details.md").exists())
+        sources = json.loads((self.root / "sources.json").read_text())
+        self.assertNotIn("skills/owner/references/old/references/details.md", [entry["path"] for entry in sources["files"]])
+        self.assertTrue((destination / "scripts/check.sh").is_file())
+
     def test_replaying_a_completed_plan_is_a_noop(self):
         self.assertEqual(self.run_cli().returncode, 0)
         before = {str(path.relative_to(self.root)): path.read_bytes() for path in self.root.rglob("*") if path.is_file()}

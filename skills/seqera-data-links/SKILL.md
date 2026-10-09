@@ -14,7 +14,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -29,7 +29,7 @@ print, or copy access tokens, bearer headers, cloud keys, or credential contents
 
 ## Discover before calling
 
-Use the `seqera-mcp` skill for the connection and discovery pattern. Every
+Read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference for discovery and authentication. Every
 Platform operation follows:
 
 1. Call `search_seqera_api` with the operation's intent, such as "list data links

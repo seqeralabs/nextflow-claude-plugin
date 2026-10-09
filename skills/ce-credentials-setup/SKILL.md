@@ -19,7 +19,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -37,15 +37,15 @@ Load this skill when the user wants to:
 - Understand what values are needed for a specific platform
 - Troubleshoot CE creation failures (wrong token, missing permissions, etc.)
 
-**This skill complements `seqera-mcp`** — it covers HOW to gather values, while `seqera-mcp` covers HOW to call the creation tools.
+Read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference for discovery and authentication. This skill owns provider prerequisites and compute readiness.
 
 ## General Workflow
 
 1. **Identify platform** — ask which cloud/cluster (seqera-compute, aws-batch, k8s, etc.)
 2. **Gather credentials** — run commands to get keys, tokens, certificates (skip for Seqera Compute)
 3. **Verify locally** — confirm credentials work before sending to Platform (skip for Seqera Compute)
-4. **Create credentials** — `platform_create_credentials` via seqera-mcp (skip for Seqera Compute)
-5. **Create compute environment** — `platform_create_compute_env` via seqera-mcp
+4. **Create credentials** — `platform_create_credentials` through discovered MCP operations (skip for Seqera Compute)
+5. **Create compute environment** — `platform_create_compute_env` through discovered MCP operations
 
 > **Seqera Compute shortcut:** If the user is on Seqera Cloud and wants the simplest option, recommend Seqera Compute. It only needs a name and region — no credentials, no infrastructure setup. Skip directly to step 5. This is the path with the fewest moving parts and the fewest ways to fail.
 

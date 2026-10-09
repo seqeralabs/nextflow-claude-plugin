@@ -3,7 +3,7 @@
 Build, migrate, test, debug and run [Nextflow](https://www.nextflow.io) pipelines with
 Claude, connected to [Nextflow Platform](https://seqera.io), Wave containers and nf-core.
 
-The plugin bundles 29 skills and the hosted Seqera MCP server (`https://mcp.seqera.io/mcp`).
+The plugin bundles 28 skills and the hosted Seqera MCP server (`https://mcp.seqera.io/mcp`).
 
 ## Install
 
@@ -47,7 +47,7 @@ To make the plugin available to everyone working in a repository, add it to that
 | Convert to Nextflow | `build-nextflow-pipeline` (Python, R and notebook playbooks), `migrate-from-snakemake`, `audit-conversion-readiness`, `nextflow-schema` (parameter triage), `find-alternative-tools` |
 | Migrate and modernise | `migrate-nextflow-code` (version, strict-syntax and boolean references), `nextflow-schema` (schema migration), `nf-plugin-development`, `nf-plugin-legacy-migration`, `maintain-nf-core-pipeline` |
 | Test and debug | `nf-test` (authoring and failure repair), `repair-workflow` (including static diagnostics), `debug-local-run`, `debug-seqera-failed-run`, `nextflow-history` (history, cache and narrative recaps), `nf-data-lineage`, `nf-docker-scripts` |
-| Nextflow Platform | `launch-workflow`, `seqera-mcp`, `ce-credentials-setup`, `seqera-data-links`, `seqerakit` |
+| Nextflow Platform | `launch-workflow` (with shared MCP connection reference), `ce-credentials-setup`, `seqera-data-links`, `seqerakit` |
 | General | `nextflow-development`, `install-nextflow` |
 
 ## Licensing

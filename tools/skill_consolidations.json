@@ -330,6 +330,253 @@
           "new": "Read the syntax compatibility reference when the task touches multiple grammar rules; keep boolean-only failures scoped to this reference."
         }
       ]
+    },
+    {
+      "folds": [
+        {
+          "from": "seqera-mcp",
+          "to": "launch-workflow",
+          "heading": "MCP connection reference",
+          "when": "When a Seqera connection is missing or operation discovery is unclear, use the shared connection reference. Otherwise rely on the live tool descriptions and returned schemas.",
+          "label": "MCP connection",
+          "guide_override": "curation/mcp-connection.md",
+          "drop": [
+            "references/tool-schemas.md"
+          ]
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/audit-conversion-readiness/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/references/convert-jupyter-notebook/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/references/convert-python-script/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/references/convert-r-script/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/references/create-workflow/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/ce-credentials-setup/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/create-container/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/debug-local-run/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/debug-seqera-failed-run/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/find-alternative-tools/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/install-nextflow/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/maintain-nf-core-pipeline/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/migrate-from-snakemake/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/references/nextflow-26-syntax/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/references/nf-migrate-25-04/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/references/nf-v2-boolean-params/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-config/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-development/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-history/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-history/references/nf-run-history/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-output-patterns/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-schema/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-schema/references/nf-schema-migration/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-schema/references/triage-pipeline-parameters/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-data-lineage/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-docker-scripts/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-pipeline-design/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-plugin-development/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-plugin-legacy-migration/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-test/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-test/references/repair-nf-test/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/repair-workflow/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/repair-workflow/references/nf-debug/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/run-module/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/search-existing-modules/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/seqera-data-links/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/seqerakit/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/seqera-data-links/SKILL.md",
+          "old": "Use the `seqera-mcp` skill for the connection and discovery pattern.",
+          "new": "Read the `seqera-mcp` connection reference for discovery and authentication."
+        },
+        {
+          "path": "skills/ce-credentials-setup/SKILL.md",
+          "old": "**This skill complements `seqera-mcp`** — it covers HOW to gather values, while `seqera-mcp` covers HOW to call the creation tools.",
+          "new": "Read the `seqera-mcp` connection reference for discovery and authentication. This skill owns provider prerequisites and compute readiness."
+        },
+        {
+          "path": "skills/ce-credentials-setup/SKILL.md",
+          "old": "via seqera-mcp (skip for Seqera Compute)",
+          "new": "through discovered MCP operations (skip for Seqera Compute)"
+        },
+        {
+          "path": "skills/ce-credentials-setup/SKILL.md",
+          "old": "via seqera-mcp",
+          "new": "through discovered MCP operations"
+        },
+        {
+          "path": "skills/ce-credentials-setup/references/kubernetes.md",
+          "old": "Using the seqera-mcp tool:",
+          "new": "Discover the credential-creation operation with `search_seqera_api` and execute it through `call_seqera_api`. The example below describes intent; use the current returned schema, not these illustrative field names:"
+        },
+        {
+          "path": "skills/nextflow-history/SKILL.md",
+          "old": "use `seqera-mcp` to discover the relevant workflow-listing operation.",
+          "new": "use MCP discovery/execution to retrieve workflows; read `seqera-mcp` if connection or discovery guidance is needed."
+        }
+      ]
     }
   ]
 }

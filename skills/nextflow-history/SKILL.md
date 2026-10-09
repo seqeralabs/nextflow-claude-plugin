@@ -16,7 +16,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -37,7 +37,7 @@ not assume a working directory or cache location.
 - Identify safe cleanup candidates after reviewing the user's retention needs.
 
 For failure diagnosis, use the `debug-local-run` skill. For Platform history,
-use `seqera-mcp` to discover the relevant workflow-listing operation.
+use MCP discovery/execution to retrieve workflows; read [MCP connection](../launch-workflow/references/seqera-mcp/README.md) if connection or discovery guidance is needed.
 
 ## Run-history fields
 
@@ -114,7 +114,7 @@ historical failures from current failures and avoid presenting stale logs as
 the latest run.
 
 Related skills: `nextflow-config`, `debug-local-run`,
-`debug-seqera-failed-run`, and `seqera-mcp`.
+`debug-seqera-failed-run`, and [MCP connection](../launch-workflow/references/seqera-mcp/README.md).
 
 ## Narrative history analysis
 
