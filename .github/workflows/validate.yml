@@ -63,9 +63,9 @@ jobs:
           codex plugin marketplace add ./
           codex plugin add nextflow@nextflow-claude-plugin
           codex plugin list | tee codex-plugins.txt
-          grep -q "nextflow@nextflow-claude-plugin  installed, enabled" codex-plugins.txt
+          grep -Eq '^nextflow@nextflow-claude-plugin[[:space:]]+installed, enabled[[:space:]]' codex-plugins.txt
           codex mcp list | tee codex-mcp.txt
-          grep -q "seqera  https://mcp.seqera.io/mcp" codex-mcp.txt
+          grep -Eq '^seqera[[:space:]]+https://mcp[.]seqera[.]io/mcp[[:space:]]' codex-mcp.txt
           expected=$(ls skills | wc -l)
           actual=$(codex debug prompt-input "hi" | grep -o "nextflow:[a-z0-9-]*" | sort -u | wc -l)
           test "$actual" -eq "$expected"
