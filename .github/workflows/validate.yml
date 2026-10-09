@@ -11,6 +11,7 @@ permissions:
 env:
   # Pinned so validation results are reproducible; bump deliberately.
   CLAUDE_CODE_VERSION: "2.1.295"
+  CODEX_VERSION: "0.160.0"
 
 jobs:
   validate:
@@ -52,3 +53,19 @@ jobs:
 
       - name: Verify isolated core and optional-pack installations
         run: python3 -I tools/verify_skill_packs.py --report "${{ runner.temp }}/pack-installations.json"
+
+      - name: Install with Codex
+        env:
+          CODEX_HOME: ${{ runner.temp }}/codex
+        run: |
+          npm install -g "@openai/codex@${CODEX_VERSION}"
+          mkdir -p "$CODEX_HOME"
+          codex plugin marketplace add ./
+          codex plugin add nextflow@nextflow-claude-plugin
+          codex plugin list | tee codex-plugins.txt
+          grep -q "nextflow@nextflow-claude-plugin  installed, enabled" codex-plugins.txt
+          codex mcp list | tee codex-mcp.txt
+          grep -q "seqera  https://mcp.seqera.io/mcp" codex-mcp.txt
+          expected=$(ls skills | wc -l)
+          actual=$(codex debug prompt-input "hi" | grep -o "nextflow:[a-z0-9-]*" | sort -u | wc -l)
+          test "$actual" -eq "$expected"

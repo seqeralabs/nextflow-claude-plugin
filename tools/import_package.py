@@ -219,6 +219,8 @@ def main() -> None:
             "--root", str(REPO),
         ], check=True)
 
+        codex = json.loads((package / ".codex-plugin" / "plugin.json").read_text())
+
         review = generic.get("extensions", {}).get("com.openai", {}).get("review", {}).get("test_cases")
         if review:
             write_json(REPO / "evals" / "review-cases.json", review)
@@ -253,6 +255,30 @@ def main() -> None:
             "category": "development",
             "keywords": generic.get("keywords", []),
         }],
+    })
+
+    # Codex reads .claude-plugin/marketplace.json and the Claude plugin layout, but takes its
+    # listing (display name, logo, brand colour, starter prompts) from this overlay.
+    interface = dict(codex["interface"])
+    for key in ("displayName", "shortDescription", "longDescription"):
+        interface[key] = rename(interface[key])
+    interface["defaultPrompt"] = [rename(prompt) for prompt in interface.get("defaultPrompt", [])]
+    interface["developerName"] = AUTHOR["name"]
+    interface["websiteURL"] = REPOSITORY
+    interface["logo"] = ICON
+    interface["composerIcon"] = ICON
+    write_json(REPO / ".codex-plugin" / "plugin.json", {
+        "name": name,
+        "version": version,
+        "description": description,
+        "author": AUTHOR,
+        "homepage": REPOSITORY,
+        "repository": REPOSITORY,
+        "license": LICENSE,
+        "keywords": generic.get("keywords", []),
+        "skills": "./skills/",
+        "mcpServers": "./.mcp.json",
+        "interface": interface,
     })
 
     write_json(REPO / ".mcp.json", {"mcpServers": {"seqera": {"type": "http", "url": MCP_URL}}})
