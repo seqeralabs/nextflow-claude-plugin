@@ -901,14 +901,14 @@
       "path": "skills/migrate-nextflow-code/references/nextflow-26-syntax/README.md",
       "source": "portal/backend/src/skills/nextflow-26-syntax/SKILL.md",
       "source_sha256": "b5d1e1ac292ef84311339091169c9f9278b32b34f61d1c34a698629eee5b21d0",
-      "bundled_sha256": "2d7e9c983ff990a84bf683b520308c55c7e6965b1aedb14fbe2b96eff0be8a82",
+      "bundled_sha256": "b58374992b14ebebc203ac43c221d26dd952f3bced42b786961dc51a7c3f5139",
       "override": true
     },
     {
       "path": "skills/migrate-nextflow-code/references/nf-v2-boolean-params/README.md",
       "source": "portal/backend/src/skills/nf-v2-boolean-params/SKILL.md",
       "source_sha256": "8771e4330ea11d17aca403c9b2e3998152c5b5986a9da096daed20f1c8ba35c1",
-      "bundled_sha256": "4a1e391bfd105ca2f49fc04d4109f66eb76b3e55a425d7645196b91119257b12",
+      "bundled_sha256": "8088f1e3c4555e925bfcce700367062b73dd4e2afad2b44b07af6768697d150a",
       "override": true
     },
     {

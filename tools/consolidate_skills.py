@@ -27,6 +27,25 @@ def split_frontmatter(text: str) -> tuple[str, str]:
     return match.group(), text[match.end():]
 
 
+def rebase_markdown_links(text: str, old_path: Path, new_path: Path,
+                          source: Path, destination: Path) -> str:
+    def relocate(match: re.Match) -> str:
+        target = match.group(2)
+        location, separator, anchor = target.partition("#")
+        if not location or location.startswith(("/", "<")) or re.match(r"[a-zA-Z][\w+.-]*:", location):
+            return match.group()
+        resolved = (old_path.parent / location).resolve()
+        if resolved.is_relative_to(source.resolve()):
+            relative = resolved.relative_to(source.resolve())
+            if relative == Path("SKILL.md"):
+                relative = Path("README.md")
+            resolved = destination / relative
+        rebased = Path(os.path.relpath(resolved, new_path.parent)).as_posix()
+        return f"{match.group(1)}{rebased}{separator}{anchor})"
+
+    return re.sub(r"(\[[^\]]*\]\()([^\s)]+)\)", relocate, text)
+
+
 def apply_consolidations(root: Path, plan: dict, assets: Path) -> None:
     sources_path = root / "sources.json"
     sources = json.loads(sources_path.read_text())
@@ -69,6 +88,13 @@ def apply_consolidations(root: Path, plan: dict, assets: Path) -> None:
                 guide.write_text((assets / fold["guide_override"]).read_text())
             for dropped in fold.get("drop", []):
                 (destination / dropped).unlink()
+            for path in destination.rglob("*.md"):
+                if path == guide and fold.get("guide_override"):
+                    continue  # Authored override links already use the new location.
+                relative = Path("SKILL.md") if path == guide else path.relative_to(destination)
+                path.write_text(rebase_markdown_links(
+                    path.read_text(), source / relative, path, source, destination,
+                ))
 
             # Keep original source identity/hash; record new bundled path/hash below.
             prefix = f"skills/{fold['from']}/"

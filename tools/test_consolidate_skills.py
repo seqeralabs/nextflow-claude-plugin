@@ -56,6 +56,16 @@ class ConsolidationTests(unittest.TestCase):
         for entry in sources["files"]:
             self.assertEqual(entry["bundled_sha256"], hashlib.sha256((self.root / entry["path"]).read_bytes()).hexdigest())
 
+    def test_rebases_external_links_and_keeps_internal_asset_links(self):
+        original = self.root / "skills/old/SKILL.md"
+        original.write_text(original.read_text() + "\nRead [current task](../owner/SKILL.md#workflow).\n")
+        result = self.run_cli()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        guide = self.root / "skills/owner/references/old/README.md"
+        self.assertIn("[current task](../../SKILL.md#workflow)", guide.read_text())
+        self.assertIn("[details](references/details.md)", guide.read_text())
+        self.assertTrue((guide.parent / "../../SKILL.md").resolve().is_file())
+
     def test_short_reference_replaces_guide_and_drops_mirrored_schema(self):
         (self.root / "connection.md").write_text("# Connection\n\nUse live tool schemas.\n")
         plan = json.loads(self.plan.read_text())

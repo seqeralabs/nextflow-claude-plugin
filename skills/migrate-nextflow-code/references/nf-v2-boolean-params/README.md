@@ -211,4 +211,4 @@ If using the `nf-schema` plugin (`validateParameters()`), be aware:
 ## Related Skills
 
 - [strict syntax compatibility](../nextflow-26-syntax/README.md) — broader v2 parser rules (type annotations on process I/O, implicit `it`, top-level statements vs declarations, emit labels). Read the syntax compatibility reference when the task touches multiple grammar rules; keep boolean-only failures scoped to this reference.
-- [static diagnostics](../repair-workflow/references/nf-debug/README.md) — Pipeline diagnostics with lint, config validation, and preview
+- [static diagnostics](../../../repair-workflow/references/nf-debug/README.md) — Pipeline diagnostics with lint, config validation, and preview
