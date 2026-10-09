@@ -1,9 +1,6 @@
 ---
 name: debug-local-run
-description: >
-  Debug a local Nextflow pipeline run. Analyzes .nextflow.log, work directories,
-  and task error logs to identify failures and suggest fixes. Use when user asks
-  to debug their last run, diagnose pipeline errors, or understand why a run failed.
+description: Debug local Nextflow failures and investigate run history, caches, resume identity and data lineage. Select the requested diagnostic or provenance playbook; retention/export changes require explicit authorization.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
@@ -102,3 +99,11 @@ actually run and which remain unverified.
 References:
 [Nextflow error handling](https://www.nextflow.io/docs/latest/process.html#error-strategy)
 and [Nextflow tracing](https://www.nextflow.io/docs/latest/tracing.html).
+
+## Run history and resume identity
+
+For run/cache investigation or resume selection, identify the requested run from authoritative history and accessible cache/work metadata, not merely the newest run. Read [run history](references/nextflow-history/README.md) before proceeding.
+
+## Data lineage
+
+For provenance queries, use the selected lineage store; export or retention changes require explicit user authorization. Read [data lineage](references/nf-data-lineage/README.md) before proceeding.

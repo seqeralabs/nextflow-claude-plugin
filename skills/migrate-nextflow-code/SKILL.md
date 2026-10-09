@@ -1,6 +1,6 @@
 ---
 name: migrate-nextflow-code
-description: Migrate Nextflow pipeline code while preserving behavior. Use for version upgrades including 25.04 compatibility, strict syntax errors, boolean CLI parameter types, topic channels, workflow outputs, and static typing (typed processes/workflows, records, typed params).
+description: Migrate Nextflow pipeline code across versions while preserving behavior. Also use for extension-plugin authoring or legacy plugin migration, and nf-core maintenance/template synchronization. Follow only the requested playbook; do not force pipeline migration, template upgrades or registry publication.
 ---
 <!-- Modified for the Nextflow plugin: generic host tools and companion guidance. -->
 
@@ -18,6 +18,12 @@ manages OAuth for the connected MCP server.
 
 
 # Migrate Nextflow Code
+
+## Choose the requested task
+
+Plugin authoring, legacy-plugin migration and nf-core maintenance use the matching playbook linked below, not the pipeline migration phases. Check the repository conventions first; template synchronization and registry publication are separate authorized tasks.
+
+## Pipeline language migrations
 
 Migrate Nextflow pipeline code to satisfy newer language requirements. Each migration is detection-driven: a tool reports what must change, you apply behavior-preserving fixes, then re-run the tool until it is clean.
 
@@ -61,3 +67,15 @@ When CLI boolean flags arrive with the wrong type or do not toggle under strict 
 ## Nextflow 25.04 compatibility reference
 
 When targeting 25.04 or diagnosing compatibility across that release, use its changelog and scanners without assuming 26.x features. Read [25.04 compatibility](references/nf-migrate-25-04/README.md) before proceeding.
+
+## Plugin authoring
+
+For Nextflow extension-plugin development, use the plugin procedure rather than the pipeline migration phases. Read [plugin authoring](references/nf-plugin-development/README.md) before proceeding.
+
+## Legacy plugin migration
+
+For legacy extension migration, preserve plugin identity and behavior; registry publication needs separate approval. Read [legacy plugin migration](references/nf-plugin-legacy-migration/README.md) before proceeding.
+
+## nf-core maintenance
+
+For nf-core maintenance, check project conventions and the requested maintenance scope before template synchronization or publication. Read [nf-core maintenance](references/maintain-nf-core-pipeline/README.md) before proceeding.

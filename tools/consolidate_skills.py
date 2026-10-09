@@ -46,11 +46,30 @@ def rebase_markdown_links(text: str, old_path: Path, new_path: Path,
     return re.sub(r"(\[[^\]]*\]\()([^\s)]+)\)", relocate, text)
 
 
+def relocate_folded_path(path: Path, root: Path, plan: dict) -> Path:
+    for group in plan["groups"]:
+        for fold in group["folds"]:
+            source = root / "skills" / fold["from"]
+            if path.is_relative_to(source):
+                relative = path.relative_to(source)
+                if relative == Path("SKILL.md"):
+                    relative = Path("README.md")
+                path = root / "skills" / fold["to"] / "references" / fold["from"] / relative
+    return path
+
+
 def apply_consolidations(root: Path, plan: dict, assets: Path) -> None:
     sources_path = root / "sources.json"
     sources = json.loads(sources_path.read_text())
     entries = {entry["path"]: entry for entry in sources["files"]}
     edited = set(sources["claude_curation"]["edited_files"])
+    for path in sorted((root / "skills").rglob("*")):
+        relative = path.relative_to(root).as_posix()
+        if path.is_file() and relative not in entries:
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+            entries[relative] = {"path": relative, "source": f"imported-package/{relative}",
+                                 "source_sha256": digest, "bundled_sha256": digest,
+                                 "override": False, "note": "No upstream provenance record; hash identifies imported bytes only."}
     for group in plan["groups"]:
         folds = group["folds"]
         pending = [fold for fold in folds if (root / "skills" / fold["from"]).is_dir()]
@@ -59,7 +78,7 @@ def apply_consolidations(root: Path, plan: dict, assets: Path) -> None:
         if not pending:
             for fold in folds:
                 guide = root / "skills" / fold["to"] / "references" / fold["from"] / "README.md"
-                if not guide.is_file():
+                if not guide.is_file() and not relocate_folded_path(guide, root, plan).is_file():
                     raise ValueError(f"missing source skill and consolidated guide: {fold['from']}")
             continue
 
@@ -131,8 +150,22 @@ def apply_consolidations(root: Path, plan: dict, assets: Path) -> None:
                 frontmatter = re.sub(pattern, fold["to"], frontmatter)
                 # Do not change Markdown link destinations or the current guide's
                 # self-references into self-invocation. Skill slugs are standalone tokens.
-                body = re.sub(pattern, lambda _: f"[{fold['label']}]({relative})", body)
+                body = re.sub(r"\[[^\]]*\]\([^\s)]+\)|" + pattern,
+                              lambda match: match.group() if match.group().startswith("[")
+                              else f"[{fold['label']}]({relative})", body)
             path.write_text(frontmatter + body)
+
+    # A guide can point at another skill folded later, including a previous receiver.
+    # Repair those destinations after the complete plan, not just the current move.
+    for path in sorted((root / "skills").rglob("*.md")):
+        def relocate_link(match: re.Match) -> str:
+            location, separator, anchor = match.group(2).partition("#")
+            if not location or location.startswith(("/", "<")) or re.match(r"[a-zA-Z][\w+.-]*:", location):
+                return match.group()
+            target = relocate_folded_path((path.parent / location).resolve(), root, plan)
+            relative = Path(os.path.relpath(target, path.parent)).as_posix()
+            return f"{match.group(1)}{relative}{separator}{anchor})"
+        path.write_text(re.sub(r"(\[[^\]]*\]\()([^\s)]+)\)", relocate_link, path.read_text()))
 
     # Behavioral adaptations run after all references have been relocated.
     for edit in plan.get("post_edits", []):

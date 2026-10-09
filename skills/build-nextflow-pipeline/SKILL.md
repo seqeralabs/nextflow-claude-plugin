@@ -1,17 +1,12 @@
 ---
 name: build-nextflow-pipeline
 description: >
-  Plan and scaffold a new Nextflow DSL2 pipeline from source material —
-  scripts, repositories, Jupyter/R notebooks, papers, or informal
-  instructions. Drives the planning phases before any .nf code is written:
-  mapping the data flow, critiquing it, shaping channels and metadata,
-  scoping subworkflows, hunting for existing modules, and only then building
-  containers and writing code. Use this skill whenever the user asks to
-  "build a pipeline", "compose registry modules", "port this to Nextflow", "turn this notebook/repo/script
-  into a pipeline", or otherwise wants to go from an existing body of work to
-  a clean Nextflow pipeline. Pair with `nf-pipeline-design`, which owns the
-  code-level rules (layout, main.nf, subworkflow/module shape); this skill
-  owns the planning process that precedes them.
+  Build or convert Nextflow pipelines from scripts, notebooks, repositories
+  or Snakemake workflows. Also use for read-only conversion readiness audits,
+  discovering or directly running registry modules, requested tool comparisons,
+  and Nextflow installation or upgrade help. Choose the bounded task path;
+  only full pipeline construction uses the planning phases. Pair with
+  nf-pipeline-design for code structure and output contracts.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
@@ -30,9 +25,15 @@ manages OAuth for the connected MCP server.
 
 # Build a Nextflow Pipeline
 
+## Choose the requested task
+
+Audit, module discovery/execution, tool comparison and installation requests use only their matching playbook; skip construction phases and stop at the requested result. Pass the playbook to a helper agent rather than invoking a removed skill.
+
+For nf-core analysis or Platform setup, use `launch-workflow`; for extension-plugin work or nf-core maintenance, use `migrate-nextflow-code`; for history or lineage, use `debug-local-run`. These specialist tasks do not enter pipeline construction.
+
 ## Choose the construction path
 
-For composing existing Registry modules, read [registry composition](references/create-workflow/README.md) and follow its plan → approval → module validation → composition → end-to-end verification loop. For a single module, use `run-module`; a wrapper workflow is unnecessary.
+For composing existing Registry modules, read [registry composition](references/create-workflow/README.md) and follow its plan → approval → module validation → composition → end-to-end verification loop. For a single module, use [native module execution](references/run-module/README.md); a wrapper workflow is unnecessary.
 
 For scripts, notebooks, repositories or analysis descriptions, use the source-material phases below. Load `nf-pipeline-design` for code-level rules in either path.
 
@@ -50,12 +51,12 @@ Delegate only when the host supports subagents; otherwise perform the same steps
 
 | Phase step | Delegate? | Companion skill |
 |---|---|---|
-| Auditing what the source material actually points at | **Yes** — hand the source material to one subagent | `audit-conversion-readiness` |
+| Auditing what the source material actually points at | **Yes** — hand the source material to one subagent | [conversion readiness](references/audit-conversion-readiness/README.md) |
 | Mapping the data flow | No — this is the core act of planning, keep it in the main conversation | — |
 | Triaging parameters and drafting `nextflow_schema.json` | **Yes** — hand the source material to one subagent | `nextflow-schema` |
 | Designing channels and metadata | No — needs the data flow map as live context | — |
-| Comparing alternatives, only when requested or the selected tool is blocked | **Optional** — delegate the bounded comparison when useful | `find-alternative-tools` |
-| Searching for existing Nextflow modules for each chosen tool | **Yes — one subagent per tool, in parallel** | `search-existing-modules` |
+| Comparing alternatives, only when requested or the selected tool is blocked | **Optional** — delegate the bounded comparison when useful | [tool comparison](references/find-alternative-tools/README.md) |
+| Searching for existing Nextflow modules for each chosen tool | **Yes — one subagent per tool, in parallel** | [module discovery](references/search-existing-modules/README.md) |
 | Building and verifying the container for each tool branch | **Yes — one subagent per tool, in parallel** | `create-container` |
 | Writing `main.nf`, subworkflows, and modules | No — this is a synthesis step that uses every prior artifact | — |
 
@@ -100,7 +101,7 @@ available: absolute paths into a lab NAS, reference bundles nobody can reach fro
 here, a helper script that never made it into the handover. Finding that out after
 the modules exist is the most expensive way to learn it.
 
-Run `audit-conversion-readiness` on the source material first. It
+Run [conversion readiness](references/audit-conversion-readiness/README.md) on the source material first. It
 returns a blockers-first report — unreachable paths, missing tool code, tools with
 no distributable container — plus one consolidated list of what to ask the user.
 Fold the surviving references into Phase 1's data flow map and parameter triage.
@@ -346,7 +347,7 @@ Each subworkflow should:
 
 Use the tool requested by the user or required to preserve the source analysis. If none is specified, recommend one suitable default and resolve material license, compute or output-contract constraints before implementation.
 
-Use `find-alternative-tools` only when the user requests a comparison or the selected tool is blocked. Research produces candidates; it does not authorize implementing them.
+Use [tool comparison](references/find-alternative-tools/README.md) only when the user requests a comparison or the selected tool is blocked. Research produces candidates; it does not authorize implementing them.
 
 Add multiple tool branches only when the user explicitly requests or approves them. For approved branches:
 
@@ -365,7 +366,7 @@ For each selected tool, search for existing implementations in this priority ord
 2. **The inputted source.** Check the scripts, notebooks, or repository you were given — is there already a containerized version, a Dockerfile, a conda env? Reuse it.
 3. **Online: papers, preprints, GitHub, biorxiv, arxiv.** Look for community implementations, reference pipelines, or tool authors' recommended invocations. A five-minute search often finds a canonical invocation that saves hours of trial and error.
 
-**Delegate this search when available.** For each tool selected, use the `search-existing-modules` skill with the tool name, the path to the pipeline's source material, and — if the prior enumerate step flagged one — the nf-core module hint. The hint enables a quick verification instead of re-running the full priority-order search. These tasks can run in parallel with one subagent per tool. Each search produces a verdict (reuse / vendor / write new) plus the structured metadata needed by the next phase. Paste the verdicts into the planning document's "Module sourcing" section.
+**Delegate this search when available.** For each tool selected, use the [module discovery](references/search-existing-modules/README.md) skill with the tool name, the path to the pipeline's source material, and — if the prior enumerate step flagged one — the nf-core module hint. The hint enables a quick verification instead of re-running the full priority-order search. These tasks can run in parallel with one subagent per tool. Each search produces a verdict (reuse / vendor / write new) plus the structured metadata needed by the next phase. Paste the verdicts into the planning document's "Module sourcing" section.
 
 If a verdict reveals tool-argument parameters that were not captured in Phase 1's schema draft (e.g. the canonical invocation uses a `--kmer-size` flag that the source material omitted), add them to `nextflow_schema.json` now — this is the second expected schema augmentation. Keep `nextflow.config` in sync.
 
@@ -387,7 +388,7 @@ Why this ordering matters: most "Nextflow bugs" when porting existing work are n
 **Delegate per-tool container builds when available.** For each tool that came back as "vendor" or "write new" from the module search, use the `create-container` skill with:
 
 - The tool name and target version.
-- The target command line (from the `CANONICAL CLI` field of the search-existing-modules verdict).
+- The target command line (from the `CANONICAL CLI` field of the [module discovery](references/search-existing-modules/README.md) verdict).
 - The test-input row for that tool from the planning document's "Test inputs" section (produced by `nextflow-schema` in Phase 1). Include path, format, size, and expected output shape.
 - Any constraints the main conversation has committed to (executor, GPU, container registry).
 
@@ -418,7 +419,7 @@ Writing the actual `main.nf`, subworkflows, and modules should now be a mechanic
 - [ ] Cheap operations are assigned to operators/Groovy; expensive ones to modules
 - [ ] Each subworkflow has a one-sentence rationale and a named underlying tool (or set of alternative tools with branching)
 - [ ] The selected tools match the requested analysis; any additional implemented branches were explicitly requested or approved
-- [ ] Existing-module search has been done for every chosen tool, using `search-existing-modules`, with verdicts in the planning document
+- [ ] Existing-module search has been done for every chosen tool, using [module discovery](references/search-existing-modules/README.md), with verdicts in the planning document
 - [ ] Test inputs exist at the user's selected test data (or are specified to be derived) for every heavy tool
 - [ ] Containers are built and tool commands verified, delegated to `create-container` subagents where possible, with verified image references in the planning document
 - [ ] `nf-pipeline-design` has been re-read for the code-level rules
@@ -445,3 +446,27 @@ When converting R source into Nextflow, preserve statistical semantics, dependen
 ## Notebook conversion playbook
 
 When converting a Jupyter notebook, inventory cell dependencies and hidden state before extracting executable steps. Read [notebook conversion](references/convert-jupyter-notebook/README.md) before proceeding.
+
+## Snakemake conversion playbook
+
+When converting a Snakefile, preserve DAG, wildcard, scheduler and golden-output semantics. Read [snakemake conversion](references/migrate-from-snakemake/README.md) before proceeding.
+
+## Conversion readiness playbook
+
+For an audit-only request, inventory and probe inputs, code and dependencies; stop with a blockers-first report without editing pipeline code. Read [conversion readiness](references/audit-conversion-readiness/README.md) before proceeding.
+
+## Module discovery playbook
+
+When selecting a tool implementation, return a verified reuse, vendor/adapt or write-new verdict. Read [module discovery](references/search-existing-modules/README.md) before proceeding.
+
+## Native module execution playbook
+
+For a module-only request, inspect the module contract and run it natively on verified inputs; no wrapper workflow or construction phases are needed. Read [native module execution](references/run-module/README.md) before proceeding.
+
+## Tool comparison playbook
+
+For requested comparisons or a blocked selected tool, compare alternatives; implementation needs separate user approval. Read [tool comparison](references/find-alternative-tools/README.md) before proceeding.
+
+## Runtime setup playbook
+
+For installation or upgrade help, check the selected release and operation first; ask before changing the environment. Read [runtime setup](references/install-nextflow/README.md) before proceeding.
