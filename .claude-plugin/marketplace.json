@@ -1,0 +1,33 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "nextflow-claude-plugin",
+  "owner": {
+    "name": "Seqera",
+    "url": "https://seqera.io"
+  },
+  "metadata": {
+    "description": "Nextflow and Seqera Platform plugin for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "nextflow",
+      "source": "./",
+      "description": "Build, migrate, test, debug, and run Nextflow pipelines with Seqera Platform, Wave, and nf-core.",
+      "version": "0.1.6",
+      "author": {
+        "name": "Seqera",
+        "url": "https://seqera.io"
+      },
+      "homepage": "https://github.com/seqeralabs/nextflow-claude-plugin",
+      "license": "Apache-2.0 AND BUSL-1.1",
+      "category": "development",
+      "keywords": [
+        "nextflow",
+        "seqera",
+        "nf-core",
+        "bioinformatics",
+        "pipelines"
+      ]
+    }
+  ]
+}

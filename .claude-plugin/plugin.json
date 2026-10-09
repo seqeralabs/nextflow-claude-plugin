@@ -1,0 +1,19 @@
+{
+  "name": "nextflow",
+  "version": "0.1.6",
+  "description": "Build, migrate, test, debug, and run Nextflow pipelines with Seqera Platform, Wave, and nf-core.",
+  "author": {
+    "name": "Seqera",
+    "url": "https://seqera.io"
+  },
+  "homepage": "https://github.com/seqeralabs/nextflow-claude-plugin",
+  "repository": "https://github.com/seqeralabs/nextflow-claude-plugin",
+  "license": "Apache-2.0 AND BUSL-1.1",
+  "keywords": [
+    "nextflow",
+    "seqera",
+    "nf-core",
+    "bioinformatics",
+    "pipelines"
+  ]
+}
