@@ -61,10 +61,3 @@ When CLI boolean flags arrive with the wrong type or do not toggle under strict 
 ## Nextflow 25.04 compatibility reference
 
 When targeting 25.04 or diagnosing compatibility across that release, use its changelog and scanners without assuming 26.x features. Read [25.04 compatibility](references/nf-migrate-25-04/README.md) before proceeding.
-
-
-## Optional specialist work
-
-For infrastructure setup, nf-core maintenance/analysis, plugin development or broad provenance work, read [optional pack handoffs](../build-nextflow-pipeline/references/optional-packs.md). Check available namespaced skills first; if the pack is absent, explain how to explicitly install/enable it and stop that specialist task. Ordinary debugging and launch/resume remain in core.
-
-When editing an nf-core project, read [nf-core safety](../build-nextflow-pipeline/references/nf-core-safety.md); basic safe edits do not require the optional maintenance pack.

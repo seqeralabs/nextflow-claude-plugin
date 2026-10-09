@@ -139,8 +139,3 @@ For failing suites, assertion errors or snapshot mismatches, read [nf-test failu
 ## Failure repair playbook
 
 When an existing nf-test fails, classify intentional contract change, regression, nondeterminism or infrastructure before editing code, assertions or snapshots. Read [nf-test failure repair](references/repair-nf-test/README.md) before proceeding.
-
-
-## Optional specialist work
-
-For infrastructure setup, nf-core maintenance/analysis, plugin development or broad provenance work, read [optional pack handoffs](../build-nextflow-pipeline/references/optional-packs.md). Check available namespaced skills first; if the pack is absent, explain how to explicitly install/enable it and stop that specialist task. Ordinary debugging and launch/resume remain in core.

@@ -1,8 +1,6 @@
 ---
 name: nf-pipeline-design
 description: >
-  Also use for output aggregation, collectFile headers, join cardinality,
-  grouping keys and null-handling correctness.
   Make sure to use this skill whenever you are designing, writing, reviewing,
   or refactoring a Nextflow DSL2 pipeline with a focus on STRUCTURE — the
   shape of `main.nf`, where subworkflows belong, when something is a module
@@ -37,8 +35,8 @@ manages OAuth for the connected MCP server.
 
 When a structural decision depends on a non-structural one, chain to:
 
-- [tool comparison](../build-nextflow-pipeline/references/find-alternative-tools/README.md) — tool choice at a branch
-- [module discovery](../build-nextflow-pipeline/references/search-existing-modules/README.md) — reuse vs author a module
+- `find-alternative-tools` — tool choice at a branch
+- `search-existing-modules` — reuse vs author a module
 - [parameter triage](../nextflow-schema/references/triage-pipeline-parameters/README.md) — param schema before `main.nf`
 
 ## Canonical Nextflow baseline
@@ -1288,14 +1286,3 @@ script:
 run_tool --input ${fasta}
 """
 ```
-
-## Output correctness playbook
-
-When aggregating, joining or grouping outputs, check headers, cardinality, keys and null handling. Read [output correctness](references/nextflow-output-patterns/README.md) before proceeding.
-
-
-## Optional specialist work
-
-For infrastructure setup, nf-core maintenance/analysis, plugin development or broad provenance work, read [optional pack handoffs](../build-nextflow-pipeline/references/optional-packs.md). Check available namespaced skills first; if the pack is absent, explain how to explicitly install/enable it and stop that specialist task. Ordinary debugging and launch/resume remain in core.
-
-When editing an nf-core project, read [nf-core safety](../build-nextflow-pipeline/references/nf-core-safety.md); basic safe edits do not require the optional maintenance pack.

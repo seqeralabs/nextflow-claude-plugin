@@ -1,11 +1,6 @@
 ---
 name: launch-workflow
-description: >
-  Plan, launch or resume Nextflow pipelines locally or through Nextflow Platform.
-  Use for pre-launch questions about uncommitted/unpublished changes, revision
-  selection, parameters, compute resources and resume identity, as well as
-  submission and readback. Publication and infrastructure creation require
-  separate explicit authorization; a launch question does not authorize them.
+description: Launch Nextflow pipeline executions on cloud and HPC clusters via Nextflow Platform. Use when the user wants to run/launch/submit a pipeline on a cloud or cluster compute environment, configure a compute environment, push pipeline changes to GitHub before launching, or sign in to Nextflow Platform.
 ---
 <!-- Modified for the Nextflow plugin: generic host tools and companion guidance. -->
 
@@ -22,17 +17,7 @@ describe API operations. Discover their exact names and parameter schemas with
 manages OAuth for the connected MCP server.
 
 
-# Launch or Resume a Pipeline
-
-## Local runs and resume
-
-For a local run, confirm the user's pipeline, parameters, executor and output destination. Use the installed release's `nextflow run` interface; a local run does not require Platform authentication, a remote Git repository or Nextflow 26.04.
-
-Before resuming, read [run identification](../debug-local-run/references/run-identification.md) and verify the requested run/session and accessible work/cache metadata. Use `-resume` with the selected identity; do not choose a run solely because it is newest. Inspect completion status and representative outputs; a cache hit alone is not scientific-output verification.
-
-For missing runtime setup, read [runtime setup](../build-nextflow-pipeline/references/install-nextflow/README.md). Stop before installing or upgrading without explicit approval.
-
-## Platform launches
+# Launch Pipeline on Nextflow Platform
 
 Launch Nextflow pipeline executions on cloud (AWS, Google Cloud, Azure) and HPC clusters (Slurm, LSF, etc.) through Nextflow Platform. Nextflow Platform manages the target compute environment, executes the pipeline from a remote Git repository, and provides monitoring.
 
@@ -42,7 +27,7 @@ Launch Nextflow pipeline executions on cloud (AWS, Google Cloud, Azure) and HPC 
 
 1. **Configure the compute environment** — select a Nextflow Platform compute environment for the target cloud or cluster.
 2. **Ensure the pipeline is in a remote Git repository** — Nextflow Platform launches pipelines from GitHub (or a compatible Git host such as GitLab or Bitbucket). If the local pipeline is not yet hosted, assist the user in setting up the repository.
-3. **Select a published revision** — verify that the remote contains the intended code. Publishing local changes requires separate explicit approval; a launch request alone is not authority to commit or push.
+3. **Upload local changes** — push any uncommitted local changes to the remote so the launched run reflects the user's current code.
 4. **Launch with `nextflow launch`** — submit the pipeline by passing the Git repository URL and the expected parameters.
 
 ## Step 1: Authenticate with Nextflow Platform
@@ -93,11 +78,16 @@ git status
 
 **If the pipeline is not yet a Git repository or has no remote**, assist the user in setting it up:
 
-Explain the missing published revision and ask for separate authorization before initializing Git, creating a remote, staging files or publishing code. Alternatively select an already published revision the user approves.
+Initialize Git if needed, review the user's selected pipeline files, and stage
+only the intended changes. Help the user create or select a remote repository,
+configure its remote URL, and push the agreed revision using the available tools.
 
 ## Step 4: Upload Local Changes
 
-Compare local changes with the selected remote revision. If the intended code is unpublished, stop and ask whether the user wants a separate commit/push task or a launch of the existing published revision. Only publish after explicit approval, staging only the approved files.
+Before launching, push any local changes so the remote reflects the code that should run:
+
+Review the changes, commit the user's intended pipeline files with a descriptive
+message, and push the confirmed branch using the available Git tools.
 
 If the working tree is clean and the local branch is in sync with the remote, skip this step.
 
@@ -123,14 +113,14 @@ pipeline; it does not determine the user's inputs or output destination.
 
 ## Step 6: Monitor the Execution
 
-`nextflow launch` returns a run URL on Nextflow Platform. Retrieve the authoritative submitted workflow using discovered MCP operations and confirm its revision, parameters, compute environment and resume identity. Present the verified run identifier/URL and distinguish submission from successful completion.
+`nextflow launch` returns a run URL on Nextflow Platform. Present this URL to the user so they can monitor progress in the Platform UI.
 
 ## Critical Rules
 
 1. **AUTHENTICATE first** — check `nextflow auth status` before attempting to launch.
 2. **CONFIRM the compute environment** — always show the user the selected CE before launching.
 3. **REQUIRE a remote Git repository** — the pipeline must be hosted on GitHub or a compatible Git host. If not, help the user set it up before launching.
-4. **VERIFY the published revision** — use the approved remote code; obtain separate authorization before committing or pushing local changes.
+4. **PUSH local changes first** — the launched run uses the remote code, so local edits must be committed and pushed.
 5. **PASS the Git repository URL** to `nextflow launch`, not a local path.
 6. **PIN the revision** — always use `-r` to target a specific branch, tag, or commit for reproducibility.
 7. **USE cloud storage for `--outdir`** when the target CE runs on a cloud platform (s3://, gs://, az://).
@@ -139,8 +129,3 @@ pipeline; it does not determine the user's inputs or output destination.
 ## MCP connection reference
 
 When a Seqera connection is missing or operation discovery is unclear, use the shared connection reference. Otherwise rely on the live tool descriptions and returned schemas. Read [MCP connection](references/seqera-mcp/README.md) before proceeding.
-
-
-## Optional specialist work
-
-For infrastructure setup, nf-core maintenance/analysis, plugin development or broad provenance work, read [optional pack handoffs](../build-nextflow-pipeline/references/optional-packs.md). Check available namespaced skills first; if the pack is absent, explain how to explicitly install/enable it and stop that specialist task. Ordinary debugging and launch/resume remain in core.

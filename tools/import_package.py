@@ -36,7 +36,7 @@ AUTHOR = {"name": "Seqera", "url": "https://seqera.io"}
 
 # Version of the Claude plugin. It is released independently of the generic package
 # because the Claude build curates the skill set below; bump it on every release.
-VERSION = "0.3.0"
+VERSION = "0.2.2"
 
 # Skills from the generic package that are not shipped in the Claude plugin.
 EXCLUDED_SKILLS = [
@@ -209,9 +209,6 @@ def main() -> None:
             else:
                 shutil.copy2(src, dst)
 
-        # Optional output is generated, never copied from the upstream package.
-        if (REPO / "packs").exists():
-            shutil.rmtree(REPO / "packs")
         relicense_portal_files()
         curate_skills()
         subprocess.run([
@@ -285,11 +282,6 @@ def main() -> None:
 
     if not (REPO / ICON).is_file():
         sys.exit(f"icon not found: {ICON}")
-
-    subprocess.run([
-        sys.executable, "-I", str(REPO / "tools" / "build_skill_packs.py"),
-        "--root", str(REPO),
-    ], check=True)
 
     skills = sorted(p.parent.name for p in (REPO / "skills").glob("*/SKILL.md"))
     print(f"imported {name} {version}: {len(skills)} skills")

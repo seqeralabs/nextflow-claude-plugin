@@ -340,8 +340,3 @@ When deriving parameters from scripts, notebooks, papers or CLI documentation, p
 ## Legacy schema migration
 
 When upgrading nf-validation or draft-07 schemas, preserve validation, samplesheet tuple shape, help behavior and representative execution. Read [schema migration](references/nf-schema-migration/README.md) before proceeding.
-
-
-## Optional specialist work
-
-For infrastructure setup, nf-core maintenance/analysis, plugin development or broad provenance work, read [optional pack handoffs](../build-nextflow-pipeline/references/optional-packs.md). Check available namespaced skills first; if the pack is absent, explain how to explicitly install/enable it and stop that specialist task. Ordinary debugging and launch/resume remain in core.

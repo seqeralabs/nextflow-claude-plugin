@@ -30,12 +30,12 @@ include { FASTQC } from 'nf-core/fastqc'
 workflow { FASTQC(Channel.fromPath(params.input)) }
 ```
 
-✅ **CORRECT** - Use the [native module execution](../run-module/README.md) skill:
+✅ **CORRECT** - Use the `run-module` skill:
 ```
-[native module execution](../run-module/README.md)
+run-module
 ```
 
-**The [native module execution](../run-module/README.md) skill:**
+**The `run-module` skill:**
 - Uses `nextflow module search/view` to discover and get proper inputs/parameters
 - Runs modules directly via `nextflow module run <namespace>/<module>`
 - No wrapper workflow needed
@@ -74,13 +74,13 @@ workflow { FASTQC(Channel.fromPath(params.input)) }
 
 1. Determine appropriate **test data** for validation
 2. For EACH module in the plan, sequentially:
-   - **Install and run with test data**: Invoke [native module execution](../run-module/README.md)
+   - **Install and run with test data**: Invoke `run-module`
    - **Verify outputs** - confirm expected data is produced
    - Only proceed to next module after current one succeeds
 3. Record ALL module run commands and their outputs in a validation record selected by the user
 4. If a command fails, stop and show the user the command used and the output generated before trying something else
 
-> **Note**: The [native module execution](../run-module/README.md) skill uses `nextflow module` commands for discovery, configuration, and execution — modules are installed on-the-fly.
+> **Note**: The `run-module` skill uses `nextflow module` commands for discovery, configuration, and execution — modules are installed on-the-fly.
 
 **DO NOT proceed to Step 4 until ALL modules have been individually validated.**
 
@@ -125,7 +125,7 @@ Only after ALL modules run successfully:
 
 ### Module Selection
 - Prefer single-tool modules over sub-workflows
-- Do not write wrapper workflows to test single modules - use [native module execution](../run-module/README.md) instead
+- Do not write wrapper workflows to test single modules - use `run-module` instead
 - Use `nextflow module search` to find modules, then `nextflow module view` for details
 
 ### Debugging Protocol
@@ -140,17 +140,17 @@ Only after ALL modules run successfully:
 
 | Task | Invoke Skill |
 |------|--------------|
-| Install/run/test a module | [native module execution](../run-module/README.md) |
+| Install/run/test a module | `run-module` |
 
 ### When to Delegate
 
-- **Step 3 (Validate Modules)**: Use [native module execution](../run-module/README.md) skill for each module validation
+- **Step 3 (Validate Modules)**: Use `run-module` skill for each module validation
 
 ### Example: Step 3 Validation
 
 For each module in your plan:
 ```
-1. Invoke: [native module execution](../run-module/README.md) → install, run with test data, and verify outputs
+1. Invoke: run-module → install, run with test data, and verify outputs
 2. Only proceed to next module after success
 ```
 

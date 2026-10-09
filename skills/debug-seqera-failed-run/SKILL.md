@@ -98,8 +98,3 @@ Load this skill when the user wants to:
 
 - [Nextflow Platform troubleshooting](https://docs.seqera.io/platform/latest/troubleshooting)
 - [Nextflow process error strategies](https://www.nextflow.io/docs/latest/process.html#error-strategy)
-
-
-## Optional specialist work
-
-For infrastructure setup, nf-core maintenance/analysis, plugin development or broad provenance work, read [optional pack handoffs](../build-nextflow-pipeline/references/optional-packs.md). Check available namespaced skills first; if the pack is absent, explain how to explicitly install/enable it and stop that specialist task. Ordinary debugging and launch/resume remain in core.

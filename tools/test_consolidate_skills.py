@@ -99,15 +99,6 @@ class ConsolidationTests(unittest.TestCase):
         self.assertEqual(self.run_cli().returncode, 0)
         self.assertEqual((self.root / "sources.json").read_bytes(), before)
 
-    def test_a_second_plan_keeps_the_previous_consolidation_record(self):
-        path = self.root / "sources.json"
-        sources = json.loads(path.read_text())
-        sources["claude_curation"]["consolidated_skills"] = [{"from": "previous", "to": "caller"}]
-        path.write_text(json.dumps(sources))
-        self.assertEqual(self.run_cli().returncode, 0)
-        recorded = json.loads(path.read_text())["claude_curation"]["consolidated_skills"]
-        self.assertEqual(recorded, [{"from": "previous", "to": "caller"}, {"from": "old", "to": "owner"}])
-
     def test_missing_source_and_guide_fails_explicitly(self):
         import shutil
         shutil.rmtree(self.root / "skills/old")

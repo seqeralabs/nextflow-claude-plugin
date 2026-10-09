@@ -22,7 +22,7 @@ Convert R source while preserving statistical behavior. Wrap tested R code when 
 ### 0. Audit readiness
 
 For anything beyond a self-contained script, run
-[conversion readiness](../audit-conversion-readiness/README.md) first. `setwd()` plus relative reads,
+`audit-conversion-readiness` first. `setwd()` plus relative reads,
 `source()` of files outside the handover, and reference paths on a lab share are
 the usual blockers, and they are cheaper to surface now than mid-conversion.
 
@@ -60,7 +60,7 @@ After generating the pipeline:
 
 Run validation with an available Nextflow installation and host execution tools.
 If either is unavailable, report validation as unverified and read
-[runtime setup](../install-nextflow/README.md) for installation guidance.
+`install-nextflow` for installation guidance.
 
 ## Guidelines
 

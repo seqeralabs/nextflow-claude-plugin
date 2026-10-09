@@ -325,8 +325,3 @@ When generating a config:
 | `profiles` | Named config profiles |
 
 For the complete list of options in each scope, load the `config-options.md` reference.
-
-
-## Optional specialist work
-
-For infrastructure setup, nf-core maintenance/analysis, plugin development or broad provenance work, read [optional pack handoffs](../build-nextflow-pipeline/references/optional-packs.md). Check available namespaced skills first; if the pack is absent, explain how to explicitly install/enable it and stop that specialist task. Ordinary debugging and launch/resume remain in core.
