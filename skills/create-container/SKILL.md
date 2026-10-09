@@ -1,19 +1,11 @@
 ---
 name: create-container
 description: >
-  Build, claim, or recommend a verified container for a bioinformatics tool —
-  and prove it runs the intended command on representative test data before
-  handing it off for module authoring. Make sure to use this skill whenever
-  the user wants to containerize a tool, wrap a tool for a Nextflow module,
-  set up Wave for a custom package stack, pin a Bioconda/conda-forge
-  environment, or unblock a "this tool's dependencies are weird" problem.
-  Trigger phrases include "containerize X", "I need an image for Y",
-  "set up Wave for Z", "build a conda env for this tool", "verify this
-  container works on test input", "what container does <tool> need",
-  "wrap <tool> for a Nextflow module", "fix this conda solve". Follows a
-  build → run-test-input → iterate loop and returns a structured handoff
-  (verified image reference + working command). Do not author the Nextflow
-  module here — that belongs in `build-nextflow-pipeline` after verification.
+  Create and verify containers for Nextflow tools using Wave or the selected
+  runtime. Also use for choosing where process scripts live, helper-command
+  staging, templates and image packaging. Script-placement advice does not
+  require building an image. Verify the requested command and representative
+  outputs before claiming a container works.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
@@ -165,3 +157,12 @@ FAILED ATTEMPTS: <brief list so the next maintainer does not repeat them>
 4. When multiple tools belong together, combine them into one container only if they are actually used together
 5. If the environment lacks live Wave APIs, still provide the concrete package spec and Nextflow config
 6. Do not call a container verified until the command has run on test data or you clearly label it as unverified
+
+## Script packaging playbook
+
+For script-placement questions, choose and verify staging or packaging without requiring a container build. Read [script packaging](references/nf-docker-scripts/README.md) before proceeding.
+
+
+## Optional specialist work
+
+For infrastructure setup, nf-core maintenance/analysis, plugin development or broad provenance work, read [optional pack handoffs](../build-nextflow-pipeline/references/optional-packs.md). Check available namespaced skills first; if the pack is absent, explain how to explicitly install/enable it and stop that specialist task. Ordinary debugging and launch/resume remain in core.

@@ -1,0 +1,19 @@
+{
+  "version": "0.3.0",
+  "author": {
+    "name": "Seqera",
+    "url": "https://seqera.io"
+  },
+  "homepage": "https://github.com/seqeralabs/nextflow-claude-plugin",
+  "repository": "https://github.com/seqeralabs/nextflow-claude-plugin",
+  "license": "Apache-2.0",
+  "keywords": [
+    "nextflow",
+    "seqera",
+    "nf-core",
+    "bioinformatics",
+    "pipelines"
+  ],
+  "name": "nextflow-platform",
+  "description": "Optional Nextflow Platform compute/credential setup, storage data links and seqerakit automation. Requires the enabled nextflow core plugin."
+}
