@@ -27,7 +27,7 @@ Load this skill when the user wants to:
 
 ## Workflow
 
-0. **Audit readiness** — `audit-conversion-readiness` for anything
+0. **Audit readiness** — [conversion readiness](../audit-conversion-readiness/README.md) for anything
    beyond a self-contained script: it finds hardcoded paths you cannot reach and
    imports or helper scripts that were never provided, before you design around
    them.
@@ -228,7 +228,7 @@ Map Python's `shutil.copy(result, output_dir)` or `os.rename()` calls → `publi
 
 ## Snakemake Migration
 
-For full Snakemake workflow conversion, load the dedicated `migrate-from-snakemake` skill.
+For full Snakemake workflow conversion, load the dedicated [snakemake conversion](../migrate-from-snakemake/README.md) skill.
 This skill focuses on standalone Python script conversion.
 
 ## Common Pitfalls

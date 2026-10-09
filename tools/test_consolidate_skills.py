@@ -66,6 +66,30 @@ class ConsolidationTests(unittest.TestCase):
         self.assertIn("[details](references/details.md)", guide.read_text())
         self.assertTrue((guide.parent / "../../SKILL.md").resolve().is_file())
 
+    def test_folded_receiver_keeps_nested_guides_links_and_replay(self):
+        sink = self.root / "skills/sink/SKILL.md"
+        sink.parent.mkdir()
+        sink.write_text("---\nname: sink\ndescription: Combined task\n---\n# Combined task\n")
+        original = self.root / "skills/old/SKILL.md"
+        original.write_text(original.read_text() + "\nRead [owner](../owner/SKILL.md#workflow) and [caller task](../caller/SKILL.md).\n")
+        plan = json.loads(self.plan.read_text())
+        plan["groups"].append({"folds": [
+            {"from": "owner", "to": "sink", "heading": "Owner guide", "when": "When needed.", "label": "owner guide"},
+            {"from": "caller", "to": "sink", "heading": "Caller guide", "when": "When needed.", "label": "caller guide"}]})
+        self.plan.write_text(json.dumps(plan))
+        result = self.run_cli()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        guide = self.root / "skills/sink/references/owner/references/old/README.md"
+        self.assertIn("[owner](../../README.md#workflow)", guide.read_text())
+        self.assertTrue((guide.parent / "../../README.md").resolve().is_file())
+        self.assertIn("[caller task](../../../caller/README.md)", guide.read_text())
+        self.assertTrue((guide.parent / "../../../caller/README.md").resolve().is_file())
+        self.assertEqual((guide.parent / "scripts/check.sh").read_text(), "#!/bin/sh\nprintf 'checked\\n'\n")
+        before = {str(p.relative_to(self.root)): p.read_bytes() for p in self.root.rglob("*") if p.is_file()}
+        result = self.run_cli()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(before, {str(p.relative_to(self.root)): p.read_bytes() for p in self.root.rglob("*") if p.is_file()})
+
     def test_short_reference_replaces_guide_and_drops_mirrored_schema(self):
         (self.root / "connection.md").write_text("# Connection\n\nUse live tool schemas.\n")
         plan = json.loads(self.plan.read_text())

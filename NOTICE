@@ -16,6 +16,6 @@ the Apache License, Version 2.0:
   License: licenses/nextflow-agent-skills-Apache-2.0.txt
 
 - nextflow-development skill (bio-research skills)
-  License: skills/nextflow-development/LICENSE.txt
+  License: skills/launch-workflow/references/nextflow-development/LICENSE.txt
 
 Per-file origin and hashes are recorded in sources.json.

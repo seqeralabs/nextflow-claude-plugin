@@ -3,6 +3,7 @@
 
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -30,9 +31,27 @@ def main() -> int:
     elif entries[0].get("version") != plugin["version"]:
         errors.append(f"version mismatch: plugin.json {plugin['version']} vs marketplace {entries[0].get('version')}")
 
-    for skill in sorted((REPO / "skills").iterdir()):
-        if skill.is_dir() and not (skill / "SKILL.md").is_file():
-            errors.append(f"skill directory without SKILL.md: {skill.name}")
+    codex = json.loads((REPO / ".codex-plugin" / "plugin.json").read_text())
+    if codex["version"] != plugin["version"]:
+        errors.append("Codex and Claude plugin versions differ")
+
+    expected = {"build-nextflow-pipeline", "nf-pipeline-design", "repair-workflow",
+                "debug-local-run", "debug-seqera-failed-run", "nf-test", "migrate-nextflow-code",
+                "nextflow-schema", "nextflow-config", "create-container", "launch-workflow"}
+    actual = {p.parent.name for p in (REPO / "skills").glob("*/SKILL.md")}
+    if actual != expected:
+        errors.append(f"skill inventory mismatch: missing {sorted(expected - actual)}, unexpected {sorted(actual - expected)}")
+    recorded = {entry["path"] for entry in sources["files"]}
+    for path in sorted((REPO / "skills").rglob("*")):
+        if path.is_file() and path.relative_to(REPO).as_posix() not in recorded:
+            errors.append(f"unrecorded skill resource: {path.relative_to(REPO)}")
+    for path in sorted((REPO / "skills").rglob("*.md")):
+        for target in re.findall(r"\[[^\]]*\]\(([^\s)]+)\)", path.read_text()):
+            location = target.partition("#")[0]
+            if not location or location.startswith(("/", "<")) or re.match(r"[a-zA-Z][\w+.-]*:", location):
+                continue
+            if not (path.parent / location).resolve().exists():
+                errors.append(f"broken local link: {path.relative_to(REPO)} -> {target}")
 
     for error in errors:
         print(f"error: {error}", file=sys.stderr)

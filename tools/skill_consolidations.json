@@ -577,22 +577,227 @@
           "new": "use MCP discovery/execution to retrieve workflows; read `seqera-mcp` if connection or discovery guidance is needed."
         }
       ]
+    },
+    {
+      "folds": [
+        {
+          "from": "migrate-from-snakemake",
+          "to": "build-nextflow-pipeline",
+          "label": "snakemake conversion",
+          "when": "When converting a Snakefile, preserve DAG, wildcard, scheduler and golden-output semantics.",
+          "heading": "Snakemake conversion playbook"
+        },
+        {
+          "from": "audit-conversion-readiness",
+          "to": "build-nextflow-pipeline",
+          "label": "conversion readiness",
+          "when": "For an audit-only request, inventory and probe inputs, code and dependencies; stop with a blockers-first report without editing pipeline code.",
+          "heading": "Conversion readiness playbook"
+        },
+        {
+          "from": "search-existing-modules",
+          "to": "build-nextflow-pipeline",
+          "label": "module discovery",
+          "when": "When selecting a tool implementation, return a verified reuse, vendor/adapt or write-new verdict.",
+          "heading": "Module discovery playbook"
+        },
+        {
+          "from": "run-module",
+          "to": "build-nextflow-pipeline",
+          "label": "native module execution",
+          "when": "For a module-only request, inspect the module contract and run it natively on verified inputs; no wrapper workflow or construction phases are needed.",
+          "heading": "Native module execution playbook"
+        },
+        {
+          "from": "find-alternative-tools",
+          "to": "build-nextflow-pipeline",
+          "label": "tool comparison",
+          "when": "For requested comparisons or a blocked selected tool, compare alternatives; implementation needs separate user approval.",
+          "heading": "Tool comparison playbook"
+        },
+        {
+          "from": "install-nextflow",
+          "to": "build-nextflow-pipeline",
+          "label": "runtime setup",
+          "when": "For installation or upgrade help, check the selected release and operation first; ask before changing the environment.",
+          "heading": "Runtime setup playbook"
+        },
+        {
+          "from": "nextflow-output-patterns",
+          "to": "nf-pipeline-design",
+          "label": "output correctness",
+          "when": "When aggregating, joining or grouping outputs, check headers, cardinality, keys and null handling.",
+          "heading": "Output correctness playbook"
+        },
+        {
+          "from": "nf-docker-scripts",
+          "to": "create-container",
+          "label": "script packaging",
+          "when": "For script-placement questions, choose and verify staging or packaging without requiring a container build.",
+          "heading": "Script packaging playbook"
+        },
+        {
+          "from": "ce-credentials-setup",
+          "to": "launch-workflow",
+          "heading": "Compute readiness",
+          "label": "compute readiness",
+          "when": "For provider credentials or compute setup, follow only the requested setup task; never expose secrets or create infrastructure without approval."
+        },
+        {
+          "from": "seqera-data-links",
+          "to": "launch-workflow",
+          "heading": "Data links",
+          "label": "data links",
+          "when": "For browsing or managing Platform data links, use discovered schemas and confirm any requested mutations; do not launch a workflow implicitly."
+        },
+        {
+          "from": "seqerakit",
+          "to": "launch-workflow",
+          "heading": "Seqerakit automation",
+          "label": "Seqerakit automation",
+          "when": "For declarative Platform automation, inspect the requested resources and permissions before executing changes."
+        },
+        {
+          "from": "nextflow-development",
+          "to": "launch-workflow",
+          "heading": "nf-core analyses and public data",
+          "label": "nf-core analysis",
+          "when": "For omics analysis, GEO/SRA acquisition or samplesheet creation, follow the requested stage and confirm pipeline, data, genome and output contracts. Bundled helpers are under this playbook directory, not the parent skill directory."
+        },
+        {
+          "from": "nextflow-history",
+          "to": "debug-local-run",
+          "heading": "Run history and resume identity",
+          "label": "run history",
+          "when": "For run/cache investigation or resume selection, identify the requested run from authoritative history and accessible cache/work metadata, not merely the newest run."
+        },
+        {
+          "from": "nf-data-lineage",
+          "to": "debug-local-run",
+          "heading": "Data lineage",
+          "label": "data lineage",
+          "when": "For provenance queries, use the selected lineage store; export or retention changes require explicit user authorization."
+        },
+        {
+          "from": "nf-plugin-development",
+          "to": "migrate-nextflow-code",
+          "heading": "Plugin authoring",
+          "label": "plugin authoring",
+          "when": "For Nextflow extension-plugin development, use the plugin procedure rather than the pipeline migration phases."
+        },
+        {
+          "from": "nf-plugin-legacy-migration",
+          "to": "migrate-nextflow-code",
+          "heading": "Legacy plugin migration",
+          "label": "legacy plugin migration",
+          "when": "For legacy extension migration, preserve plugin identity and behavior; registry publication needs separate approval."
+        },
+        {
+          "from": "maintain-nf-core-pipeline",
+          "to": "migrate-nextflow-code",
+          "heading": "nf-core maintenance",
+          "label": "nf-core maintenance",
+          "when": "For nf-core maintenance, check project conventions and the requested maintenance scope before template synchronization or publication."
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "description: >\n  Plan and scaffold a new Nextflow DSL2 pipeline from source material —\n  scripts, repositories, Jupyter/R notebooks, papers, or informal\n  instructions. Drives the planning phases before any .nf code is written:\n  mapping the data flow, critiquing it, shaping channels and metadata,\n  scoping subworkflows, hunting for existing modules, and only then building\n  containers and writing code. Use this skill whenever the user asks to\n  \"build a pipeline\", \"compose registry modules\", \"port this to Nextflow\", \"turn this notebook/repo/script\n  into a pipeline\", or otherwise wants to go from an existing body of work to\n  a clean Nextflow pipeline. Pair with `nf-pipeline-design`, which owns the\n  code-level rules (layout, main.nf, subworkflow/module shape); this skill\n  owns the planning process that precedes them.",
+          "new": "description: >\n  Build or convert Nextflow pipelines from scripts, notebooks, repositories\n  or Snakemake workflows. Also use for read-only conversion readiness audits,\n  discovering or directly running registry modules, requested tool comparisons,\n  and Nextflow installation or upgrade help. Choose the bounded task path;\n  only full pipeline construction uses the planning phases. Pair with\n  nf-pipeline-design for code structure and output contracts."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "## Choose the construction path",
+          "new": "## Choose the requested task\n\nAudit, module discovery/execution, tool comparison and installation requests use only their matching playbook; skip construction phases and stop at the requested result. Pass the playbook to a helper agent rather than invoking a removed skill.\n\nFor nf-core analysis or Platform setup, use `launch-workflow`; for extension-plugin work or nf-core maintenance, use `migrate-nextflow-code`; for history or lineage, use `debug-local-run`. These specialist tasks do not enter pipeline construction.\n\n## Choose the construction path"
+        },
+        {
+          "path": "skills/install-nextflow/SKILL.md",
+          "old": "2. If the installed version is **older than 26.04**, the user MUST upgrade — other Nextflow skills depend on it.\n3. Otherwise, propose an upgrade only if a newer version is available.",
+          "new": "2. Check whether the installed release supports the user's requested operation. Ordinary pipeline execution does not inherit the 26.04 minimum used by native module or launch commands.\n3. If the operation is unsupported, explain the minimum supported release and ask before upgrading; otherwise keep the existing installation unless the user requests an upgrade."
+        },
+        {
+          "path": "skills/install-nextflow/SKILL.md",
+          "old": "# Install or Upgrade Nextflow",
+          "new": "# Install or Upgrade Nextflow\n\nAn installation-help request is not permission to change the environment. Confirm the target release, Java/runtime prerequisites and user's approval before any installer, package-manager command or self-update."
+        },
+        {
+          "path": "skills/create-container/SKILL.md",
+          "old": "description: >\n  Build, claim, or recommend a verified container for a bioinformatics tool —\n  and prove it runs the intended command on representative test data before\n  handing it off for module authoring. Make sure to use this skill whenever\n  the user wants to containerize a tool, wrap a tool for a Nextflow module,\n  set up Wave for a custom package stack, pin a Bioconda/conda-forge\n  environment, or unblock a \"this tool's dependencies are weird\" problem.\n  Trigger phrases include \"containerize X\", \"I need an image for Y\",\n  \"set up Wave for Z\", \"build a conda env for this tool\", \"verify this\n  container works on test input\", \"what container does <tool> need\",\n  \"wrap <tool> for a Nextflow module\", \"fix this conda solve\". Follows a\n  build → run-test-input → iterate loop and returns a structured handoff\n  (verified image reference + working command). Do not author the Nextflow\n  module here — that belongs in `build-nextflow-pipeline` after verification.",
+          "new": "description: >\n  Create and verify containers for Nextflow tools using Wave or the selected\n  runtime. Also use for choosing where process scripts live, helper-command\n  staging, templates and image packaging. Script-placement advice does not\n  require building an image. Verify the requested command and representative\n  outputs before claiming a container works."
+        },
+        {
+          "path": "skills/nf-pipeline-design/SKILL.md",
+          "old": "description: >",
+          "new": "description: >\n  Also use for output aggregation, collectFile headers, join cardinality,\n  grouping keys and null-handling correctness."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "description: Launch Nextflow pipeline executions on cloud and HPC clusters via Nextflow Platform. Use when the user wants to run/launch/submit a pipeline on a cloud or cluster compute environment, configure a compute environment, push pipeline changes to GitHub before launching, or sign in to Nextflow Platform.",
+          "new": "description: >\n  Plan, launch or resume Nextflow pipelines locally or through Nextflow Platform.\n  Also use for nf-core omics analyses, GEO/SRA acquisition, samplesheets, compute\n  and credential setup, data links and Seqerakit automation. Choose the requested\n  playbook without forcing a launch; publication, infrastructure creation and\n  other mutations need explicit authorization."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "# Launch Pipeline on Nextflow Platform",
+          "new": "# Launch or Resume a Pipeline\n\n## Local runs and resume\n\nFor a local run, confirm the user's pipeline, parameters, executor and output destination. Use the installed release's `nextflow run` interface; a local run does not require Platform authentication, a remote Git repository or Nextflow 26.04.\n\nBefore resuming, read [run identification](../debug-local-run/references/nextflow-history/references/nf-run-history/README.md) and verify the requested run/session and accessible work/cache metadata. Use `-resume` with the selected identity; do not choose a run solely because it is newest. Inspect completion status and representative outputs; a cache hit alone is not scientific-output verification.\n\nFor missing runtime setup, read [runtime setup](../build-nextflow-pipeline/references/install-nextflow/README.md). Stop before installing or upgrading without explicit approval.\n\n## Platform launches"
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "3. **Upload local changes** — push any uncommitted local changes to the remote so the launched run reflects the user's current code.",
+          "new": "3. **Select a published revision** — verify that the remote contains the intended code. Publishing local changes requires separate explicit approval; a launch request alone is not authority to commit or push."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "Initialize Git if needed, review the user's selected pipeline files, and stage\nonly the intended changes. Help the user create or select a remote repository,\nconfigure its remote URL, and push the agreed revision using the available tools.",
+          "new": "Explain the missing published revision and ask for separate authorization before initializing Git, creating a remote, staging files or publishing code. Alternatively select an already published revision the user approves."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "Before launching, push any local changes so the remote reflects the code that should run:\n\nReview the changes, commit the user's intended pipeline files with a descriptive\nmessage, and push the confirmed branch using the available Git tools.",
+          "new": "Compare local changes with the selected remote revision. If the intended code is unpublished, stop and ask whether the user wants a separate commit/push task or a launch of the existing published revision. Only publish after explicit approval, staging only the approved files."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "4. **PUSH local changes first** — the launched run uses the remote code, so local edits must be committed and pushed.",
+          "new": "4. **VERIFY the published revision** — use the approved remote code; obtain separate authorization before committing or pushing local changes."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "`nextflow launch` returns a run URL on Nextflow Platform. Present this URL to the user so they can monitor progress in the Platform UI.",
+          "new": "`nextflow launch` returns a run URL on Nextflow Platform. Retrieve the authoritative submitted workflow using discovered MCP operations and confirm its revision, parameters, compute environment and resume identity. Present the verified run identifier/URL and distinguish submission from successful completion."
+        },
+        {
+          "path": "skills/debug-local-run/SKILL.md",
+          "old": "description: >\n  Debug a local Nextflow pipeline run. Analyzes .nextflow.log, work directories,\n  and task error logs to identify failures and suggest fixes. Use when user asks\n  to debug their last run, diagnose pipeline errors, or understand why a run failed.",
+          "new": "description: Debug local Nextflow failures and investigate run history, caches, resume identity and data lineage. Select the requested diagnostic or provenance playbook; retention/export changes require explicit authorization."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/SKILL.md",
+          "old": "description: Migrate Nextflow pipeline code while preserving behavior. Use for version upgrades including 25.04 compatibility, strict syntax errors, boolean CLI parameter types, topic channels, workflow outputs, and static typing (typed processes/workflows, records, typed params).",
+          "new": "description: Migrate Nextflow pipeline code across versions while preserving behavior. Also use for extension-plugin authoring or legacy plugin migration, and nf-core maintenance/template synchronization. Follow only the requested playbook; do not force pipeline migration, template upgrades or registry publication."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/SKILL.md",
+          "old": "# Migrate Nextflow Code",
+          "new": "# Migrate Nextflow Code\n\n## Choose the requested task\n\nPlugin authoring, legacy-plugin migration and nf-core maintenance use the matching playbook linked below, not the pipeline migration phases. Check the repository conventions first; template synchronization and registry publication are separate authorized tasks.\n\n## Pipeline language migrations"
+        }
+      ]
     }
   ],
   "post_edits": [
     {
       "path": "skills/build-nextflow-pipeline/SKILL.md",
-      "old": "### Implement branching between as many alternative tools as possible\n\nFor each subworkflow, explicitly list the alternative tools considered (e.g. for multiple sequence alignment: MAFFT, MUSCLE, Clustal Omega, T-Coffee, HHblits; for folding: Boltz, OpenFold3, AlphaFold3) and then **implement the branching between them in the subworkflow**, not just pick one.\n\nThe default assumption is that every step with multiple credible tools becomes a workflow-level `if/else` on an explicit parameter, with each branch calling one module. This is not a \"nice to have\" — it's what makes the pipeline actually useful:\n\n- The original source material reflects *one* author's choice at *one* point in time. Alternatives are often better for other datasets, other organisms, other budgets, or simply newer than the paper.\n- Tool choice is typically the single biggest determinant of output quality and runtime. Exposing it as a knob turns the pipeline into an experiment platform instead of a fixed recipe.\n- Adding a second branch is cheap when you're writing the subworkflow; adding one later means reworking the subworkflow's input/output contracts under pressure.\n- You are going through the container/module-building loop anyway (Phase 4). Doing it for 2–4 tools in one pass is only marginally more work than doing it for one.\n\nConcretely, this means:\n\n1. Surface the tool choice as a parameter in `nextflow_schema.json` with an `enum` listing every implemented option (see Phase 1 — this is exactly the kind of knob that belongs at the top level).\n2. Structure the subworkflow as a workflow-level `if/else` over that parameter, with a final `else error \"Unsupported <choice>: ${choice}\"` branch. See the `RUN_FOLDING` example in `nf-pipeline-design` for the exact shape.\n3. Harmonize inputs *upstream* of the branch and outputs *downstream* of the branch, so each tool module sees the same input shape and emits the same output shape. The subworkflow, not the caller, owns this normalization.\n4. Build and verify containers for **every** implemented branch during Phase 4. A branch that exists in code but was never run once is technical debt, not a feature.\n\nSkip a branch only when the tool is genuinely obsolete, proprietary-licensed in a way the pipeline cannot accept, or architecturally incompatible (e.g. needs GPUs the target executor doesn't have). Record the reason for every tool you considered and did *not* implement — this document survives longer than the planning conversation and prevents the same alternative being revisited every six months.\n\n**Delegate the enumeration when available.** For each analysis step in the data flow map, use the `find-alternative-tools` skill with the analysis step name plus any constraints (target executor, GPU availability, license restrictions). These tasks are independent and can run in parallel with one subagent per analysis step. Collect the ranked lists back into the planning document's \"Alternative tools\" section.\n\nThen **merge the suggested `enum` values into `nextflow_schema.json`** for each tool-choice parameter (e.g. `msa_tool: [\"mafft\", \"muscle\", \"clustalo\"]`). This is the first planned augmentation of the schema after Phase 1's draft — update `nextflow.config`'s `params {}` block alongside so defaults stay in sync. Also note any **nf-core module hints** the enumerate subagents flagged in their per-tool blocks; you will pass those forward to the next step as fast-path hints.\n\n",
-      "new": "### Select tools without expanding scope\n\nUse the tool requested by the user or required to preserve the source analysis. If none is specified, recommend one suitable default and resolve material license, compute or output-contract constraints before implementation.\n\nUse `find-alternative-tools` only when the user requests a comparison or the selected tool is blocked. Research produces candidates; it does not authorize implementing them.\n\nAdd multiple tool branches only when the user explicitly requests or approves them. For approved branches:\n\n1. Add only implemented choices to the schema's `enum`, keeping config defaults aligned.\n2. Put tool selection in the subworkflow and reject unsupported choices explicitly.\n3. Normalize inputs and outputs around the selected modules.\n4. Verify every implemented branch's command, container and representative outputs.\n\nRecord the selected tool and rationale. A single-tool pipeline does not need an alternative-tool parameter or exhaustive rejected-tool inventory.\n\n"
+      "old": "### Implement branching between as many alternative tools as possible\n\nFor each subworkflow, explicitly list the alternative tools considered (e.g. for multiple sequence alignment: MAFFT, MUSCLE, Clustal Omega, T-Coffee, HHblits; for folding: Boltz, OpenFold3, AlphaFold3) and then **implement the branching between them in the subworkflow**, not just pick one.\n\nThe default assumption is that every step with multiple credible tools becomes a workflow-level `if/else` on an explicit parameter, with each branch calling one module. This is not a \"nice to have\" — it's what makes the pipeline actually useful:\n\n- The original source material reflects *one* author's choice at *one* point in time. Alternatives are often better for other datasets, other organisms, other budgets, or simply newer than the paper.\n- Tool choice is typically the single biggest determinant of output quality and runtime. Exposing it as a knob turns the pipeline into an experiment platform instead of a fixed recipe.\n- Adding a second branch is cheap when you're writing the subworkflow; adding one later means reworking the subworkflow's input/output contracts under pressure.\n- You are going through the container/module-building loop anyway (Phase 4). Doing it for 2–4 tools in one pass is only marginally more work than doing it for one.\n\nConcretely, this means:\n\n1. Surface the tool choice as a parameter in `nextflow_schema.json` with an `enum` listing every implemented option (see Phase 1 — this is exactly the kind of knob that belongs at the top level).\n2. Structure the subworkflow as a workflow-level `if/else` over that parameter, with a final `else error \"Unsupported <choice>: ${choice}\"` branch. See the `RUN_FOLDING` example in `nf-pipeline-design` for the exact shape.\n3. Harmonize inputs *upstream* of the branch and outputs *downstream* of the branch, so each tool module sees the same input shape and emits the same output shape. The subworkflow, not the caller, owns this normalization.\n4. Build and verify containers for **every** implemented branch during Phase 4. A branch that exists in code but was never run once is technical debt, not a feature.\n\nSkip a branch only when the tool is genuinely obsolete, proprietary-licensed in a way the pipeline cannot accept, or architecturally incompatible (e.g. needs GPUs the target executor doesn't have). Record the reason for every tool you considered and did *not* implement — this document survives longer than the planning conversation and prevents the same alternative being revisited every six months.\n\n**Delegate the enumeration when available.** For each analysis step in the data flow map, use the [tool comparison](references/find-alternative-tools/README.md) skill with the analysis step name plus any constraints (target executor, GPU availability, license restrictions). These tasks are independent and can run in parallel with one subagent per analysis step. Collect the ranked lists back into the planning document's \"Alternative tools\" section.\n\nThen **merge the suggested `enum` values into `nextflow_schema.json`** for each tool-choice parameter (e.g. `msa_tool: [\"mafft\", \"muscle\", \"clustalo\"]`). This is the first planned augmentation of the schema after Phase 1's draft — update `nextflow.config`'s `params {}` block alongside so defaults stay in sync. Also note any **nf-core module hints** the enumerate subagents flagged in their per-tool blocks; you will pass those forward to the next step as fast-path hints.\n\n",
+      "new": "### Select tools without expanding scope\n\nUse the tool requested by the user or required to preserve the source analysis. If none is specified, recommend one suitable default and resolve material license, compute or output-contract constraints before implementation.\n\nUse [tool comparison](references/find-alternative-tools/README.md) only when the user requests a comparison or the selected tool is blocked. Research produces candidates; it does not authorize implementing them.\n\nAdd multiple tool branches only when the user explicitly requests or approves them. For approved branches:\n\n1. Add only implemented choices to the schema's `enum`, keeping config defaults aligned.\n2. Put tool selection in the subworkflow and reject unsupported choices explicitly.\n3. Normalize inputs and outputs around the selected modules.\n4. Verify every implemented branch's command, container and representative outputs.\n\nRecord the selected tool and rationale. A single-tool pipeline does not need an alternative-tool parameter or exhaustive rejected-tool inventory.\n\n"
     },
     {
       "path": "skills/build-nextflow-pipeline/SKILL.md",
-      "old": "| Enumerating alternative tools for each analysis step | **Yes — one subagent per analysis step, in parallel** | `find-alternative-tools` |",
-      "new": "| Comparing alternatives, only when requested or the selected tool is blocked | **Optional** — delegate the bounded comparison when useful | `find-alternative-tools` |"
+      "old": "| Enumerating alternative tools for each analysis step | **Yes — one subagent per analysis step, in parallel** | [tool comparison](references/find-alternative-tools/README.md) |",
+      "new": "| Comparing alternatives, only when requested or the selected tool is blocked | **Optional** — delegate the bounded comparison when useful | [tool comparison](references/find-alternative-tools/README.md) |"
     },
     {
       "path": "skills/build-nextflow-pipeline/SKILL.md",
-      "old": "augmented in Phase 3 with `enum` values from `find-alternative-tools` and any new tool-argument parameters revealed by module search.",
+      "old": "augmented in Phase 3 with `enum` values from [tool comparison](references/find-alternative-tools/README.md) and any new tool-argument parameters revealed by module search.",
       "new": "augmented in Phase 3 with approved implemented tool choices (if any) and relevant tool arguments revealed by module search."
     },
     {
@@ -617,21 +822,16 @@
     },
     {
       "path": "skills/build-nextflow-pipeline/SKILL.md",
-      "old": "- [ ] Alternative-tool enumeration ran for every analysis step with credible alternatives, using `find-alternative-tools`",
+      "old": "- [ ] Alternative-tool enumeration ran for every analysis step with credible alternatives, using [tool comparison](references/find-alternative-tools/README.md)",
       "new": "- [ ] The selected tools match the requested analysis; any additional implemented branches were explicitly requested or approved"
     },
     {
-      "path": "skills/find-alternative-tools/SKILL.md",
-      "old": "Output is a structured list designed to feed directly into Nextflow subworkflow branching decisions.",
-      "new": "Output is a structured comparison to inform tool selection; research does not authorize implementation of additional branches."
-    },
-    {
-      "path": "skills/find-alternative-tools/SKILL.md",
+      "path": "skills/build-nextflow-pipeline/references/find-alternative-tools/README.md",
       "old": "The caller wants to turn \"do MSA\" into a subworkflow with `if/else` over a `msa_tool` parameter, with multiple real branches. That means you are *not* choosing one winner — you are enumerating every tool a reasonable pipeline author would consider exposing as an option, and giving the caller what they need to pick which branches to implement.",
       "new": "Compare credible tools for the requested analysis and constraints. Recommend one default and explain when alternatives are justified. The caller decides which candidate to use; implementing additional branches requires explicit user approval. An alternatives report is research, not a pipeline implementation plan."
     },
     {
-      "path": "skills/find-alternative-tools/SKILL.md",
+      "path": "skills/build-nextflow-pipeline/references/find-alternative-tools/README.md",
       "old": "Suggest the `enum` value set for the schema parameter (e.g. `msa_tool: enum [mafft, muscle, clustalo, tcoffee, hhblits]`). Use short, lowercase, conventional names — whatever the tool's own CLI command is, typically.",
       "new": "Suggest schema `enum` values only for branches explicitly approved for implementation. A research shortlist must not become the pipeline's advertised supported choices. Use short, lowercase, conventional tool names for approved choices."
     }

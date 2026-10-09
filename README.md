@@ -3,7 +3,8 @@
 Build, migrate, test, debug and run [Nextflow](https://www.nextflow.io) pipelines with
 Claude or Codex, connected to [Nextflow Platform](https://seqera.io), Wave containers and nf-core.
 
-The plugin bundles 28 skills and the hosted Seqera MCP server (`https://mcp.seqera.io/mcp`).
+The plugin bundles **11 skills** and the hosted Seqera MCP server (`https://mcp.seqera.io/mcp`).
+Specialist procedures remain available as selectively loaded references; no extra plugins are needed.
 
 ## Install
 
@@ -54,14 +55,19 @@ and takes its listing (name, logo, starter prompts) from `.codex-plugin/plugin.j
 
 ## What's included
 
-| Area | Skills |
+| Area | Skills and selectively loaded procedures |
 | --- | --- |
-| Build pipelines | `build-nextflow-pipeline`, `nf-pipeline-design`, `nextflow-config`, `nextflow-schema`, `nextflow-output-patterns`, `search-existing-modules`, `run-module`, `create-container` |
-| Convert to Nextflow | `build-nextflow-pipeline` (Python, R and notebook playbooks), `migrate-from-snakemake`, `audit-conversion-readiness`, `nextflow-schema` (parameter triage), `find-alternative-tools` |
-| Migrate and modernise | `migrate-nextflow-code` (version, strict-syntax and boolean references), `nextflow-schema` (schema migration), `nf-plugin-development`, `nf-plugin-legacy-migration`, `maintain-nf-core-pipeline` |
-| Test and debug | `nf-test` (authoring and failure repair), `repair-workflow` (including static diagnostics), `debug-local-run`, `debug-seqera-failed-run`, `nextflow-history` (history, cache and narrative recaps), `nf-data-lineage`, `nf-docker-scripts` |
-| Nextflow Platform | `launch-workflow` (with shared MCP connection reference), `ce-credentials-setup`, `seqera-data-links`, `seqerakit` |
-| General | `nextflow-development`, `install-nextflow` |
+| Build and convert | `build-nextflow-pipeline` — Python/R/notebooks/Snakemake, readiness audits, module discovery/native runs, requested tool comparisons and runtime setup |
+| Design and package | `nf-pipeline-design` — code structure and output correctness; `create-container` — containers and script staging/packaging |
+| Configure and validate | `nextflow-config`, `nextflow-schema` — parameters, schemas and validation migrations |
+| Test and repair | `nf-test`, `repair-workflow` |
+| Debug and trace | `debug-local-run` — local failures, run/cache history and lineage; `debug-seqera-failed-run` — Platform failures |
+| Modernise | `migrate-nextflow-code` — language migrations, plugin authoring/legacy migration and nf-core maintenance |
+| Run and launch | `launch-workflow` — local/Platform execution, nf-core/GEO/SRA analyses, compute readiness, data links and Seqerakit |
+
+Each skill links its specialist playbooks and keeps their supporting assets. Read only the
+matching playbook and stop at the requested task: an audit does not require pipeline creation,
+compute setup does not authorize a launch, and a launch does not authorize committing or pushing.
 
 ## Licensing
 
