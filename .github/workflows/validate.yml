@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+env:
+  # Pinned so validation results are reproducible; bump deliberately.
+  CLAUDE_CODE_VERSION: "2.1.267"
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -23,7 +27,7 @@ jobs:
           node-version: "20"
 
       - name: Install Claude Code
-        run: npm install -g @anthropic-ai/claude-code
+        run: npm install -g "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}"
 
       - name: Check provenance hashes and manifest versions
         run: python3 -I tools/check_sources.py
@@ -43,4 +47,7 @@ jobs:
         run: |
           claude plugin marketplace add ./
           claude plugin install nextflow@nextflow-claude-plugin
-          claude plugin details nextflow@nextflow-claude-plugin
+          claude plugin details nextflow@nextflow-claude-plugin | tee details.txt
+          expected=$(ls skills | wc -l)
+          grep -q "Skills (${expected})" details.txt
+          grep -q "MCP servers (1)  seqera" details.txt
