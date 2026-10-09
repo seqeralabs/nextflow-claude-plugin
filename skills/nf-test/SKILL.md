@@ -122,7 +122,7 @@ Use only profiles available in the user's configuration. Narrow execution to the
 
 Inspect the work artifacts and logs reported by nf-test using available host tools. For a failed task, inspect .command.sh, .command.log, and .command.err from the actual task reported by the test. Do not assume their locations.
 
-Treat failures as evidence. Check missing inputs, tuple shape, profile availability, container access, resource requirements, and actual assertion differences before changing pipeline logic.
+Treat failures as evidence. Read [nf-test failure repair](references/repair-nf-test/README.md) to distinguish regression from an intentional contract change. Check missing inputs, tuple shape, profile availability, container access, resource requirements, and actual assertion differences before changing pipeline logic.
 
 ## Setup, Cleanup, and CI
 
@@ -134,4 +134,8 @@ In CI, reproduce the required Nextflow, nf-test, plugin, container, and profile 
 
 Consult plugins.md, nft-utils.md, assertions.md, test-data.md, and troubleshooting.md by name when the host makes them available.
 
-Use repair-nf-test for structured diagnosis of existing failures.
+For failing suites, assertion errors or snapshot mismatches, read [nf-test failure repair](references/repair-nf-test/README.md) before changing code or expectations. Preserve fixtures unless a reviewed intentional contract change justifies updating them.
+
+## Failure repair playbook
+
+When an existing nf-test fails, classify intentional contract change, regression, nondeterminism or infrastructure before editing code, assertions or snapshots. Read [nf-test failure repair](references/repair-nf-test/README.md) before proceeding.

@@ -342,7 +342,7 @@ nextflow inspect <pipeline> 2>&1
 - `nf-v2-boolean-params` — focused deep-dive on boolean CLI params under strict syntax. **Load this skill alone for general v2 migration; pair with `nf-v2-boolean-params` when the task also involves a boolean flag that's not toggling.**
 - `nf-pipeline-design` — typed process/workflow rules and the workflow `output {}` block in new code
 - `maintain-nf-core-pipeline` — when the pipeline being migrated is an nf-core pipeline (template sync and module updates come first)
-- `nf-test` / `repair-nf-test` — regression tests between migration stages
+- `nf-test` / [nf-test failure repair](../nf-test/references/repair-nf-test/README.md) — regression tests between migration stages
 
 ## References
 

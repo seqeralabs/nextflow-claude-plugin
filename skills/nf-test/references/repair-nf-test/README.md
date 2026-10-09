@@ -1,12 +1,3 @@
----
-name: repair-nf-test
-description: >
-  Debug and fix failing nf-test suites using structured, evidence-based reasoning.
-  Use when the user reports failing nf-tests, snapshot mismatches, assertion errors,
-  or asks to fix/debug/repair their nf-test suite. Trigger phrases include "fix nf-test",
-  "nf-test failing", "snapshot mismatch", "test assertion failed", "debug test failure",
-  "repair nf-test", "fix my tests", "tests are broken".
----
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
 ## Using this skill
@@ -92,7 +83,7 @@ Evidence patterns:
 - An output channel was renamed or restructured → snapshot keys change
 - A new output was added → snapshot gains new entries
 
-Action: update the snapshot or assertion to match the new correct behavior.
+Action: update the snapshot or assertion only after checking the intentional contract change against independent expected behavior. Select the affected test using the project's supported selector before passing `--update-snapshot`; the command below shows the flag, not a suite-wide update instruction.
 
 ```bash
 nf-test test --update-snapshot

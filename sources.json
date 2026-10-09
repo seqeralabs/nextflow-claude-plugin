@@ -208,8 +208,8 @@
       "path": "skills/nextflow-26-syntax/SKILL.md",
       "source": "portal/backend/src/skills/nextflow-26-syntax/SKILL.md",
       "source_sha256": "b5d1e1ac292ef84311339091169c9f9278b32b34f61d1c34a698629eee5b21d0",
-      "bundled_sha256": "ce501e7f4dc1819811e118aa7b902a1794b365b4e7ced04df68a69fba3582998",
-      "override": false
+      "bundled_sha256": "77e9724b5f5be1dd0aba5a8aaf838f1bd10ba034a128141f6559dbbc79f4b5c5",
+      "override": true
     },
     {
       "path": "skills/nextflow-config/SKILL.md",
@@ -495,8 +495,8 @@
       "path": "skills/nf-test/SKILL.md",
       "source": "portal/backend/src/skills/nf-test/SKILL.md",
       "source_sha256": "87865ca1eac374c3a0425abae85401a03a477ae0a78db353eb3742c08ff4fc96",
-      "bundled_sha256": "77756ef34aa980cc7f0ccd4d806659f4de9f5b75c5c33ccef118b52da05908fe",
-      "override": false
+      "bundled_sha256": "b1980a618812ea9396708362c0b913199752eb4cd5a7696fdedcb010c253b9b2",
+      "override": true
     },
     {
       "path": "skills/nf-test/references/assertions.md",
@@ -541,17 +541,10 @@
       "override": false
     },
     {
-      "path": "skills/repair-nf-test/SKILL.md",
-      "source": "portal/backend/src/skills/repair-nf-test/SKILL.md",
-      "source_sha256": "84260ee9889dd7d236941f04c52a05904d1631617b04a06b2409df64fad6a020",
-      "bundled_sha256": "52b93ea98917dd1c244fe8c3a345db3286a013f33aa7f433c97cb605ea3dbbad",
-      "override": false
-    },
-    {
       "path": "skills/repair-workflow/SKILL.md",
       "source": "portal/backend/src/skills/repair-workflow/SKILL.md",
       "source_sha256": "43567947449b6dcd44c34bded2a44c93826d42fd703c71576fdca3780e39d72a",
-      "bundled_sha256": "bcea586b46525ca1e5c9cf55203e49c43aeb7e937fedada42ee47c5a0e5f696b",
+      "bundled_sha256": "f4fc7e8e01c3bf92721a51840de6ae166de2f0917a4d0c56fd33a5a16388c051",
       "override": true
     },
     {
@@ -954,6 +947,13 @@
       "source_sha256": "8469c64f02241dfb7097020d331af3c607746c3958b6c32fefe718cd67a07d8a",
       "bundled_sha256": "80841c0f4500d56cf95090566ed998a86ebd761dbd3dc4c93dc227a67e7d9073",
       "override": true
+    },
+    {
+      "path": "skills/nf-test/references/repair-nf-test/README.md",
+      "source": "portal/backend/src/skills/repair-nf-test/SKILL.md",
+      "source_sha256": "84260ee9889dd7d236941f04c52a05904d1631617b04a06b2409df64fad6a020",
+      "bundled_sha256": "bc9f520cd9259f58561672925c259bc55c7e1040c16c4aab6e42caeb9bf484d8",
+      "override": true
     }
   ],
   "github_upstreams": [
@@ -1169,6 +1169,7 @@
       "skills/maintain-nf-core-pipeline/SKILL.md",
       "skills/maintain-nf-core-pipeline/references/template-merges/tools-4_0.md",
       "skills/migrate-from-snakemake/SKILL.md",
+      "skills/nextflow-26-syntax/SKILL.md",
       "skills/nextflow-config/SKILL.md",
       "skills/nextflow-config/references/config-options.md",
       "skills/nextflow-output-patterns/SKILL.md",
@@ -1179,6 +1180,8 @@
       "skills/nf-docker-scripts/SKILL.md",
       "skills/nf-pipeline-design/SKILL.md",
       "skills/nf-plugin-development/SKILL.md",
+      "skills/nf-test/SKILL.md",
+      "skills/nf-test/references/repair-nf-test/README.md",
       "skills/repair-workflow/SKILL.md",
       "skills/search-existing-modules/SKILL.md",
       "skills/seqera-data-links/SKILL.md",
@@ -1209,6 +1212,10 @@
       {
         "from": "nf-schema-migration",
         "to": "nextflow-schema"
+      },
+      {
+        "from": "repair-nf-test",
+        "to": "nf-test"
       }
     ]
   }

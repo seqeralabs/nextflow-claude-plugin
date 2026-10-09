@@ -154,6 +154,34 @@
           "new": "Consult [migration details](references/migration-guide.md) for legacy keyword examples. This is a historical reference: verify current nf-core tooling compatibility rather than treating its dated support warning as current."
         }
       ]
+    },
+    {
+      "folds": [
+        {
+          "from": "repair-nf-test",
+          "to": "nf-test",
+          "heading": "Failure repair playbook",
+          "when": "When an existing nf-test fails, classify intentional contract change, regression, nondeterminism or infrastructure before editing code, assertions or snapshots.",
+          "label": "nf-test failure repair"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/nf-test/SKILL.md",
+          "old": "Use repair-nf-test for structured diagnosis of existing failures.",
+          "new": "For failing suites, assertion errors or snapshot mismatches, read [nf-test failure repair](references/repair-nf-test/README.md) before changing code or expectations. Preserve fixtures unless a reviewed intentional contract change justifies updating them."
+        },
+        {
+          "path": "skills/nf-test/SKILL.md",
+          "old": "Treat failures as evidence. Check missing inputs, tuple shape, profile availability, container access, resource requirements, and actual assertion differences before changing pipeline logic.",
+          "new": "Treat failures as evidence. Read [nf-test failure repair](references/repair-nf-test/README.md) to distinguish regression from an intentional contract change. Check missing inputs, tuple shape, profile availability, container access, resource requirements, and actual assertion differences before changing pipeline logic."
+        },
+        {
+          "path": "skills/repair-nf-test/SKILL.md",
+          "old": "Action: update the snapshot or assertion to match the new correct behavior.",
+          "new": "Action: update the snapshot or assertion only after checking the intentional contract change against independent expected behavior. Select the affected test using the project's supported selector before passing `--update-snapshot`; the command below shows the flag, not a suite-wide update instruction."
+        }
+      ]
     }
   ]
 }
