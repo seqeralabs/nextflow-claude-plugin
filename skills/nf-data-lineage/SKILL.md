@@ -192,5 +192,5 @@ Previous runs without lineage enabled cannot be retroactively tracked.
 ## Related Skills
 
 - `debug-local-run` — for debugging failures (uses work dir, not lineage store)
-- `nf-run-history` — for run history narrative (uses run-history metadata)
+- [narrative run-history analysis](../nextflow-history/references/nf-run-history/README.md) — for run history narrative (uses run-history metadata)
 - `nextflow-config` — for configuring lineage settings

@@ -1,11 +1,3 @@
----
-name: nf-run-history
-description: >
-  Analyze local Nextflow run history to give the user a narrative summary of what
-  they've been doing — patterns, progress, recurring issues, and evolution over time.
-  Use when the user asks what they've been running, how a pipeline has been going,
-  or wants a recap of recent activity.
----
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
 ## Using this skill

@@ -230,6 +230,29 @@
           "new": "5. Report which supported checks passed, failed or could not run. For a repair, run representative tests/output checks as well; static success is not runtime verification."
         }
       ]
+    },
+    {
+      "folds": [
+        {
+          "from": "nf-run-history",
+          "to": "nextflow-history",
+          "heading": "Narrative history analysis",
+          "when": "When the user wants a recap, recurring failure patterns or how a pipeline evolved over time, analyze the selected records and explain gaps without inferring causality from timing alone.",
+          "label": "narrative run-history analysis"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/nextflow-history/SKILL.md",
+          "old": "  Uses run history, task cache metadata, and Nextflow logs supplied by the user.",
+          "new": "  Uses run history, task cache metadata, and Nextflow logs supplied by the user.\n  Also use for narrative recaps, recurring failures and pipeline evolution."
+        },
+        {
+          "path": "skills/nextflow-history/SKILL.md",
+          "old": "## Reporting",
+          "new": "## Reporting\n\nFor a narrative recap or recurring patterns, read [narrative run-history analysis](references/nf-run-history/README.md). First establish the selected environment, time range and completeness of the records. Use logs/trace evidence to distinguish confirmed causes from correlations."
+        }
+      ]
     }
   ]
 }

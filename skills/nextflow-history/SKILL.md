@@ -5,6 +5,7 @@ description: >
   recent local runs, wants to see what pipelines they've executed, understand
   run lineage, inspect the Nextflow cache, or correlate runs with work directories.
   Uses run history, task cache metadata, and Nextflow logs supplied by the user.
+  Also use for narrative recaps, recurring failures and pipeline evolution.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
@@ -104,6 +105,8 @@ only within the user's authorized retention and cleanup scope.
 
 ## Reporting
 
+For a narrative recap or recurring patterns, read [narrative run-history analysis](references/nf-run-history/README.md). First establish the selected environment, time range and completeness of the records. Use logs/trace evidence to distinguish confirmed causes from correlations.
+
 Lead with the observed run count, success/failure status, and requested time
 range. Include the selected pipeline versions and identifiers when useful.
 Explain cache reuse or cleanup implications from the actual evidence. Distinguish
@@ -112,3 +115,7 @@ the latest run.
 
 Related skills: `nextflow-config`, `debug-local-run`,
 `debug-seqera-failed-run`, and `seqera-mcp`.
+
+## Narrative history analysis
+
+When the user wants a recap, recurring failure patterns or how a pipeline evolved over time, analyze the selected records and explain gaps without inferring causality from timing alone. Read [narrative run-history analysis](references/nf-run-history/README.md) before proceeding.
