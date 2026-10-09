@@ -37,6 +37,83 @@
           "new": "- For metadata-channel shape design (when meta has multiple keys), use `nf-pipeline-design`."
         }
       ]
+    },
+    {
+      "folds": [
+        {
+          "from": "convert-python-script",
+          "to": "build-nextflow-pipeline",
+          "heading": "Python conversion playbook",
+          "when": "When converting a standalone Python script or Python analysis into Nextflow, preserve its algorithm and dependency contract.",
+          "label": "Python conversion"
+        },
+        {
+          "from": "convert-r-script",
+          "to": "build-nextflow-pipeline",
+          "heading": "R conversion playbook",
+          "when": "When converting R source into Nextflow, preserve statistical semantics, dependencies and meaningful task boundaries.",
+          "label": "R conversion"
+        },
+        {
+          "from": "convert-jupyter-notebook",
+          "to": "build-nextflow-pipeline",
+          "heading": "Notebook conversion playbook",
+          "when": "When converting a Jupyter notebook, inventory cell dependencies and hidden state before extracting executable steps.",
+          "label": "notebook conversion"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "## Phase 0 — Audit what the source material points at",
+          "new": "## Conversion contract\n\nFor Python, R or Jupyter source, read the matching conversion playbook before scaffolding. Audit external files, helper code, dependencies and notebook state. Run the source on a small representative fixture when possible and record expected scientific outputs before changing execution structure. If the source cannot run, state that equivalence is unverified.\n\nPreserve tested algorithms by wrapping them. Split only at meaningful independently executable boundaries; file loading or a notebook cell alone does not justify a process. Preserve within-task threading and global/statistical operations. Validate the converted pipeline against the baseline outputs using exact or format-aware/tolerance-based checks appropriate to the algorithm. Compilation and lint alone do not establish equivalence.\n\nUse output syntax supported by the selected Nextflow version and the project's publication contract; legacy examples using `publishDir` are not a reason to undo workflow outputs.\n\n## Phase 0 — Audit what the source material points at"
+        },
+        {
+          "path": "skills/convert-r-script/SKILL.md",
+          "old": "Convert an R script into a well-structured Nextflow pipeline. Do NOT simply wrap\nthe script in a single process — decompose it into multiple processes connected\nby channels.",
+          "new": "Convert R source while preserving statistical behavior. Wrap tested R code when it is one meaningful task; decompose only at independently executable boundaries with explicit inputs and outputs. A shared normalization or model-fitting step must retain the full data context it needs."
+        },
+        {
+          "path": "skills/convert-r-script/SKILL.md",
+          "old": "- Each logical step becomes a Nextflow process",
+          "new": "- Choose meaningful task boundaries; keep cheap file loading/transforms with the analysis when separation adds no useful contract"
+        },
+        {
+          "path": "skills/convert-r-script/SKILL.md",
+          "old": "3. Run `nextflow lint` to check best practices",
+          "new": "3. Run `nextflow lint` to check best practices\n4. Execute representative data and compare scientific outputs against the source baseline; use justified tolerances for numerical results"
+        },
+        {
+          "path": "skills/convert-r-script/SKILL.md",
+          "old": "- `nextflow-dsl2.md` — DSL2 process and workflow syntax reference\n- `r-container-images.md` — Common R container images and conda environments",
+          "new": "- [DSL2 reference](references/nextflow-dsl2.md) — process and workflow syntax\n- [R environments](references/r-container-images.md) — container images and conda packages"
+        },
+        {
+          "path": "skills/convert-jupyter-notebook/SKILL.md",
+          "old": "Convert the Jupyter notebook into **multiple Nextflow processes** — do NOT simply wrap the entire notebook in a single process.",
+          "new": "Identify meaningful executable tasks rather than making each cell a process. Extract shared variables, cell-order dependencies, random state, working-directory changes and interactive assumptions explicitly. Wrap a single coherent analysis when appropriate; split independent tasks only when their file/value contracts are clear."
+        },
+        {
+          "path": "skills/convert-jupyter-notebook/SKILL.md",
+          "old": "3. Run `nextflow lint` to check for best practice issues",
+          "new": "3. Run `nextflow lint` to check for best practice issues\n4. Run representative input through the extracted source and the converted pipeline; compare expected scientific outputs and report any unresolved notebook state"
+        },
+        {
+          "path": "skills/convert-python-script/SKILL.md",
+          "old": "| `multiprocessing` | Remove — Nextflow handles parallelism |",
+          "new": "| `multiprocessing` | Preserve intentional within-task parallelism; let Nextflow schedule independent task instances |"
+        },
+        {
+          "path": "skills/convert-python-script/SKILL.md",
+          "old": "1. **Don't parallelize inside the script** — Remove `multiprocessing`, `joblib.Parallel`, `concurrent.futures`. Nextflow parallelizes across process instances.",
+          "new": "1. **Separate task scheduling from tool threading** — Preserve intentional within-task parallelism and expose resource requirements via `task.cpus`. Nextflow schedules independent instances; it does not replace a tool's internal parallel algorithm."
+        },
+        {
+          "path": "skills/convert-python-script/SKILL.md",
+          "old": "- [ ] String interpolation escaped correctly (`\\$` for shell/Python vars)",
+          "new": "- [ ] String interpolation escaped correctly (`\\$` for shell/Python vars)\n- [ ] Representative execution matches the source's expected scientific outputs, using justified numerical tolerances when needed"
+        }
+      ]
     }
   ]
 }

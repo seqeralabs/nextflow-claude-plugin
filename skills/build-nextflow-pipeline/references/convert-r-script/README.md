@@ -1,12 +1,3 @@
----
-name: convert-r-script
-description: >
-  Convert R scripts to Nextflow pipelines. Analyzes R code to identify logical
-  steps, inputs, outputs, and dependencies, then generates modular Nextflow
-  processes with proper channels, containers, and conda environments.
-  Trigger: "convert R script", "R to Nextflow", "migrate R to Nextflow",
-  "convert this R script to Nextflow".
----
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
 ## Using this skill
@@ -24,9 +15,7 @@ manages OAuth for the connected MCP server.
 
 # Convert R Script to Nextflow
 
-Convert an R script into a well-structured Nextflow pipeline. Do NOT simply wrap
-the script in a single process — decompose it into multiple processes connected
-by channels.
+Convert R source while preserving statistical behavior. Wrap tested R code when it is one meaningful task; decompose only at independently executable boundaries with explicit inputs and outputs. A shared normalization or model-fitting step must retain the full data context it needs.
 
 ## Workflow
 
@@ -46,7 +35,7 @@ the usual blockers, and they are cheaper to surface now than mid-conversion.
 
 ### 2. Plan the pipeline structure
 
-- Each logical step becomes a Nextflow process
+- Choose meaningful task boundaries; keep cheap file loading/transforms with the analysis when separation adds no useful contract
 - Define channels connecting processes
 - Identify which R libraries each process needs
 - Determine parallelization opportunities (e.g., per-sample, per-chromosome)
@@ -67,6 +56,7 @@ After generating the pipeline:
 1. Validate compilation using the user's selected pipeline and installed runtime
 2. Fix any syntax errors
 3. Run `nextflow lint` to check best practices
+4. Execute representative data and compare scientific outputs against the source baseline; use justified tolerances for numerical results
 
 Run validation with an available Nextflow installation and host execution tools.
 If either is unavailable, report validation as unverified and read
@@ -129,5 +119,5 @@ process EXAMPLE {
 
 ## References
 
-- `nextflow-dsl2.md` — DSL2 process and workflow syntax reference
-- `r-container-images.md` — Common R container images and conda environments
+- [DSL2 reference](references/nextflow-dsl2.md) — process and workflow syntax
+- [R environments](references/r-container-images.md) — container images and conda packages

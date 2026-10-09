@@ -5,7 +5,7 @@
       "path": "skills/audit-conversion-readiness/SKILL.md",
       "source": "portal/backend/src/skills/audit-conversion-readiness/SKILL.md",
       "source_sha256": "c03ff0e0755129fb718f8d7d45dec4b222661c9c5e3af91145deab166907de29",
-      "bundled_sha256": "458059c4556c36d63cc5f89082ccfab59a95a89bde1142c90d6626765c4f2d96",
+      "bundled_sha256": "e37f0aa6c3f9f3520b258006782519b8c37cf892537ee8c2f40b0ae01fe89816",
       "override": true
     },
     {
@@ -33,7 +33,7 @@
       "path": "skills/build-nextflow-pipeline/SKILL.md",
       "source": "portal/backend/src/skills/build-nextflow-pipeline/SKILL.md",
       "source_sha256": "4dcc9dcaa19a74f8b9d05272271b5a55317ca8fd0e3ca11b3eb0edb43fe4dcad",
-      "bundled_sha256": "eda41c03600b9a4a88f3ab03ac580591447d1e18ed7d262507eabafcc7143b98",
+      "bundled_sha256": "1c664f0deb4382876ab97404252d618af8262a8a01df0889d7be285787e70434",
       "override": true
     },
     {
@@ -63,41 +63,6 @@
       "source_sha256": "b76087e0b06de0984c3f22228846b19dc3561bbba27fd18c1162fe27fab78752",
       "bundled_sha256": "b1e39e794db10b38beb6079b7d82ee49c2c302f0480b676d06fa9ce0caebd1ac",
       "override": true
-    },
-    {
-      "path": "skills/convert-jupyter-notebook/SKILL.md",
-      "source": "portal/backend/src/skills/convert-jupyter-notebook/SKILL.md",
-      "source_sha256": "78de1341776d75e61971683185e5b29152a78cb3d0d31a89a236b3793165cff6",
-      "bundled_sha256": "63acb389f888ac1ab2031c351cd8066d46cb49553e4659ed8c6b1f3bbbb0557f",
-      "override": false
-    },
-    {
-      "path": "skills/convert-python-script/SKILL.md",
-      "source": "portal/backend/src/skills/convert-python-script/SKILL.md",
-      "source_sha256": "5741caa8d726f8c6ccd036a69beb667f30d5d2836249dfb1ecb99a6db1aad560",
-      "bundled_sha256": "aca8aad8bb1563ef1a2bea6b98f3eef71eeee2733d9133a80423786be25ff22f",
-      "override": false
-    },
-    {
-      "path": "skills/convert-r-script/SKILL.md",
-      "source": "portal/backend/src/skills/convert-r-script/SKILL.md",
-      "source_sha256": "523d41b30048a9e77c0ce820ed9654e3909c25715a68c187274a34cf06299c3a",
-      "bundled_sha256": "6520f81a6b645cc5b3a3b44bcf6f75b1bc79e63998db77620242240d500d68c1",
-      "override": false
-    },
-    {
-      "path": "skills/convert-r-script/references/nextflow-dsl2.md",
-      "source": "portal/backend/src/skills/convert-r-script/references/nextflow-dsl2.md",
-      "source_sha256": "3e758662c8e2e5a321c20a309cdced414f5c95f213f87f592a3c79e11600410b",
-      "bundled_sha256": "31fa0d8ed7d3a7e59a1dd5be806b5df637ed92fb49ce109876629d67baabd6a0",
-      "override": false
-    },
-    {
-      "path": "skills/convert-r-script/references/r-container-images.md",
-      "source": "portal/backend/src/skills/convert-r-script/references/r-container-images.md",
-      "source_sha256": "402b6723bcd6c5ac81297264cecddf4a4e21f78105cc626d862c41e55cf1f0e6",
-      "bundled_sha256": "2468b98641d82fad35ae002716826cde3292bbd3ea1d0ac837665825807ed8ec",
-      "override": false
     },
     {
       "path": "skills/create-container/SKILL.md",
@@ -320,7 +285,7 @@
       "path": "skills/nf-docker-scripts/SKILL.md",
       "source": "portal/backend/src/skills/nf-docker-scripts/SKILL.md",
       "source_sha256": "867fbfd0d732efc9655df1e025e89a608f049bf2397b057a38fcfd1af266b249",
-      "bundled_sha256": "24c693766642d3e98c66a17619a8df38518acc41b7d89e1c0ddb5cedd209bc5d",
+      "bundled_sha256": "f8d43bc298d4f90cd96013f9c8040f68f99b26631da71cb931d7ae484de7f015",
       "override": true
     },
     {
@@ -954,6 +919,41 @@
       "source_sha256": "cb038d5bc1c2b5a7e76f309cf28b8dfe889e88235d03717a9862f2b5a7434972",
       "bundled_sha256": "bd02254ad2e7affe2df98ed689d1bac9cce7652776bb45cf927e3b6b7bc4e468",
       "override": true
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/references/convert-python-script/README.md",
+      "source": "portal/backend/src/skills/convert-python-script/SKILL.md",
+      "source_sha256": "5741caa8d726f8c6ccd036a69beb667f30d5d2836249dfb1ecb99a6db1aad560",
+      "bundled_sha256": "4e61b08c36a4157c18d280149cb6c3333b34f8f76a0dbcf25ba3ad2d3717478f",
+      "override": true
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/references/convert-r-script/README.md",
+      "source": "portal/backend/src/skills/convert-r-script/SKILL.md",
+      "source_sha256": "523d41b30048a9e77c0ce820ed9654e3909c25715a68c187274a34cf06299c3a",
+      "bundled_sha256": "243babd1c9b5488d096afc8ed1f0f3ca7001354211357b795b0d1669d321b3ea",
+      "override": true
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/references/convert-r-script/references/nextflow-dsl2.md",
+      "source": "portal/backend/src/skills/convert-r-script/references/nextflow-dsl2.md",
+      "source_sha256": "3e758662c8e2e5a321c20a309cdced414f5c95f213f87f592a3c79e11600410b",
+      "bundled_sha256": "31fa0d8ed7d3a7e59a1dd5be806b5df637ed92fb49ce109876629d67baabd6a0",
+      "override": true
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/references/convert-r-script/references/r-container-images.md",
+      "source": "portal/backend/src/skills/convert-r-script/references/r-container-images.md",
+      "source_sha256": "402b6723bcd6c5ac81297264cecddf4a4e21f78105cc626d862c41e55cf1f0e6",
+      "bundled_sha256": "2468b98641d82fad35ae002716826cde3292bbd3ea1d0ac837665825807ed8ec",
+      "override": true
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/references/convert-jupyter-notebook/README.md",
+      "source": "portal/backend/src/skills/convert-jupyter-notebook/SKILL.md",
+      "source_sha256": "78de1341776d75e61971683185e5b29152a78cb3d0d31a89a236b3793165cff6",
+      "bundled_sha256": "157336460ca74025d6f897f159f7d8c7f75ff9c091ea71b4d12d81a890f35182",
+      "override": true
     }
   ],
   "github_upstreams": [
@@ -1152,6 +1152,11 @@
       "skills/audit-conversion-readiness/SKILL.md",
       "skills/audit-conversion-readiness/references/tool-availability.md",
       "skills/build-nextflow-pipeline/SKILL.md",
+      "skills/build-nextflow-pipeline/references/convert-jupyter-notebook/README.md",
+      "skills/build-nextflow-pipeline/references/convert-python-script/README.md",
+      "skills/build-nextflow-pipeline/references/convert-r-script/README.md",
+      "skills/build-nextflow-pipeline/references/convert-r-script/references/nextflow-dsl2.md",
+      "skills/build-nextflow-pipeline/references/convert-r-script/references/r-container-images.md",
       "skills/build-nextflow-pipeline/references/create-workflow/README.md",
       "skills/ce-credentials-setup/SKILL.md",
       "skills/ce-credentials-setup/references/aws-batch.md",
@@ -1178,6 +1183,18 @@
     "consolidated_skills": [
       {
         "from": "create-workflow",
+        "to": "build-nextflow-pipeline"
+      },
+      {
+        "from": "convert-python-script",
+        "to": "build-nextflow-pipeline"
+      },
+      {
+        "from": "convert-r-script",
+        "to": "build-nextflow-pipeline"
+      },
+      {
+        "from": "convert-jupyter-notebook",
         "to": "build-nextflow-pipeline"
       }
     ]

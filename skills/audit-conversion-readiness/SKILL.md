@@ -153,8 +153,8 @@ With the audit answered, route onward:
 - `find-alternative-tools` — tools blocked by license, GPU
   requirements, or abandonment
 - `seqera-data-links` — cloud data the pipeline must read
-- Then the conversion skill itself: `convert-python-script`, `convert-r-script`,
-  `convert-jupyter-notebook`, `migrate-from-snakemake`, or [registry composition](../build-nextflow-pipeline/references/create-workflow/README.md)
+- Then the conversion skill itself: [Python conversion](../build-nextflow-pipeline/references/convert-python-script/README.md), [R conversion](../build-nextflow-pipeline/references/convert-r-script/README.md),
+  [notebook conversion](../build-nextflow-pipeline/references/convert-jupyter-notebook/README.md), `migrate-from-snakemake`, or [registry composition](../build-nextflow-pipeline/references/create-workflow/README.md)
 
 ## Guardrails
 

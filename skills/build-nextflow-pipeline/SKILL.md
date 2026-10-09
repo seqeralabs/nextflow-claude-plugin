@@ -85,6 +85,14 @@ organization. The useful artifacts are:
 
 Treat `nextflow_schema.json` as a **living artifact** across phases. The Phase 1 draft is not the final version — each later phase may add new parameters (`enum` values after tool enumeration, new `ext.args` knobs after module search), and the main conversation is responsible for keeping the schema, `nextflow.config`, and the planning document in sync as those additions come in.
 
+## Conversion contract
+
+For Python, R or Jupyter source, read the matching conversion playbook before scaffolding. Audit external files, helper code, dependencies and notebook state. Run the source on a small representative fixture when possible and record expected scientific outputs before changing execution structure. If the source cannot run, state that equivalence is unverified.
+
+Preserve tested algorithms by wrapping them. Split only at meaningful independently executable boundaries; file loading or a notebook cell alone does not justify a process. Preserve within-task threading and global/statistical operations. Validate the converted pipeline against the baseline outputs using exact or format-aware/tolerance-based checks appropriate to the algorithm. Compilation and lint alone do not establish equivalence.
+
+Use output syntax supported by the selected Nextflow version and the project's publication contract; legacy examples using `publishDir` are not a reason to undo workflow outputs.
+
 ## Phase 0 — Audit what the source material points at
 
 Source material routinely references data and helper code that is not actually
@@ -434,3 +442,15 @@ Writing the actual `main.nf`, subworkflows, and modules should now be a mechanic
 ## Registry composition playbook
 
 When composing multiple Nextflow Registry modules, use the registry path instead of the source-material planning phases. Read [registry composition](references/create-workflow/README.md) before proceeding.
+
+## Python conversion playbook
+
+When converting a standalone Python script or Python analysis into Nextflow, preserve its algorithm and dependency contract. Read [Python conversion](references/convert-python-script/README.md) before proceeding.
+
+## R conversion playbook
+
+When converting R source into Nextflow, preserve statistical semantics, dependencies and meaningful task boundaries. Read [R conversion](references/convert-r-script/README.md) before proceeding.
+
+## Notebook conversion playbook
+
+When converting a Jupyter notebook, inventory cell dependencies and hidden state before extracting executable steps. Read [notebook conversion](references/convert-jupyter-notebook/README.md) before proceeding.
