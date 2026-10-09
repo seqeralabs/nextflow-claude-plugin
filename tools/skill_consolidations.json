@@ -182,6 +182,54 @@
           "new": "Action: update the snapshot or assertion only after checking the intentional contract change against independent expected behavior. Select the affected test using the project's supported selector before passing `--update-snapshot`; the command below shows the flag, not a suite-wide update instruction."
         }
       ]
+    },
+    {
+      "folds": [
+        {
+          "from": "nf-debug",
+          "to": "repair-workflow",
+          "heading": "Static diagnostics playbook",
+          "when": "When the request concerns lint, config validation, compilation or why a pipeline will not start, use static diagnostics and honor whether the user requested diagnosis or repair.",
+          "label": "static diagnostics"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/repair-workflow/SKILL.md",
+          "old": "  the right validation loop matters more than writing new workflow structure.",
+          "new": "  the right validation loop matters more than writing new workflow structure.\n  Also use for pipeline lint, config validation and preview/compilation diagnostics."
+        },
+        {
+          "path": "skills/repair-workflow/SKILL.md",
+          "old": "Repair the user's existing workflow in place. Work with the files, modules, tests, and validation commands the user supplies rather than assuming a repository layout.",
+          "new": "Diagnose or repair the user's existing workflow in place. Work with the supplied files, modules, tests and validation commands rather than assuming a repository layout. A diagnosis or lint request authorizes inspection and reporting, not automatic source edits."
+        },
+        {
+          "path": "skills/repair-workflow/SKILL.md",
+          "old": "## Choose the Validation Loop",
+          "new": "## Choose the Validation Loop\n\nFor syntax/config/compilation failures, read [static diagnostics](references/nf-debug/README.md). For executed failures, use `debug-local-run` or `debug-seqera-failed-run`; for test expectations, use `nf-test`. Static diagnostics supplement representative execution and cannot prove output correctness."
+        },
+        {
+          "path": "skills/nf-debug/SKILL.md",
+          "old": "Run three diagnostic passes, fix issues found, re-run until clean.",
+          "new": "Run supported diagnostic passes and report evidence. Apply fixes only when the user's request authorizes repair, then re-run the affected checks. Check the installed Nextflow version/help before using version-dependent commands."
+        },
+        {
+          "path": "skills/nf-debug/SKILL.md",
+          "old": "Validates config files merge correctly. Look for unresolved params, profile conflicts, duplicate keys.",
+          "new": "Lists available profiles. Inspect the merged configuration for the selected pipeline/profile separately to diagnose unresolved parameters, profile conflicts and duplicate settings. Profile listing alone does not prove the intended configuration is correct."
+        },
+        {
+          "path": "skills/nf-debug/SKILL.md",
+          "old": "3. Fix issues directly in source files.",
+          "new": "3. Report the diagnosis; if repair was requested, make the smallest evidence-based source edit."
+        },
+        {
+          "path": "skills/nf-debug/SKILL.md",
+          "old": "5. Repeat until all three pass clean.",
+          "new": "5. Report which supported checks passed, failed or could not run. For a repair, run representative tests/output checks as well; static success is not runtime verification."
+        }
+      ]
     }
   ]
 }

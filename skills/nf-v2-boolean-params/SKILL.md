@@ -220,4 +220,4 @@ If using the `nf-schema` plugin (`validateParameters()`), be aware:
 ## Related Skills
 
 - `nextflow-26-syntax` — broader v2 parser rules (type annotations on process I/O, implicit `it`, top-level statements vs declarations, emit labels). **Load together with this skill when the task touches multiple v2 grammar rules; load this one alone when the failure is specifically about a boolean CLI param.**
-- `nf-debug` — Pipeline diagnostics with lint, config validation, and preview
+- [static diagnostics](../repair-workflow/references/nf-debug/README.md) — Pipeline diagnostics with lint, config validation, and preview

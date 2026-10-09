@@ -537,14 +537,14 @@
       "path": "skills/nf-v2-boolean-params/SKILL.md",
       "source": "portal/backend/src/skills/nf-v2-boolean-params/SKILL.md",
       "source_sha256": "8771e4330ea11d17aca403c9b2e3998152c5b5986a9da096daed20f1c8ba35c1",
-      "bundled_sha256": "54f5cf9def8cc7dcdb3389805fb92990df5f826400c53d1e741dd08390ba6384",
-      "override": false
+      "bundled_sha256": "3d59554a778afbf7cc635dacad597cee11bf52ac829b65f379bc297b461eab79",
+      "override": true
     },
     {
       "path": "skills/repair-workflow/SKILL.md",
       "source": "portal/backend/src/skills/repair-workflow/SKILL.md",
       "source_sha256": "43567947449b6dcd44c34bded2a44c93826d42fd703c71576fdca3780e39d72a",
-      "bundled_sha256": "f4fc7e8e01c3bf92721a51840de6ae166de2f0917a4d0c56fd33a5a16388c051",
+      "bundled_sha256": "3b203a25f874c4195d4c2d929223963dd2dca374d9373591f2b4fe71e234067a",
       "override": true
     },
     {
@@ -590,13 +590,6 @@
       "source_sha256": "4e70348d52b774e716d4e48091317b5b22c48c7c6482712543d32ecb6898ecf7",
       "bundled_sha256": "f89f87ebd46dc03c0b4aea83df2e8ce4aadeba0177e225ea0269122b46c4e455",
       "override": true
-    },
-    {
-      "path": "skills/nf-debug/SKILL.md",
-      "source": "portal/.agents/skills/nf-debug/SKILL.md",
-      "source_sha256": "c3edab111eb1aa1529ff4780ed00db451e1e64a03bc2f8940daca7269aabc7eb",
-      "bundled_sha256": "5e3461903b5c1e72dc7381ede90e2648550546fa6e564e3da9bcdc0de7ef1c53",
-      "override": false
     },
     {
       "path": "skills/nf-migrate-25-04/SKILL.md",
@@ -954,6 +947,13 @@
       "source_sha256": "84260ee9889dd7d236941f04c52a05904d1631617b04a06b2409df64fad6a020",
       "bundled_sha256": "bc9f520cd9259f58561672925c259bc55c7e1040c16c4aab6e42caeb9bf484d8",
       "override": true
+    },
+    {
+      "path": "skills/repair-workflow/references/nf-debug/README.md",
+      "source": "portal/.agents/skills/nf-debug/SKILL.md",
+      "source_sha256": "c3edab111eb1aa1529ff4780ed00db451e1e64a03bc2f8940daca7269aabc7eb",
+      "bundled_sha256": "19abdc5de4d0de085e0d511c4e3a7c8003d1ea313c52f1f30efd96c3e6f0f07e",
+      "override": true
     }
   ],
   "github_upstreams": [
@@ -1182,7 +1182,9 @@
       "skills/nf-plugin-development/SKILL.md",
       "skills/nf-test/SKILL.md",
       "skills/nf-test/references/repair-nf-test/README.md",
+      "skills/nf-v2-boolean-params/SKILL.md",
       "skills/repair-workflow/SKILL.md",
+      "skills/repair-workflow/references/nf-debug/README.md",
       "skills/search-existing-modules/SKILL.md",
       "skills/seqera-data-links/SKILL.md",
       "skills/seqera-mcp/SKILL.md",
@@ -1216,6 +1218,10 @@
       {
         "from": "repair-nf-test",
         "to": "nf-test"
+      },
+      {
+        "from": "nf-debug",
+        "to": "repair-workflow"
       }
     ]
   }
