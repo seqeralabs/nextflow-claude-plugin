@@ -7,7 +7,7 @@ description: >
   mapping the data flow, critiquing it, shaping channels and metadata,
   scoping subworkflows, hunting for existing modules, and only then building
   containers and writing code. Use this skill whenever the user asks to
-  "build a pipeline", "port this to Nextflow", "turn this notebook/repo/script
+  "build a pipeline", "compose registry modules", "port this to Nextflow", "turn this notebook/repo/script
   into a pipeline", or otherwise wants to go from an existing body of work to
   a clean Nextflow pipeline. Pair with `nf-pipeline-design`, which owns the
   code-level rules (layout, main.nf, subworkflow/module shape); this skill
@@ -22,13 +22,19 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
 
 
-# Building a Nextflow pipeline from existing source material
+# Build a Nextflow Pipeline
+
+## Choose the construction path
+
+For composing existing Registry modules, read [registry composition](references/create-workflow/README.md) and follow its plan → approval → module validation → composition → end-to-end verification loop. For a single module, use `run-module`; a wrapper workflow is unnecessary.
+
+For scripts, notebooks, repositories or analysis descriptions, use the source-material phases below. Load `nf-pipeline-design` for code-level rules in either path.
 
 This skill guides the **planning** of a Nextflow pipeline that is being built from something that already exists: a set of scripts, a GitHub repository, a Jupyter or R notebook, a methods section in a paper, or a half-formed description of an analysis.
 
@@ -48,7 +54,7 @@ Delegate only when the host supports subagents; otherwise perform the same steps
 | Mapping the data flow | No — this is the core act of planning, keep it in the main conversation | — |
 | Triaging parameters and drafting `nextflow_schema.json` | **Yes** — hand the source material to one subagent | `nextflow-schema` |
 | Designing channels and metadata | No — needs the data flow map as live context | — |
-| Enumerating alternative tools for each analysis step | **Yes — one subagent per analysis step, in parallel** | `find-alternative-tools` |
+| Comparing alternatives, only when requested or the selected tool is blocked | **Optional** — delegate the bounded comparison when useful | `find-alternative-tools` |
 | Searching for existing Nextflow modules for each chosen tool | **Yes — one subagent per tool, in parallel** | `search-existing-modules` |
 | Building and verifying the container for each tool branch | **Yes — one subagent per tool, in parallel** | `create-container` |
 | Writing `main.nf`, subworkflows, and modules | No — this is a synthesis step that uses every prior artifact | — |
@@ -70,14 +76,22 @@ in the conversation when file access is unavailable. Respect existing project
 organization. The useful artifacts are:
 
 - **the planning document** — the living planning document. One markdown file with sections for: data flow map, samplesheet design, channel shapes, subworkflow scoping with chosen tools per step, alternative-tool rationale, test-inputs table, container verification status. Every phase adds to it; subagent outputs get pasted or linked into the relevant section.
-- **`nextflow_schema.json`** — the parameter contract. First-pass draft from Phase 1 (produced by `nextflow-schema`), augmented in Phase 3 with `enum` values from `find-alternative-tools` and any new tool-argument parameters revealed by module search. Always the source of truth for what the pipeline accepts.
+- **`nextflow_schema.json`** — the parameter contract. First-pass draft from Phase 1 (produced by `nextflow-schema`), augmented in Phase 3 with approved implemented tool choices (if any) and relevant tool arguments revealed by module search. Always the source of truth for what the pipeline accepts.
 - **`nextflow.config`** — mirrors schema defaults, declares profiles, loads `modules.config`. First-drafted in Phase 1 alongside the schema; stays in sync with it.
 - **`modules.config`** — plumbs surfaced parameters into `ext.args` per module. Drafted in Phase 3 once tools are picked.
 - **`tower.yml`**, when Platform report integration is requested, maps the pipeline's primary published human-readable outputs to Nextflow Platform report entries. Draft it from the planned output layout and verify every pattern against a real run.
 - **the sample-sheet schema** — samplesheet schema, validates each row of the samplesheet at launch. Separate from `nextflow_schema.json` (which validates parameters, not rows). Drafted in Phase 1 once "what is a sample" is settled.
 - **the user's selected test data** — small, representative test inputs per tool. Identified during Phase 1 (the triage subagent returns a test-inputs manifest as a secondary artifact) and consumed by `create-container` subagents in Phase 4.
 
-Treat `nextflow_schema.json` as a **living artifact** across phases. The Phase 1 draft is not the final version — each later phase may add new parameters (`enum` values after tool enumeration, new `ext.args` knobs after module search), and the main conversation is responsible for keeping the schema, `nextflow.config`, and the planning document in sync as those additions come in.
+Treat `nextflow_schema.json` as a **living artifact** across phases. The Phase 1 draft is not the final version — each later phase may add new parameters (`enum` values for approved implemented alternatives, new `ext.args` knobs after module search), and the main conversation is responsible for keeping the schema, `nextflow.config`, and the planning document in sync as those additions come in.
+
+## Conversion contract
+
+For Python, R or Jupyter source, read the matching conversion playbook before scaffolding. Audit external files, helper code, dependencies and notebook state. Run the source on a small representative fixture when possible and record expected scientific outputs before changing execution structure. If the source cannot run, state that equivalence is unverified.
+
+Preserve tested algorithms by wrapping them. Split only at meaningful independently executable boundaries; file loading or a notebook cell alone does not justify a process. Preserve within-task threading and global/statistical operations. Validate the converted pipeline against the baseline outputs using exact or format-aware/tolerance-based checks appropriate to the algorithm. Compilation and lint alone do not establish equivalence.
+
+Use output syntax supported by the selected Nextflow version and the project's publication contract; legacy examples using `publishDir` are not a reason to undo workflow outputs.
 
 ## Phase 0 — Audit what the source material points at
 
@@ -328,33 +342,24 @@ Each subworkflow should:
 - Be designed in clear **sections**: channel reshaping → module call → optional output reshaping. Readability matters.
 - **Harmonize inputs** — much of the value of a subworkflow is turning whatever upstream shape you got into exactly what the underlying tool needs, so the module stays boring.
 
-### Implement branching between as many alternative tools as possible
+### Select tools without expanding scope
 
-For each subworkflow, explicitly list the alternative tools considered (e.g. for multiple sequence alignment: MAFFT, MUSCLE, Clustal Omega, T-Coffee, HHblits; for folding: Boltz, OpenFold3, AlphaFold3) and then **implement the branching between them in the subworkflow**, not just pick one.
+Use the tool requested by the user or required to preserve the source analysis. If none is specified, recommend one suitable default and resolve material license, compute or output-contract constraints before implementation.
 
-The default assumption is that every step with multiple credible tools becomes a workflow-level `if/else` on an explicit parameter, with each branch calling one module. This is not a "nice to have" — it's what makes the pipeline actually useful:
+Use `find-alternative-tools` only when the user requests a comparison or the selected tool is blocked. Research produces candidates; it does not authorize implementing them.
 
-- The original source material reflects *one* author's choice at *one* point in time. Alternatives are often better for other datasets, other organisms, other budgets, or simply newer than the paper.
-- Tool choice is typically the single biggest determinant of output quality and runtime. Exposing it as a knob turns the pipeline into an experiment platform instead of a fixed recipe.
-- Adding a second branch is cheap when you're writing the subworkflow; adding one later means reworking the subworkflow's input/output contracts under pressure.
-- You are going through the container/module-building loop anyway (Phase 4). Doing it for 2–4 tools in one pass is only marginally more work than doing it for one.
+Add multiple tool branches only when the user explicitly requests or approves them. For approved branches:
 
-Concretely, this means:
+1. Add only implemented choices to the schema's `enum`, keeping config defaults aligned.
+2. Put tool selection in the subworkflow and reject unsupported choices explicitly.
+3. Normalize inputs and outputs around the selected modules.
+4. Verify every implemented branch's command, container and representative outputs.
 
-1. Surface the tool choice as a parameter in `nextflow_schema.json` with an `enum` listing every implemented option (see Phase 1 — this is exactly the kind of knob that belongs at the top level).
-2. Structure the subworkflow as a workflow-level `if/else` over that parameter, with a final `else error "Unsupported <choice>: ${choice}"` branch. See the `RUN_FOLDING` example in `nf-pipeline-design` for the exact shape.
-3. Harmonize inputs *upstream* of the branch and outputs *downstream* of the branch, so each tool module sees the same input shape and emits the same output shape. The subworkflow, not the caller, owns this normalization.
-4. Build and verify containers for **every** implemented branch during Phase 4. A branch that exists in code but was never run once is technical debt, not a feature.
-
-Skip a branch only when the tool is genuinely obsolete, proprietary-licensed in a way the pipeline cannot accept, or architecturally incompatible (e.g. needs GPUs the target executor doesn't have). Record the reason for every tool you considered and did *not* implement — this document survives longer than the planning conversation and prevents the same alternative being revisited every six months.
-
-**Delegate the enumeration when available.** For each analysis step in the data flow map, use the `find-alternative-tools` skill with the analysis step name plus any constraints (target executor, GPU availability, license restrictions). These tasks are independent and can run in parallel with one subagent per analysis step. Collect the ranked lists back into the planning document's "Alternative tools" section.
-
-Then **merge the suggested `enum` values into `nextflow_schema.json`** for each tool-choice parameter (e.g. `msa_tool: ["mafft", "muscle", "clustalo"]`). This is the first planned augmentation of the schema after Phase 1's draft — update `nextflow.config`'s `params {}` block alongside so defaults stay in sync. Also note any **nf-core module hints** the enumerate subagents flagged in their per-tool blocks; you will pass those forward to the next step as fast-path hints.
+Record the selected tool and rationale. A single-tool pipeline does not need an alternative-tool parameter or exhaustive rejected-tool inventory.
 
 ### Search for existing modules before writing one
 
-For every tool chosen as a branch, search for existing implementations in this priority order. This is not optional: reinventing an nf-core module costs days and produces worse code.
+For each selected tool, search for existing implementations in this priority order. This is not optional: reinventing an nf-core module costs days and produces worse code.
 
 1. **nf-core modules.** Search https://nf-co.re/modules and the `nf-core/modules` GitHub repo. If a module exists, use it (or vendor it). If one exists but doesn't quite fit, prefer extending it over writing a new one.
 2. **The inputted source.** Check the scripts, notebooks, or repository you were given — is there already a containerized version, a Dockerfile, a conda env? Reuse it.
@@ -403,16 +408,16 @@ Writing the actual `main.nf`, subworkflows, and modules should now be a mechanic
 
 ## Checklist before writing any `.nf` file
 
-- [ ] the planning document exists and has sections filled for: data flow map, samplesheet design, channels, alternative tools, module sourcing, test inputs, container verification
+- [ ] the planning document exists and has sections filled for: data flow map, samplesheet design, channels, selected tools (alternatives only if requested), module sourcing, test inputs, container verification
 - [ ] Data flow map has been critiqued, not just drafted
 - [ ] "Sample" is defined and the sample-sheet schema is drafted
-- [ ] `nextflow_schema.json` is available to the user's pipeline, with defaults, descriptions, and `enum` values merged in after alternative-tool enumeration
+- [ ] `nextflow_schema.json` is available with defaults and descriptions; any tool-choice `enum` lists only approved implemented branches
 - [ ] `nextflow.config` mirrors the schema defaults and declares profiles
 - [ ] `modules.config` plumbs surfaced parameters into `ext.args` per module
 - [ ] Channel shapes are listed for every major transition in the planning document
 - [ ] Cheap operations are assigned to operators/Groovy; expensive ones to modules
 - [ ] Each subworkflow has a one-sentence rationale and a named underlying tool (or set of alternative tools with branching)
-- [ ] Alternative-tool enumeration ran for every analysis step with credible alternatives, using `find-alternative-tools`
+- [ ] The selected tools match the requested analysis; any additional implemented branches were explicitly requested or approved
 - [ ] Existing-module search has been done for every chosen tool, using `search-existing-modules`, with verdicts in the planning document
 - [ ] Test inputs exist at the user's selected test data (or are specified to be derived) for every heavy tool
 - [ ] Containers are built and tool commands verified, delegated to `create-container` subagents where possible, with verified image references in the planning document
@@ -424,3 +429,19 @@ Writing the actual `main.nf`, subworkflows, and modules should now be a mechanic
 - [ ] Primary report files exist in the published output tree
 - [ ] `tower.yml` patterns match the user's actual published reports
 - [ ] After a Platform launch, the workflow Reports tab lists the expected entries
+
+## Registry composition playbook
+
+When composing multiple Nextflow Registry modules, use the registry path instead of the source-material planning phases. Read [registry composition](references/create-workflow/README.md) before proceeding.
+
+## Python conversion playbook
+
+When converting a standalone Python script or Python analysis into Nextflow, preserve its algorithm and dependency contract. Read [Python conversion](references/convert-python-script/README.md) before proceeding.
+
+## R conversion playbook
+
+When converting R source into Nextflow, preserve statistical semantics, dependencies and meaningful task boundaries. Read [R conversion](references/convert-r-script/README.md) before proceeding.
+
+## Notebook conversion playbook
+
+When converting a Jupyter notebook, inventory cell dependencies and hidden state before extracting executable steps. Read [notebook conversion](references/convert-jupyter-notebook/README.md) before proceeding.

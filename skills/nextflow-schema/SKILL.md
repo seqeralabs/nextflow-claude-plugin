@@ -5,7 +5,8 @@ description: >
   and sample sheet schema files for Nextflow pipelines. Use when user asks to create,
   update, or validate a pipeline parameter schema or sample sheet schema. Covers type
   inference, parameter grouping, nf-core conventions, Launchpad minimal-form guidance,
-  and nf-schema v2 (JSON Schema 2020-12) compliance.
+  nf-schema v2 (JSON Schema 2020-12) compliance, source-material parameter triage,
+  and migration from nf-validation or draft-07 schemas.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
@@ -16,7 +17,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -38,6 +39,8 @@ Load this skill when the user wants to:
 - Identify which parameters to expose when given raw source material (scripts, notebooks, papers, CLI docs)
 
 ## Discovering parameters from raw source material
+
+Read [parameter triage](references/triage-pipeline-parameters/README.md) for the bounded source-audit task, including the config outline and representative test-input manifest.
 
 When given source material (scripts, notebooks, paper methods sections, CLI docs) rather than an existing `nextflow.config`, scan exhaustively before writing the schema. Missing a parameter now means a breaking change to surface it later.
 
@@ -328,4 +331,12 @@ For `schema_input.json`:
 
 ## Migration
 
-For migrating existing pipelines from nf-validation to nf-schema, see the `nf-schema-migration` skill.
+For migrating existing pipelines from nf-validation to nf-schema, read [schema migration](references/nf-schema-migration/README.md) before editing. Schema syntax validation alone does not prove samplesheet or pipeline equivalence.
+
+## Source-material parameter triage
+
+When deriving parameters from scripts, notebooks, papers or CLI documentation, produce the source audit, schema, config outline and representative test-input manifest. Read [parameter triage](references/triage-pipeline-parameters/README.md) before proceeding.
+
+## Legacy schema migration
+
+When upgrading nf-validation or draft-07 schemas, preserve validation, samplesheet tuple shape, help behavior and representative execution. Read [schema migration](references/nf-schema-migration/README.md) before proceeding.

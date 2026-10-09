@@ -14,6 +14,7 @@ import argparse
 import hashlib
 import json
 import shutil
+import subprocess
 import sys
 import tempfile
 import zipfile
@@ -210,6 +211,10 @@ def main() -> None:
 
         relicense_portal_files()
         curate_skills()
+        subprocess.run([
+            sys.executable, "-I", str(REPO / "tools" / "consolidate_skills.py"),
+            "--root", str(REPO),
+        ], check=True)
 
         review = generic.get("extensions", {}).get("com.openai", {}).get("review", {}).get("test_cases")
         if review:

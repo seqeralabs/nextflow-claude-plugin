@@ -11,7 +11,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -125,3 +125,7 @@ pipeline; it does not determine the user's inputs or output destination.
 6. **PIN the revision** — always use `-r` to target a specific branch, tag, or commit for reproducibility.
 7. **USE cloud storage for `--outdir`** when the target CE runs on a cloud platform (s3://, gs://, az://).
 8. **PRESENT the run URL** returned by `nextflow launch` so the user can monitor the run.
+
+## MCP connection reference
+
+When a Seqera connection is missing or operation discovery is unclear, use the shared connection reference. Otherwise rely on the live tool descriptions and returned schemas. Read [MCP connection](references/seqera-mcp/README.md) before proceeding.

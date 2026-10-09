@@ -23,7 +23,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -37,7 +37,7 @@ When a structural decision depends on a non-structural one, chain to:
 
 - `find-alternative-tools` — tool choice at a branch
 - `search-existing-modules` — reuse vs author a module
-- `triage-pipeline-parameters` — param schema before `main.nf`
+- [parameter triage](../nextflow-schema/references/triage-pipeline-parameters/README.md) — param schema before `main.nf`
 
 ## Canonical Nextflow baseline
 

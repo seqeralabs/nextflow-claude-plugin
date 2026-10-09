@@ -22,7 +22,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -145,7 +145,7 @@ exists to prevent.
 
 With the audit answered, route onward:
 
-- `triage-pipeline-parameters` — turn the surviving paths and
+- [parameter triage](../nextflow-schema/references/triage-pipeline-parameters/README.md) — turn the surviving paths and
   constants into a parameter surface and schema
 - `create-container` or `nf-docker-scripts` — tools
   with no usable image
@@ -153,8 +153,8 @@ With the audit answered, route onward:
 - `find-alternative-tools` — tools blocked by license, GPU
   requirements, or abandonment
 - `seqera-data-links` — cloud data the pipeline must read
-- Then the conversion skill itself: `convert-python-script`, `convert-r-script`,
-  `convert-jupyter-notebook`, `migrate-from-snakemake`, or `create-workflow`
+- Then the conversion skill itself: [Python conversion](../build-nextflow-pipeline/references/convert-python-script/README.md), [R conversion](../build-nextflow-pipeline/references/convert-r-script/README.md),
+  [notebook conversion](../build-nextflow-pipeline/references/convert-jupyter-notebook/README.md), `migrate-from-snakemake`, or [registry composition](../build-nextflow-pipeline/references/create-workflow/README.md)
 
 ## Guardrails
 
@@ -165,5 +165,5 @@ With the audit answered, route onward:
 - Never treat a missing file as a reason to drop the step from the conversion —
   it is a question for the user.
 - Hardcoded paths are findings, not bugs to fix in place. The pipeline's
-  parameter surface is where they get resolved, in `triage-pipeline-parameters`.
+  parameter surface is where they get resolved, in [parameter triage](../nextflow-schema/references/triage-pipeline-parameters/README.md).
 - Keep the audit read-only. No edits to the source material, no scaffolding.

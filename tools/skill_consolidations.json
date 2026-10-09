@@ -1,0 +1,639 @@
+{
+  "groups": [
+    {
+      "folds": [
+        {
+          "from": "create-workflow",
+          "to": "build-nextflow-pipeline",
+          "heading": "Registry composition playbook",
+          "when": "When composing multiple Nextflow Registry modules, use the registry path instead of the source-material planning phases.",
+          "label": "registry composition"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "\"build a pipeline\", \"port this to Nextflow\"",
+          "new": "\"build a pipeline\", \"compose registry modules\", \"port this to Nextflow\""
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "# Building a Nextflow pipeline from existing source material",
+          "new": "# Build a Nextflow Pipeline\n\n## Choose the construction path\n\nFor composing existing Registry modules, read [registry composition](references/create-workflow/README.md) and follow its plan → approval → module validation → composition → end-to-end verification loop. For a single module, use `run-module`; a wrapper workflow is unnecessary.\n\nFor scripts, notebooks, repositories or analysis descriptions, use the source-material phases below. Load `nf-pipeline-design` for code-level rules in either path."
+        },
+        {
+          "path": "skills/create-container/SKILL.md",
+          "old": "module here — that belongs in `create-workflow` after verification.",
+          "new": "module here — that belongs in `build-nextflow-pipeline` after verification."
+        },
+        {
+          "path": "skills/nextflow-output-patterns/SKILL.md",
+          "old": "- For `collectFile`'s `storeDir:` / `cache:` / `sort:` parameters (publishing, deduplication), see `create-workflow` § \"publishing outputs\".",
+          "new": "- For `collectFile`'s `storeDir:` / `cache:` / `sort:` parameters, consult the current official Nextflow operator reference."
+        },
+        {
+          "path": "skills/nextflow-output-patterns/SKILL.md",
+          "old": "- For metadata-channel shape design (when meta has multiple keys), see `create-workflow` § \"metadata flow\".",
+          "new": "- For metadata-channel shape design (when meta has multiple keys), use `nf-pipeline-design`."
+        }
+      ]
+    },
+    {
+      "folds": [
+        {
+          "from": "convert-python-script",
+          "to": "build-nextflow-pipeline",
+          "heading": "Python conversion playbook",
+          "when": "When converting a standalone Python script or Python analysis into Nextflow, preserve its algorithm and dependency contract.",
+          "label": "Python conversion"
+        },
+        {
+          "from": "convert-r-script",
+          "to": "build-nextflow-pipeline",
+          "heading": "R conversion playbook",
+          "when": "When converting R source into Nextflow, preserve statistical semantics, dependencies and meaningful task boundaries.",
+          "label": "R conversion"
+        },
+        {
+          "from": "convert-jupyter-notebook",
+          "to": "build-nextflow-pipeline",
+          "heading": "Notebook conversion playbook",
+          "when": "When converting a Jupyter notebook, inventory cell dependencies and hidden state before extracting executable steps.",
+          "label": "notebook conversion"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "## Phase 0 — Audit what the source material points at",
+          "new": "## Conversion contract\n\nFor Python, R or Jupyter source, read the matching conversion playbook before scaffolding. Audit external files, helper code, dependencies and notebook state. Run the source on a small representative fixture when possible and record expected scientific outputs before changing execution structure. If the source cannot run, state that equivalence is unverified.\n\nPreserve tested algorithms by wrapping them. Split only at meaningful independently executable boundaries; file loading or a notebook cell alone does not justify a process. Preserve within-task threading and global/statistical operations. Validate the converted pipeline against the baseline outputs using exact or format-aware/tolerance-based checks appropriate to the algorithm. Compilation and lint alone do not establish equivalence.\n\nUse output syntax supported by the selected Nextflow version and the project's publication contract; legacy examples using `publishDir` are not a reason to undo workflow outputs.\n\n## Phase 0 — Audit what the source material points at"
+        },
+        {
+          "path": "skills/convert-r-script/SKILL.md",
+          "old": "Convert an R script into a well-structured Nextflow pipeline. Do NOT simply wrap\nthe script in a single process — decompose it into multiple processes connected\nby channels.",
+          "new": "Convert R source while preserving statistical behavior. Wrap tested R code when it is one meaningful task; decompose only at independently executable boundaries with explicit inputs and outputs. A shared normalization or model-fitting step must retain the full data context it needs."
+        },
+        {
+          "path": "skills/convert-r-script/SKILL.md",
+          "old": "- Each logical step becomes a Nextflow process",
+          "new": "- Choose meaningful task boundaries; keep cheap file loading/transforms with the analysis when separation adds no useful contract"
+        },
+        {
+          "path": "skills/convert-r-script/SKILL.md",
+          "old": "3. Run `nextflow lint` to check best practices",
+          "new": "3. Run `nextflow lint` to check best practices\n4. Execute representative data and compare scientific outputs against the source baseline; use justified tolerances for numerical results"
+        },
+        {
+          "path": "skills/convert-r-script/SKILL.md",
+          "old": "- `nextflow-dsl2.md` — DSL2 process and workflow syntax reference\n- `r-container-images.md` — Common R container images and conda environments",
+          "new": "- [DSL2 reference](references/nextflow-dsl2.md) — process and workflow syntax\n- [R environments](references/r-container-images.md) — container images and conda packages"
+        },
+        {
+          "path": "skills/convert-jupyter-notebook/SKILL.md",
+          "old": "Convert the Jupyter notebook into **multiple Nextflow processes** — do NOT simply wrap the entire notebook in a single process.",
+          "new": "Identify meaningful executable tasks rather than making each cell a process. Extract shared variables, cell-order dependencies, random state, working-directory changes and interactive assumptions explicitly. Wrap a single coherent analysis when appropriate; split independent tasks only when their file/value contracts are clear."
+        },
+        {
+          "path": "skills/convert-jupyter-notebook/SKILL.md",
+          "old": "3. Run `nextflow lint` to check for best practice issues",
+          "new": "3. Run `nextflow lint` to check for best practice issues\n4. Run representative input through the extracted source and the converted pipeline; compare expected scientific outputs and report any unresolved notebook state"
+        },
+        {
+          "path": "skills/convert-python-script/SKILL.md",
+          "old": "| `multiprocessing` | Remove — Nextflow handles parallelism |",
+          "new": "| `multiprocessing` | Preserve intentional within-task parallelism; let Nextflow schedule independent task instances |"
+        },
+        {
+          "path": "skills/convert-python-script/SKILL.md",
+          "old": "1. **Don't parallelize inside the script** — Remove `multiprocessing`, `joblib.Parallel`, `concurrent.futures`. Nextflow parallelizes across process instances.",
+          "new": "1. **Separate task scheduling from tool threading** — Preserve intentional within-task parallelism and expose resource requirements via `task.cpus`. Nextflow schedules independent instances; it does not replace a tool's internal parallel algorithm."
+        },
+        {
+          "path": "skills/convert-python-script/SKILL.md",
+          "old": "- [ ] String interpolation escaped correctly (`\\$` for shell/Python vars)",
+          "new": "- [ ] String interpolation escaped correctly (`\\$` for shell/Python vars)\n- [ ] Representative execution matches the source's expected scientific outputs, using justified numerical tolerances when needed"
+        }
+      ]
+    },
+    {
+      "folds": [
+        {
+          "from": "triage-pipeline-parameters",
+          "to": "nextflow-schema",
+          "heading": "Source-material parameter triage",
+          "when": "When deriving parameters from scripts, notebooks, papers or CLI documentation, produce the source audit, schema, config outline and representative test-input manifest.",
+          "label": "parameter triage"
+        },
+        {
+          "from": "nf-schema-migration",
+          "to": "nextflow-schema",
+          "heading": "Legacy schema migration",
+          "when": "When upgrading nf-validation or draft-07 schemas, preserve validation, samplesheet tuple shape, help behavior and representative execution.",
+          "label": "schema migration"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/nextflow-schema/SKILL.md",
+          "old": "  and nf-schema v2 (JSON Schema 2020-12) compliance.",
+          "new": "  nf-schema v2 (JSON Schema 2020-12) compliance, source-material parameter triage,\n  and migration from nf-validation or draft-07 schemas."
+        },
+        {
+          "path": "skills/nextflow-schema/SKILL.md",
+          "old": "## Discovering parameters from raw source material",
+          "new": "## Discovering parameters from raw source material\n\nRead [parameter triage](references/triage-pipeline-parameters/README.md) for the bounded source-audit task, including the config outline and representative test-input manifest."
+        },
+        {
+          "path": "skills/nextflow-schema/SKILL.md",
+          "old": "For migrating existing pipelines from nf-validation to nf-schema, see the `nf-schema-migration` skill.",
+          "new": "For migrating existing pipelines from nf-validation to nf-schema, read [schema migration](references/nf-schema-migration/README.md) before editing. Schema syntax validation alone does not prove samplesheet or pipeline equivalence."
+        },
+        {
+          "path": "skills/nf-schema-migration/SKILL.md",
+          "old": "Consult the bundled migration-guide.md reference for additional migration details.",
+          "new": "Consult [migration details](references/migration-guide.md) for legacy keyword examples. This is a historical reference: verify current nf-core tooling compatibility rather than treating its dated support warning as current."
+        }
+      ]
+    },
+    {
+      "folds": [
+        {
+          "from": "repair-nf-test",
+          "to": "nf-test",
+          "heading": "Failure repair playbook",
+          "when": "When an existing nf-test fails, classify intentional contract change, regression, nondeterminism or infrastructure before editing code, assertions or snapshots.",
+          "label": "nf-test failure repair"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/nf-test/SKILL.md",
+          "old": "Use repair-nf-test for structured diagnosis of existing failures.",
+          "new": "For failing suites, assertion errors or snapshot mismatches, read [nf-test failure repair](references/repair-nf-test/README.md) before changing code or expectations. Preserve fixtures unless a reviewed intentional contract change justifies updating them."
+        },
+        {
+          "path": "skills/nf-test/SKILL.md",
+          "old": "Treat failures as evidence. Check missing inputs, tuple shape, profile availability, container access, resource requirements, and actual assertion differences before changing pipeline logic.",
+          "new": "Treat failures as evidence. Read [nf-test failure repair](references/repair-nf-test/README.md) to distinguish regression from an intentional contract change. Check missing inputs, tuple shape, profile availability, container access, resource requirements, and actual assertion differences before changing pipeline logic."
+        },
+        {
+          "path": "skills/repair-nf-test/SKILL.md",
+          "old": "Action: update the snapshot or assertion to match the new correct behavior.",
+          "new": "Action: update the snapshot or assertion only after checking the intentional contract change against independent expected behavior. Select the affected test using the project's supported selector before passing `--update-snapshot`; the command below shows the flag, not a suite-wide update instruction."
+        }
+      ]
+    },
+    {
+      "folds": [
+        {
+          "from": "nf-debug",
+          "to": "repair-workflow",
+          "heading": "Static diagnostics playbook",
+          "when": "When the request concerns lint, config validation, compilation or why a pipeline will not start, use static diagnostics and honor whether the user requested diagnosis or repair.",
+          "label": "static diagnostics"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/repair-workflow/SKILL.md",
+          "old": "  the right validation loop matters more than writing new workflow structure.",
+          "new": "  the right validation loop matters more than writing new workflow structure.\n  Also use for pipeline lint, config validation and preview/compilation diagnostics."
+        },
+        {
+          "path": "skills/repair-workflow/SKILL.md",
+          "old": "Repair the user's existing workflow in place. Work with the files, modules, tests, and validation commands the user supplies rather than assuming a repository layout.",
+          "new": "Diagnose or repair the user's existing workflow in place. Work with the supplied files, modules, tests and validation commands rather than assuming a repository layout. A diagnosis or lint request authorizes inspection and reporting, not automatic source edits."
+        },
+        {
+          "path": "skills/repair-workflow/SKILL.md",
+          "old": "## Choose the Validation Loop",
+          "new": "## Choose the Validation Loop\n\nFor syntax/config/compilation failures, read [static diagnostics](references/nf-debug/README.md). For executed failures, use `debug-local-run` or `debug-seqera-failed-run`; for test expectations, use `nf-test`. Static diagnostics supplement representative execution and cannot prove output correctness."
+        },
+        {
+          "path": "skills/nf-debug/SKILL.md",
+          "old": "Run three diagnostic passes, fix issues found, re-run until clean.",
+          "new": "Run supported diagnostic passes and report evidence. Apply fixes only when the user's request authorizes repair, then re-run the affected checks. Check the installed Nextflow version/help before using version-dependent commands."
+        },
+        {
+          "path": "skills/nf-debug/SKILL.md",
+          "old": "Validates config files merge correctly. Look for unresolved params, profile conflicts, duplicate keys.",
+          "new": "Lists available profiles. Inspect the merged configuration for the selected pipeline/profile separately to diagnose unresolved parameters, profile conflicts and duplicate settings. Profile listing alone does not prove the intended configuration is correct."
+        },
+        {
+          "path": "skills/nf-debug/SKILL.md",
+          "old": "3. Fix issues directly in source files.",
+          "new": "3. Report the diagnosis; if repair was requested, make the smallest evidence-based source edit."
+        },
+        {
+          "path": "skills/nf-debug/SKILL.md",
+          "old": "5. Repeat until all three pass clean.",
+          "new": "5. Report which supported checks passed, failed or could not run. For a repair, run representative tests/output checks as well; static success is not runtime verification."
+        }
+      ]
+    },
+    {
+      "folds": [
+        {
+          "from": "nf-run-history",
+          "to": "nextflow-history",
+          "heading": "Narrative history analysis",
+          "when": "When the user wants a recap, recurring failure patterns or how a pipeline evolved over time, analyze the selected records and explain gaps without inferring causality from timing alone.",
+          "label": "narrative run-history analysis"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/nextflow-history/SKILL.md",
+          "old": "  Uses run history, task cache metadata, and Nextflow logs supplied by the user.",
+          "new": "  Uses run history, task cache metadata, and Nextflow logs supplied by the user.\n  Also use for narrative recaps, recurring failures and pipeline evolution."
+        },
+        {
+          "path": "skills/nextflow-history/SKILL.md",
+          "old": "## Reporting",
+          "new": "## Reporting\n\nFor a narrative recap or recurring patterns, read [narrative run-history analysis](references/nf-run-history/README.md). First establish the selected environment, time range and completeness of the records. Use logs/trace evidence to distinguish confirmed causes from correlations."
+        }
+      ]
+    },
+    {
+      "folds": [
+        {
+          "from": "nextflow-26-syntax",
+          "to": "migrate-nextflow-code",
+          "heading": "Strict syntax compatibility reference",
+          "when": "When fixing v2 parser errors or planning staged modernization, consult the version-specific syntax rules and preserve a tested output baseline.",
+          "label": "strict syntax compatibility"
+        },
+        {
+          "from": "nf-v2-boolean-params",
+          "to": "migrate-nextflow-code",
+          "heading": "Boolean parameter compatibility reference",
+          "when": "When CLI boolean flags arrive with the wrong type or do not toggle under strict syntax, check the typed-parameter and schema contract.",
+          "label": "boolean parameter compatibility"
+        },
+        {
+          "from": "nf-migrate-25-04",
+          "to": "migrate-nextflow-code",
+          "heading": "Nextflow 25.04 compatibility reference",
+          "when": "When targeting 25.04 or diagnosing compatibility across that release, use its changelog and scanners without assuming 26.x features.",
+          "label": "25.04 compatibility"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/migrate-nextflow-code/SKILL.md",
+          "old": "description: Migrate Nextflow pipeline code to newer language requirements. Use when fixing strict syntax errors, replacing versions channels with topic channels, migrating from `publishDir` to workflow outputs (the `output {}` block), or adding static typing (typed processes/workflows, records, typed params).",
+          "new": "description: Migrate Nextflow pipeline code while preserving behavior. Use for version upgrades including 25.04 compatibility, strict syntax errors, boolean CLI parameter types, topic channels, workflow outputs, and static typing (typed processes/workflows, records, typed params)."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/SKILL.md",
+          "old": "**Requires Nextflow 26.04 or later** (for the `nextflow lint` command and the strict syntax parser, which is the default from 26.04 onward).",
+          "new": "**Resolve the installed and target Nextflow versions first.** The modern examples target 26.04+, where strict syntax is the default. For a 25.04 target, read [25.04 compatibility](references/nf-migrate-25-04/README.md) and its scanners; do not silently upgrade the runtime or apply newer syntax. Check installed help/current official migration notes before using version-dependent features."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/SKILL.md",
+          "old": "| **Strict syntax** | …has strict syntax errors, or asks to run `nextflow lint` to find and fix errors | `strict-syntax.md` |",
+          "new": "| **25.04 compatibility** | …targets 25.04 or crosses that release | [25.04 compatibility](references/nf-migrate-25-04/README.md) |\n| **Boolean CLI params** | …has a string/boolean type mismatch or a flag that does not toggle | [boolean parameter compatibility](references/nf-v2-boolean-params/README.md) |\n| **Strict syntax** | …has parser errors or asks to run `nextflow lint` | `strict-syntax.md`, plus [version-specific rules](references/nextflow-26-syntax/README.md) |"
+        },
+        {
+          "path": "skills/migrate-nextflow-code/SKILL.md",
+          "old": "If the request covers multiple migrations, recommend performing only the first matching migration in the table. The order is also a dependency order: strict syntax -> topic channels -> static typing -> workflow outputs. Do not try to perform multiple migrations at the same time.",
+          "new": "For multiple requested migrations, agree a staged plan based on the target release and project dependencies. Establish a working baseline first, then complete one stage at a time with lint, representative tests and output comparisons. Strict syntax normally comes first; topic channels, types and workflow outputs need only be adopted when requested and supported. A green stage is the stopping point if the next cannot be verified."
+        },
+        {
+          "path": "skills/nf-migrate-25-04/SKILL.md",
+          "old": "Full upstream changelog: `upstream-25-04.md`",
+          "new": "Full upstream changelog: [25.04 release notes](references/upstream-25-04.md). This reference applies to that target release; verify version-dependent commands against installed help."
+        },
+        {
+          "path": "skills/nf-migrate-25-04/SKILL.md",
+          "old": "the user-provided source files with the host's execution tools.",
+          "new": "the user-provided source files with the host's execution tools: [deprecated-pattern scanner](scripts/find_deprecated_patterns.py)."
+        },
+        {
+          "path": "skills/nf-migrate-25-04/SKILL.md",
+          "old": "For shell blocks only, use the bundled `find_shell_blocks.py` helper if available.",
+          "new": "For shell blocks only, use the [shell-block scanner](scripts/find_shell_blocks.py)."
+        },
+        {
+          "path": "skills/nf-migrate-25-04/SKILL.md",
+          "old": "See `upstream-25-04.md` § Miscellaneous for the full list.",
+          "new": "See [25.04 release notes](references/upstream-25-04.md) § Miscellaneous for the full list."
+        },
+        {
+          "path": "skills/nextflow-26-syntax/SKILL.md",
+          "old": "- `nf-v2-boolean-params` — focused deep-dive on boolean CLI params under strict syntax. **Load this skill alone for general v2 migration; pair with `nf-v2-boolean-params` when the task also involves a boolean flag that's not toggling.**",
+          "new": "- `nf-v2-boolean-params` — read the boolean compatibility reference when the task also involves a flag that is not toggling; otherwise keep the syntax investigation scoped to the observed parser errors."
+        },
+        {
+          "path": "skills/nf-v2-boolean-params/SKILL.md",
+          "old": "**Load together with this skill when the task touches multiple v2 grammar rules; load this one alone when the failure is specifically about a boolean CLI param.**",
+          "new": "Read the syntax compatibility reference when the task touches multiple grammar rules; keep boolean-only failures scoped to this reference."
+        }
+      ]
+    },
+    {
+      "folds": [
+        {
+          "from": "seqera-mcp",
+          "to": "launch-workflow",
+          "heading": "MCP connection reference",
+          "when": "When a Seqera connection is missing or operation discovery is unclear, use the shared connection reference. Otherwise rely on the live tool descriptions and returned schemas.",
+          "label": "MCP connection",
+          "guide_override": "curation/mcp-connection.md",
+          "drop": [
+            "references/tool-schemas.md"
+          ]
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/audit-conversion-readiness/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/references/convert-jupyter-notebook/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/references/convert-python-script/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/references/convert-r-script/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/references/create-workflow/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/ce-credentials-setup/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/create-container/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/debug-local-run/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/debug-seqera-failed-run/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/find-alternative-tools/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/install-nextflow/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/maintain-nf-core-pipeline/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/migrate-from-snakemake/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/references/nextflow-26-syntax/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/references/nf-migrate-25-04/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/migrate-nextflow-code/references/nf-v2-boolean-params/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-config/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-development/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-history/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-history/references/nf-run-history/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-output-patterns/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-schema/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-schema/references/nf-schema-migration/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nextflow-schema/references/triage-pipeline-parameters/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-data-lineage/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-docker-scripts/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-pipeline-design/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-plugin-development/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-plugin-legacy-migration/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-test/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/nf-test/references/repair-nf-test/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/repair-workflow/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/repair-workflow/references/nf-debug/README.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/run-module/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/search-existing-modules/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/seqera-data-links/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/seqerakit/SKILL.md",
+          "old": "For Seqera operations, use the `seqera-mcp` skill.",
+          "new": "For Seqera operations, read the `seqera-mcp` connection reference."
+        },
+        {
+          "path": "skills/seqera-data-links/SKILL.md",
+          "old": "Use the `seqera-mcp` skill for the connection and discovery pattern.",
+          "new": "Read the `seqera-mcp` connection reference for discovery and authentication."
+        },
+        {
+          "path": "skills/ce-credentials-setup/SKILL.md",
+          "old": "**This skill complements `seqera-mcp`** — it covers HOW to gather values, while `seqera-mcp` covers HOW to call the creation tools.",
+          "new": "Read the `seqera-mcp` connection reference for discovery and authentication. This skill owns provider prerequisites and compute readiness."
+        },
+        {
+          "path": "skills/ce-credentials-setup/SKILL.md",
+          "old": "via seqera-mcp (skip for Seqera Compute)",
+          "new": "through discovered MCP operations (skip for Seqera Compute)"
+        },
+        {
+          "path": "skills/ce-credentials-setup/SKILL.md",
+          "old": "via seqera-mcp",
+          "new": "through discovered MCP operations"
+        },
+        {
+          "path": "skills/ce-credentials-setup/references/kubernetes.md",
+          "old": "Using the seqera-mcp tool:",
+          "new": "Discover the credential-creation operation with `search_seqera_api` and execute it through `call_seqera_api`. The example below describes intent; use the current returned schema, not these illustrative field names:"
+        },
+        {
+          "path": "skills/nextflow-history/SKILL.md",
+          "old": "use `seqera-mcp` to discover the relevant workflow-listing operation.",
+          "new": "use MCP discovery/execution to retrieve workflows; read `seqera-mcp` if connection or discovery guidance is needed."
+        }
+      ]
+    }
+  ],
+  "post_edits": [
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "### Implement branching between as many alternative tools as possible\n\nFor each subworkflow, explicitly list the alternative tools considered (e.g. for multiple sequence alignment: MAFFT, MUSCLE, Clustal Omega, T-Coffee, HHblits; for folding: Boltz, OpenFold3, AlphaFold3) and then **implement the branching between them in the subworkflow**, not just pick one.\n\nThe default assumption is that every step with multiple credible tools becomes a workflow-level `if/else` on an explicit parameter, with each branch calling one module. This is not a \"nice to have\" — it's what makes the pipeline actually useful:\n\n- The original source material reflects *one* author's choice at *one* point in time. Alternatives are often better for other datasets, other organisms, other budgets, or simply newer than the paper.\n- Tool choice is typically the single biggest determinant of output quality and runtime. Exposing it as a knob turns the pipeline into an experiment platform instead of a fixed recipe.\n- Adding a second branch is cheap when you're writing the subworkflow; adding one later means reworking the subworkflow's input/output contracts under pressure.\n- You are going through the container/module-building loop anyway (Phase 4). Doing it for 2–4 tools in one pass is only marginally more work than doing it for one.\n\nConcretely, this means:\n\n1. Surface the tool choice as a parameter in `nextflow_schema.json` with an `enum` listing every implemented option (see Phase 1 — this is exactly the kind of knob that belongs at the top level).\n2. Structure the subworkflow as a workflow-level `if/else` over that parameter, with a final `else error \"Unsupported <choice>: ${choice}\"` branch. See the `RUN_FOLDING` example in `nf-pipeline-design` for the exact shape.\n3. Harmonize inputs *upstream* of the branch and outputs *downstream* of the branch, so each tool module sees the same input shape and emits the same output shape. The subworkflow, not the caller, owns this normalization.\n4. Build and verify containers for **every** implemented branch during Phase 4. A branch that exists in code but was never run once is technical debt, not a feature.\n\nSkip a branch only when the tool is genuinely obsolete, proprietary-licensed in a way the pipeline cannot accept, or architecturally incompatible (e.g. needs GPUs the target executor doesn't have). Record the reason for every tool you considered and did *not* implement — this document survives longer than the planning conversation and prevents the same alternative being revisited every six months.\n\n**Delegate the enumeration when available.** For each analysis step in the data flow map, use the `find-alternative-tools` skill with the analysis step name plus any constraints (target executor, GPU availability, license restrictions). These tasks are independent and can run in parallel with one subagent per analysis step. Collect the ranked lists back into the planning document's \"Alternative tools\" section.\n\nThen **merge the suggested `enum` values into `nextflow_schema.json`** for each tool-choice parameter (e.g. `msa_tool: [\"mafft\", \"muscle\", \"clustalo\"]`). This is the first planned augmentation of the schema after Phase 1's draft — update `nextflow.config`'s `params {}` block alongside so defaults stay in sync. Also note any **nf-core module hints** the enumerate subagents flagged in their per-tool blocks; you will pass those forward to the next step as fast-path hints.\n\n",
+      "new": "### Select tools without expanding scope\n\nUse the tool requested by the user or required to preserve the source analysis. If none is specified, recommend one suitable default and resolve material license, compute or output-contract constraints before implementation.\n\nUse `find-alternative-tools` only when the user requests a comparison or the selected tool is blocked. Research produces candidates; it does not authorize implementing them.\n\nAdd multiple tool branches only when the user explicitly requests or approves them. For approved branches:\n\n1. Add only implemented choices to the schema's `enum`, keeping config defaults aligned.\n2. Put tool selection in the subworkflow and reject unsupported choices explicitly.\n3. Normalize inputs and outputs around the selected modules.\n4. Verify every implemented branch's command, container and representative outputs.\n\nRecord the selected tool and rationale. A single-tool pipeline does not need an alternative-tool parameter or exhaustive rejected-tool inventory.\n\n"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "| Enumerating alternative tools for each analysis step | **Yes — one subagent per analysis step, in parallel** | `find-alternative-tools` |",
+      "new": "| Comparing alternatives, only when requested or the selected tool is blocked | **Optional** — delegate the bounded comparison when useful | `find-alternative-tools` |"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "augmented in Phase 3 with `enum` values from `find-alternative-tools` and any new tool-argument parameters revealed by module search.",
+      "new": "augmented in Phase 3 with approved implemented tool choices (if any) and relevant tool arguments revealed by module search."
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "`enum` values after tool enumeration",
+      "new": "`enum` values for approved implemented alternatives"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "For every tool chosen as a branch, search for existing implementations",
+      "new": "For each selected tool, search for existing implementations"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "data flow map, samplesheet design, channels, alternative tools, module sourcing, test inputs, container verification",
+      "new": "data flow map, samplesheet design, channels, selected tools (alternatives only if requested), module sourcing, test inputs, container verification"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "- [ ] `nextflow_schema.json` is available to the user's pipeline, with defaults, descriptions, and `enum` values merged in after alternative-tool enumeration",
+      "new": "- [ ] `nextflow_schema.json` is available with defaults and descriptions; any tool-choice `enum` lists only approved implemented branches"
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/SKILL.md",
+      "old": "- [ ] Alternative-tool enumeration ran for every analysis step with credible alternatives, using `find-alternative-tools`",
+      "new": "- [ ] The selected tools match the requested analysis; any additional implemented branches were explicitly requested or approved"
+    },
+    {
+      "path": "skills/find-alternative-tools/SKILL.md",
+      "old": "Output is a structured list designed to feed directly into Nextflow subworkflow branching decisions.",
+      "new": "Output is a structured comparison to inform tool selection; research does not authorize implementation of additional branches."
+    },
+    {
+      "path": "skills/find-alternative-tools/SKILL.md",
+      "old": "The caller wants to turn \"do MSA\" into a subworkflow with `if/else` over a `msa_tool` parameter, with multiple real branches. That means you are *not* choosing one winner — you are enumerating every tool a reasonable pipeline author would consider exposing as an option, and giving the caller what they need to pick which branches to implement.",
+      "new": "Compare credible tools for the requested analysis and constraints. Recommend one default and explain when alternatives are justified. The caller decides which candidate to use; implementing additional branches requires explicit user approval. An alternatives report is research, not a pipeline implementation plan."
+    },
+    {
+      "path": "skills/find-alternative-tools/SKILL.md",
+      "old": "Suggest the `enum` value set for the schema parameter (e.g. `msa_tool: enum [mafft, muscle, clustalo, tcoffee, hhblits]`). Use short, lowercase, conventional names — whatever the tool's own CLI command is, typically.",
+      "new": "Suggest schema `enum` values only for branches explicitly approved for implementation. A research shortlist must not become the pipeline's advertised supported choices. Use short, lowercase, conventional tool names for approved choices."
+    }
+  ]
+}

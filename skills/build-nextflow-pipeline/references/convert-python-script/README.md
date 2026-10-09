@@ -1,10 +1,3 @@
----
-name: convert-python-script
-description: >
-  Convert standalone Python scripts to Nextflow processes and workflows.
-  Trigger: "convert python", "python to nextflow", "migrate python script",
-  "convert-python-script", "port python to nf", "rewrite in nextflow".
----
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
 ## Using this skill
@@ -14,7 +7,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../../../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -213,7 +206,7 @@ workflow {
 | `dict[key]` | Tuple channels with key: `[meta, file]` |
 | `try/except` | `errorStrategy 'retry'` or `'ignore'` |
 | Sequential loop | Chained processes (automatic parallelism) |
-| `multiprocessing` | Remove — Nextflow handles parallelism |
+| `multiprocessing` | Preserve intentional within-task parallelism; let Nextflow schedule independent task instances |
 
 ## Publishing Outputs
 
@@ -240,7 +233,7 @@ This skill focuses on standalone Python script conversion.
 
 ## Common Pitfalls
 
-1. **Don't parallelize inside the script** — Remove `multiprocessing`, `joblib.Parallel`, `concurrent.futures`. Nextflow parallelizes across process instances.
+1. **Separate task scheduling from tool threading** — Preserve intentional within-task parallelism and expose resource requirements via `task.cpus`. Nextflow schedules independent instances; it does not replace a tool's internal parallel algorithm.
 2. **Don't read/write to absolute paths** — Nextflow work dirs are isolated. Use relative paths in scripts.
 3. **Don't manage temp files** — Nextflow handles work directory cleanup.
 4. **Don't install dependencies in script block** — Use `conda`/`container` directives.
@@ -312,3 +305,4 @@ Before delivering the converted pipeline:
 - [ ] Workflow wires processes correctly via channels
 - [ ] Error handling preserved (non-zero exit on failure)
 - [ ] String interpolation escaped correctly (`\$` for shell/Python vars)
+- [ ] Representative execution matches the source's expected scientific outputs, using justified numerical tolerances when needed

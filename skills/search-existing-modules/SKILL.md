@@ -11,7 +11,7 @@ description: >
   new module). Use whenever a subworkflow is being scoped and needs to
   decide whether to reuse an existing Nextflow module or write a new one,
   or as a subagent task during the `nf-pipeline-design` /
-  `create-workflow` flow. Self-contained — needs only the tool name and
+  build-nextflow-pipeline flow. Self-contained — needs only the tool name and
   optionally the source repo path, no prior conversation context.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
@@ -23,7 +23,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.

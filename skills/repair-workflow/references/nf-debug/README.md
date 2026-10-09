@@ -1,11 +1,3 @@
----
-name: nf-debug
-description: >
-  Debug Nextflow pipelines with lint, config validation, and preview compilation.
-  Use when asked to "debug pipeline", "check my pipeline", "lint nextflow",
-  "validate pipeline", "why won't my pipeline run", "pipeline diagnostics",
-  or "check pipeline syntax".
----
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
 ## Using this skill
@@ -15,7 +7,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../../../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -23,7 +15,7 @@ manages OAuth for the connected MCP server.
 
 # Nextflow Pipeline Debugger
 
-Run three diagnostic passes, fix issues found, re-run until clean.
+Run supported diagnostic passes and report evidence. Apply fixes only when the user's request authorizes repair, then re-run the affected checks. Check the installed Nextflow version/help before using version-dependent commands.
 
 ## Diagnostic Steps
 
@@ -41,7 +33,7 @@ Catches syntax errors, deprecated patterns, undeclared variables.
 nextflow config -show-profiles
 ```
 
-Validates config files merge correctly. Look for unresolved params, profile conflicts, duplicate keys.
+Lists available profiles. Inspect the merged configuration for the selected pipeline/profile separately to diagnose unresolved parameters, profile conflicts and duplicate settings. Profile listing alone does not prove the intended configuration is correct.
 
 ### 3. Preview (DAG compilation)
 
@@ -55,9 +47,9 @@ Compiles the pipeline and generates the DAG without executing. Surfaces channel 
 
 1. Run all three commands, collect output.
 2. Analyze errors — group by file and severity.
-3. Fix issues directly in source files.
+3. Report the diagnosis; if repair was requested, make the smallest evidence-based source edit.
 4. Re-run the failing diagnostic to confirm the fix.
-5. Repeat until all three pass clean.
+5. Report which supported checks passed, failed or could not run. For a repair, run representative tests/output checks as well; static success is not runtime verification.
 
 ## Common Fixes
 

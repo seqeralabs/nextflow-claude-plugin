@@ -4,6 +4,7 @@ description: >
   Repair or debug an existing Nextflow workflow or pipeline. Use when the user
   asks to fix, debug, or improve an existing workflow, especially when choosing
   the right validation loop matters more than writing new workflow structure.
+  Also use for pipeline lint, config validation and preview/compilation diagnostics.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
@@ -14,7 +15,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -22,9 +23,11 @@ manages OAuth for the connected MCP server.
 
 # Repair Existing Nextflow Workflows
 
-Repair the user's existing workflow in place. Work with the files, modules, tests, and validation commands the user supplies rather than assuming a repository layout.
+Diagnose or repair the user's existing workflow in place. Work with the supplied files, modules, tests and validation commands rather than assuming a repository layout. A diagnosis or lint request authorizes inspection and reporting, not automatic source edits.
 
 ## Choose the Validation Loop
+
+For syntax/config/compilation failures, read [static diagnostics](references/nf-debug/README.md). For executed failures, use `debug-local-run` or `debug-seqera-failed-run`; for test expectations, use `nf-test`. Static diagnostics supplement representative execution and cannot prove output correctness.
 
 Run the existing verifier or affected nf-test target early. If the project explicitly requires nf-core linting, use its required lint command and metadata. For channel-shape bugs, inspect representative tuples before changing operators.
 
@@ -89,4 +92,8 @@ Reread the test output, inspect the actual produced artifacts, compare expected 
 - No shadow implementation or copy-back workaround was introduced.
 - The representative test passes, or any remaining limitation is reported precisely.
 
-Use create-workflow for new workflows, run-module for a single registry module, nextflow-26-syntax for strict-syntax changes, and repair-nf-test for test-specific failures. Consult repair-checklists.md when available.
+Use [registry composition](../build-nextflow-pipeline/references/create-workflow/README.md) for new workflows, run-module for a single registry module, [strict syntax compatibility](../migrate-nextflow-code/references/nextflow-26-syntax/README.md) for strict-syntax changes, and [nf-test failure repair](../nf-test/references/repair-nf-test/README.md) for test-specific failures. Consult repair-checklists.md when available.
+
+## Static diagnostics playbook
+
+When the request concerns lint, config validation, compilation or why a pipeline will not start, use static diagnostics and honor whether the user requested diagnosis or repair. Read [static diagnostics](references/nf-debug/README.md) before proceeding.

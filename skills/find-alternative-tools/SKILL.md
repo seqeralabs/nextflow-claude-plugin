@@ -1,6 +1,6 @@
 ---
 name: find-alternative-tools
-description: Given a named bioinformatics analysis step (e.g. "multiple sequence alignment", "somatic variant calling", "protein structure prediction", "single-cell demultiplexing"), find the credible alternative tools that could implement it, with pros/cons, license notes, typical compute requirements, maintenance status, and a ranked recommendation. Output is a structured list designed to feed directly into Nextflow subworkflow branching decisions. Use whenever a subworkflow is being scoped and needs multiple tool options, when asked to "list alternatives for X", "what could we use instead of Y", "what tools exist for Z", or as a subagent task inside the `build-nextflow-pipeline` flow at the alternative-tools step. Self-contained — needs only the analysis step and any constraints, no prior conversation context.
+description: Given a named bioinformatics analysis step (e.g. "multiple sequence alignment", "somatic variant calling", "protein structure prediction", "single-cell demultiplexing"), find the credible alternative tools that could implement it, with pros/cons, license notes, typical compute requirements, maintenance status, and a ranked recommendation. Output is a structured comparison to inform tool selection; research does not authorize implementation of additional branches. Use whenever a subworkflow is being scoped and needs multiple tool options, when asked to "list alternatives for X", "what could we use instead of Y", "what tools exist for Z", or as a subagent task inside the `build-nextflow-pipeline` flow at the alternative-tools step. Self-contained — needs only the analysis step and any constraints, no prior conversation context.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
@@ -11,7 +11,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -23,7 +23,7 @@ You have been given the name of an analysis step. Your job is to produce a ranke
 
 ## Scope
 
-The caller wants to turn "do MSA" into a subworkflow with `if/else` over a `msa_tool` parameter, with multiple real branches. That means you are *not* choosing one winner — you are enumerating every tool a reasonable pipeline author would consider exposing as an option, and giving the caller what they need to pick which branches to implement.
+Compare credible tools for the requested analysis and constraints. Recommend one default and explain when alternatives are justified. The caller decides which candidate to use; implementing additional branches requires explicit user approval. An alternatives report is research, not a pipeline implementation plan.
 
 Err on the side of inclusion. A tool that is slightly dated but still published-in-papers might still belong on the list as a reproducibility option. Skip only tools that are:
 
@@ -69,7 +69,7 @@ After the per-tool blocks, produce a ranked recommendation with reasoning, struc
 
 ## Parameter naming hint
 
-Suggest the `enum` value set for the schema parameter (e.g. `msa_tool: enum [mafft, muscle, clustalo, tcoffee, hhblits]`). Use short, lowercase, conventional names — whatever the tool's own CLI command is, typically.
+Suggest schema `enum` values only for branches explicitly approved for implementation. A research shortlist must not become the pipeline's advertised supported choices. Use short, lowercase, conventional tool names for approved choices.
 
 ## What to return
 

@@ -160,7 +160,7 @@ for this check.
 
 ## 6. Create Credentials in Seqera
 
-Using the seqera-mcp tool:
+Discover the credential-creation operation with `search_seqera_api` and execute it through `call_seqera_api`. The example below describes intent; use the current returned schema, not these illustrative field names:
 
 ```
 platform_create_credentials(

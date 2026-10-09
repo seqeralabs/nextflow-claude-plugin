@@ -1,10 +1,3 @@
----
-name: nf-schema-migration
-description: >
-  Migrate Nextflow pipelines from nf-validation to nf-schema v2.
-  Trigger: "migrate to nf-schema", "update from nf-validation",
-  "upgrade schema", "nf-validation to nf-schema", "draft-07 to 2020-12".
----
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
 ## Using this skill
@@ -14,7 +7,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../../../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -101,4 +94,4 @@ samplesheetToList returns a list. Construct the channel from that list using the
 - Help behavior is correct.
 - The user's representative validation and pipeline test pass.
 
-Consult the bundled migration-guide.md reference for additional migration details.
+Consult [migration details](references/migration-guide.md) for legacy keyword examples. This is a historical reference: verify current nf-core tooling compatibility rather than treating its dated support warning as current.

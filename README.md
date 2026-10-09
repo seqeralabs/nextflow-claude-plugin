@@ -3,7 +3,7 @@
 Build, migrate, test, debug and run [Nextflow](https://www.nextflow.io) pipelines with
 Claude, connected to [Nextflow Platform](https://seqera.io), Wave containers and nf-core.
 
-The plugin bundles 41 skills and the hosted Seqera MCP server (`https://mcp.seqera.io/mcp`).
+The plugin bundles 28 skills and the hosted Seqera MCP server (`https://mcp.seqera.io/mcp`).
 
 ## Install
 
@@ -43,11 +43,11 @@ To make the plugin available to everyone working in a repository, add it to that
 
 | Area | Skills |
 | --- | --- |
-| Build pipelines | `create-workflow`, `build-nextflow-pipeline`, `nf-pipeline-design`, `nextflow-config`, `nextflow-schema`, `nextflow-output-patterns`, `search-existing-modules`, `run-module`, `create-container` |
-| Convert to Nextflow | `convert-python-script`, `convert-r-script`, `convert-jupyter-notebook`, `migrate-from-snakemake`, `audit-conversion-readiness`, `triage-pipeline-parameters`, `find-alternative-tools` |
-| Migrate and modernise | `migrate-nextflow-code`, `nextflow-26-syntax`, `nf-migrate-25-04`, `nf-schema-migration`, `nf-v2-boolean-params`, `nf-plugin-development`, `nf-plugin-legacy-migration`, `maintain-nf-core-pipeline` |
-| Test and debug | `nf-test`, `repair-nf-test`, `repair-workflow`, `nf-debug`, `debug-local-run`, `debug-seqera-failed-run`, `nextflow-history`, `nf-run-history`, `nf-data-lineage`, `nf-docker-scripts` |
-| Nextflow Platform | `launch-workflow`, `seqera-mcp`, `ce-credentials-setup`, `seqera-data-links`, `seqerakit` |
+| Build pipelines | `build-nextflow-pipeline`, `nf-pipeline-design`, `nextflow-config`, `nextflow-schema`, `nextflow-output-patterns`, `search-existing-modules`, `run-module`, `create-container` |
+| Convert to Nextflow | `build-nextflow-pipeline` (Python, R and notebook playbooks), `migrate-from-snakemake`, `audit-conversion-readiness`, `nextflow-schema` (parameter triage), `find-alternative-tools` |
+| Migrate and modernise | `migrate-nextflow-code` (version, strict-syntax and boolean references), `nextflow-schema` (schema migration), `nf-plugin-development`, `nf-plugin-legacy-migration`, `maintain-nf-core-pipeline` |
+| Test and debug | `nf-test` (authoring and failure repair), `repair-workflow` (including static diagnostics), `debug-local-run`, `debug-seqera-failed-run`, `nextflow-history` (history, cache and narrative recaps), `nf-data-lineage`, `nf-docker-scripts` |
+| Nextflow Platform | `launch-workflow` (with shared MCP connection reference), `ce-credentials-setup`, `seqera-data-links`, `seqerakit` |
 | General | `nextflow-development`, `install-nextflow` |
 
 ## Licensing
@@ -65,6 +65,7 @@ The plugin content is generated from a host-neutral Agent Plugins package. To up
 ```bash
 python3 -I tools/import_package.py /path/to/nextflow.zip
 python3 -I tools/check_sources.py
+python3 -I tools/test_consolidate_skills.py
 claude plugin validate --strict .
 ```
 
@@ -73,7 +74,15 @@ regenerates `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` and 
 Do not edit those paths by hand; change the upstream package instead.
 
 The importer also drops the skills listed in `EXCLUDED_SKILLS` and applies the text edits in
-`EDITS`, so the remaining skills don't reference removed ones.
+`EDITS`. It then replays `tools/skill_consolidations.json`: removed entrypoints become linked
+playbooks under their surviving skill, including supporting files and original provenance.
+Change that plan (and any referenced curation assets), rather than editing generated skills.
+To apply a new consolidation to an already imported tree, run:
+
+```bash
+python3 -I tools/consolidate_skills.py
+python3 -I tools/check_sources.py
+```
 
 To release, bump `VERSION` in `tools/import_package.py`, re-import, merge, then tag:
 

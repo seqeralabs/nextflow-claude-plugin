@@ -54,7 +54,7 @@ Use this when:
 - errors mention strict syntax, parser v2, missing type annotation, or unexpected token
 
 Preferred loop:
-1. load `nextflow-26-syntax`
+1. load [strict syntax compatibility](../../migrate-nextflow-code/references/nextflow-26-syntax/README.md)
 2. repair parser issues directly
 3. rerun the relevant Nextflow lint or test command
 

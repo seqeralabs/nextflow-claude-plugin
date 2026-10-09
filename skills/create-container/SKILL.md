@@ -13,7 +13,7 @@ description: >
   "wrap <tool> for a Nextflow module", "fix this conda solve". Follows a
   build → run-test-input → iterate loop and returns a structured handoff
   (verified image reference + working command). Do not author the Nextflow
-  module here — that belongs in `create-workflow` after verification.
+  module here — that belongs in `build-nextflow-pipeline` after verification.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
@@ -24,7 +24,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.

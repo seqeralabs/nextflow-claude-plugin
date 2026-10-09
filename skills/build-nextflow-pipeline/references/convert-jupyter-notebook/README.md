@@ -1,10 +1,3 @@
----
-name: convert-jupyter-notebook
-description: >
-  Convert Jupyter notebooks to Nextflow pipelines. Triggered when users ask to
-  convert, migrate, or translate a Jupyter notebook (.ipynb) into Nextflow
-  processes and workflows.
----
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
 ## Using this skill
@@ -14,7 +7,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../../../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -30,7 +23,7 @@ manages OAuth for the connected MCP server.
 
 ## Instructions
 
-Convert the Jupyter notebook into **multiple Nextflow processes** — do NOT simply wrap the entire notebook in a single process.
+Identify meaningful executable tasks rather than making each cell a process. Extract shared variables, cell-order dependencies, random state, working-directory changes and interactive assumptions explicitly. Wrap a single coherent analysis when appropriate; split independent tasks only when their file/value contracts are clear.
 
 ### Plan First
 
@@ -57,6 +50,7 @@ After generating the pipeline:
 1. Validate compilation using the user's selected pipeline and installed runtime
 2. If there are syntax errors, fix them and re-run
 3. Run `nextflow lint` to check for best practice issues
+4. Run representative input through the extracted source and the converted pipeline; compare expected scientific outputs and report any unresolved notebook state
 
 Run validation with an available Nextflow installation and host execution tools.
 If either is unavailable, report validation as unverified and read

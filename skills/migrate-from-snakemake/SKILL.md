@@ -14,7 +14,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -78,7 +78,7 @@ Treat this as your spec. The rulegraph is your conversion roadmap — each node 
 - Translate the main `Snakefile` into `main.nf` + `nextflow.config` skeleton.
 - Map global config and top-level DAG flow before implementing every rule detail.
 - Keep process stubs minimal but executable so the workflow compiles early.
-- For non-trivial param surfaces: `triage-pipeline-parameters` before locking `nextflow.config`.
+- For non-trivial param surfaces: [parameter triage](../nextflow-schema/references/triage-pipeline-parameters/README.md) before locking `nextflow.config`.
 
 ### 4) Decompose by responsibility
 

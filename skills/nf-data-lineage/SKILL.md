@@ -15,7 +15,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -192,5 +192,5 @@ Previous runs without lineage enabled cannot be retroactively tracked.
 ## Related Skills
 
 - `debug-local-run` — for debugging failures (uses work dir, not lineage store)
-- `nf-run-history` — for run history narrative (uses run-history metadata)
+- [narrative run-history analysis](../nextflow-history/references/nf-run-history/README.md) — for run history narrative (uses run-history metadata)
 - `nextflow-config` — for configuring lineage settings

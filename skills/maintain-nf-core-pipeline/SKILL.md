@@ -20,7 +20,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -91,9 +91,9 @@ the entry workflow and project-owned workflow definitions. By this point the
 residue is genuinely pipeline-specific.
 
 If the residual work is a syntax migration:
-- `nextflow-26-syntax` — strict-syntax rules for typed processes / channels
-- `nf-v2-boolean-params` — boolean-param migration (common v2 failure)
-- `nf-schema-migration` — schema updates required by v2
+- [strict syntax compatibility](../migrate-nextflow-code/references/nextflow-26-syntax/README.md) — strict-syntax rules for typed processes / channels
+- [boolean parameter compatibility](../migrate-nextflow-code/references/nf-v2-boolean-params/README.md) — boolean-param migration (common v2 failure)
+- [schema migration](../nextflow-schema/references/nf-schema-migration/README.md) — schema updates required by v2
 
 For structural analysis of an unfamiliar pipeline before editing:
 - `nf-pipeline-design`

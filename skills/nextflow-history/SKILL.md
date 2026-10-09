@@ -5,6 +5,7 @@ description: >
   recent local runs, wants to see what pipelines they've executed, understand
   run lineage, inspect the Nextflow cache, or correlate runs with work directories.
   Uses run history, task cache metadata, and Nextflow logs supplied by the user.
+  Also use for narrative recaps, recurring failures and pipeline evolution.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
@@ -15,7 +16,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
@@ -36,7 +37,7 @@ not assume a working directory or cache location.
 - Identify safe cleanup candidates after reviewing the user's retention needs.
 
 For failure diagnosis, use the `debug-local-run` skill. For Platform history,
-use `seqera-mcp` to discover the relevant workflow-listing operation.
+use MCP discovery/execution to retrieve workflows; read [MCP connection](../launch-workflow/references/seqera-mcp/README.md) if connection or discovery guidance is needed.
 
 ## Run-history fields
 
@@ -104,6 +105,8 @@ only within the user's authorized retention and cleanup scope.
 
 ## Reporting
 
+For a narrative recap or recurring patterns, read [narrative run-history analysis](references/nf-run-history/README.md). First establish the selected environment, time range and completeness of the records. Use logs/trace evidence to distinguish confirmed causes from correlations.
+
 Lead with the observed run count, success/failure status, and requested time
 range. Include the selected pipeline versions and identifiers when useful.
 Explain cache reuse or cleanup implications from the actual evidence. Distinguish
@@ -111,4 +114,8 @@ historical failures from current failures and avoid presenting stale logs as
 the latest run.
 
 Related skills: `nextflow-config`, `debug-local-run`,
-`debug-seqera-failed-run`, and `seqera-mcp`.
+`debug-seqera-failed-run`, and [MCP connection](../launch-workflow/references/seqera-mcp/README.md).
+
+## Narrative history analysis
+
+When the user wants a recap, recurring failure patterns or how a pipeline evolved over time, analyze the selected records and explain gaps without inferring causality from timing alone. Read [narrative run-history analysis](references/nf-run-history/README.md) before proceeding.

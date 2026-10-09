@@ -1,10 +1,3 @@
----
-name: create-workflow
-description: |
-  INVOKE THIS SKILL IMMEDIATELY when user asks to: write/create/build a Nextflow pipeline or workflow,
-  create any bioinformatics pipeline (RNA-seq, DNA-seq, variant calling, ChIP-seq, etc.),
-  or compose/chain Nextflow modules from the Nextflow Registry. This skill handles all Nextflow workflow creation tasks.
----
 <!-- Modified for the Nextflow plugin: generic host tools and companion guidance. -->
 
 ## Using this skill
@@ -14,7 +7,7 @@ pipeline, input data and execution environment from their request or current
 context. Use user-selected locations for files and results. Consult companion
 skills, bundled references and optional helpers by name when available.
 
-For Seqera operations, use the `seqera-mcp` skill. Any `platform_*` examples
+For Seqera operations, read the [MCP connection](../../../launch-workflow/references/seqera-mcp/README.md) connection reference. Any `platform_*` examples
 describe API operations. Discover their exact names and parameter schemas with
 `search_seqera_api`, then invoke `call_seqera_api` using those schemas. The host
 manages OAuth for the connected MCP server.
