@@ -13,7 +13,7 @@
       "name": "nextflow",
       "source": "./",
       "description": "Build, migrate, test, debug, and run Nextflow pipelines with Nextflow Platform, Wave, and nf-core.",
-      "version": "0.2.2",
+      "version": "0.3.0",
       "author": {
         "name": "Seqera",
         "url": "https://seqera.io"
@@ -28,6 +28,30 @@
         "bioinformatics",
         "pipelines"
       ]
+    },
+    {
+      "name": "nextflow-platform",
+      "source": "./packs/nextflow-platform",
+      "description": "Optional Nextflow Platform compute/credential setup, storage data links and seqerakit automation. Requires the enabled nextflow core plugin.",
+      "version": "0.3.0"
+    },
+    {
+      "name": "nextflow-nf-core",
+      "source": "./packs/nextflow-nf-core",
+      "description": "Optional nf-core analysis, GEO/SRA acquisition, template synchronization and pipeline maintenance. Requires the enabled nextflow core plugin.",
+      "version": "0.3.0"
+    },
+    {
+      "name": "nextflow-plugins",
+      "source": "./packs/nextflow-plugins",
+      "description": "Optional Nextflow plugin development and legacy registry migration. Requires the enabled nextflow core plugin.",
+      "version": "0.3.0"
+    },
+    {
+      "name": "nextflow-provenance",
+      "source": "./packs/nextflow-provenance",
+      "description": "Optional run/cache history analysis and lineage-store exploration. Requires the enabled nextflow core plugin.",
+      "version": "0.3.0"
     }
   ]
 }

@@ -264,7 +264,7 @@ matching the baseline):
 4. **Static types** — enable `nextflow.enable.types` one script at a time,
    leaves first (local modules → subworkflows → workflows → `main.nf`).
    Shared nf-core component files are owned upstream: do not rewrite them
-   in place (see `maintain-nf-core-pipeline`) — call them from typed code or
+   in place (see `nextflow-nf-core:maintain-nf-core-pipeline`) — call them from typed code or
    vendor a project-owned copy with a note, and say which you chose.
 5. **Tuples → records** — the riskiest stage. Migrate one channel family at
    a time (e.g. the reads channel end-to-end, then the BAM channel), not one
@@ -330,7 +330,7 @@ nextflow inspect <pipeline> 2>&1
 
 - [boolean parameter compatibility](../nf-v2-boolean-params/README.md) — read the boolean compatibility reference when the task also involves a flag that is not toggling; otherwise keep the syntax investigation scoped to the observed parser errors.
 - `nf-pipeline-design` — typed process/workflow rules and the workflow `output {}` block in new code
-- `maintain-nf-core-pipeline` — when the pipeline being migrated is an nf-core pipeline (template sync and module updates come first)
+- `nextflow-nf-core:maintain-nf-core-pipeline` — when the pipeline being migrated is an nf-core pipeline (template sync and module updates come first)
 - `nf-test` / [nf-test failure repair](../../../nf-test/references/repair-nf-test/README.md) — regression tests between migration stages
 
 ## References

@@ -28,7 +28,7 @@ Identify meaningful executable tasks rather than making each cell a process. Ext
 ### Plan First
 
 0. **Audit** what the notebook points at — run
-   `audit-conversion-readiness` to find hardcoded paths you cannot
+   [conversion readiness](../audit-conversion-readiness/README.md) to find hardcoded paths you cannot
    reach and helper modules the notebook imports but that were not provided
 1. **Analyze** the notebook: understand the analysis steps, inputs, outputs, and dependencies between cells
 2. **Outline** the Nextflow process structure: identify logical groupings of cells that form distinct pipeline steps
@@ -54,7 +54,7 @@ After generating the pipeline:
 
 Run validation with an available Nextflow installation and host execution tools.
 If either is unavailable, report validation as unverified and read
-`install-nextflow` for installation guidance.
+[runtime setup](../install-nextflow/README.md) for installation guidance.
 
 ### Common Patterns
 

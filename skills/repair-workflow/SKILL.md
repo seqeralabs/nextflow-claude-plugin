@@ -92,8 +92,15 @@ Reread the test output, inspect the actual produced artifacts, compare expected 
 - No shadow implementation or copy-back workaround was introduced.
 - The representative test passes, or any remaining limitation is reported precisely.
 
-Use [registry composition](../build-nextflow-pipeline/references/create-workflow/README.md) for new workflows, run-module for a single registry module, [strict syntax compatibility](../migrate-nextflow-code/references/nextflow-26-syntax/README.md) for strict-syntax changes, and [nf-test failure repair](../nf-test/references/repair-nf-test/README.md) for test-specific failures. Consult repair-checklists.md when available.
+Use [registry composition](../build-nextflow-pipeline/references/create-workflow/README.md) for new workflows, [native module execution](../build-nextflow-pipeline/references/run-module/README.md) for a single registry module, [strict syntax compatibility](../migrate-nextflow-code/references/nextflow-26-syntax/README.md) for strict-syntax changes, and [nf-test failure repair](../nf-test/references/repair-nf-test/README.md) for test-specific failures. Consult repair-checklists.md when available.
 
 ## Static diagnostics playbook
 
 When the request concerns lint, config validation, compilation or why a pipeline will not start, use static diagnostics and honor whether the user requested diagnosis or repair. Read [static diagnostics](references/nf-debug/README.md) before proceeding.
+
+
+## Optional specialist work
+
+For infrastructure setup, nf-core maintenance/analysis, plugin development or broad provenance work, read [optional pack handoffs](../build-nextflow-pipeline/references/optional-packs.md). Check available namespaced skills first; if the pack is absent, explain how to explicitly install/enable it and stop that specialist task. Ordinary debugging and launch/resume remain in core.
+
+When editing an nf-core project, read [nf-core safety](../build-nextflow-pipeline/references/nf-core-safety.md); basic safe edits do not require the optional maintenance pack.

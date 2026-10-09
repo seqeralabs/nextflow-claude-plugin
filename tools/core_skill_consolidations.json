@@ -1,0 +1,147 @@
+{
+  "groups": [
+    {
+      "folds": [
+        {
+          "from": "migrate-from-snakemake",
+          "to": "build-nextflow-pipeline",
+          "label": "snakemake conversion",
+          "when": "When converting a Snakefile, preserve DAG, wildcard, scheduler and golden-output semantics.",
+          "heading": "Snakemake conversion playbook"
+        },
+        {
+          "from": "audit-conversion-readiness",
+          "to": "build-nextflow-pipeline",
+          "label": "conversion readiness",
+          "when": "For an audit-only request, inventory and probe inputs, code and dependencies; stop with a blockers-first report without editing pipeline code.",
+          "heading": "Conversion readiness playbook"
+        },
+        {
+          "from": "search-existing-modules",
+          "to": "build-nextflow-pipeline",
+          "label": "module discovery",
+          "when": "When selecting a tool implementation, return a verified reuse, vendor/adapt or write-new verdict.",
+          "heading": "Module discovery playbook"
+        },
+        {
+          "from": "run-module",
+          "to": "build-nextflow-pipeline",
+          "label": "native module execution",
+          "when": "For a module-only request, inspect the module contract and run it natively on verified inputs; no wrapper workflow or construction phases are needed.",
+          "heading": "Native module execution playbook"
+        },
+        {
+          "from": "find-alternative-tools",
+          "to": "build-nextflow-pipeline",
+          "label": "tool comparison",
+          "when": "For requested comparisons or a blocked selected tool, compare alternatives; implementation needs separate user approval.",
+          "heading": "Tool comparison playbook"
+        },
+        {
+          "from": "install-nextflow",
+          "to": "build-nextflow-pipeline",
+          "label": "runtime setup",
+          "when": "For installation or upgrade help, check the selected release and operation first; ask before changing the environment.",
+          "heading": "Runtime setup playbook"
+        },
+        {
+          "from": "nextflow-output-patterns",
+          "to": "nf-pipeline-design",
+          "label": "output correctness",
+          "when": "When aggregating, joining or grouping outputs, check headers, cardinality, keys and null handling.",
+          "heading": "Output correctness playbook"
+        },
+        {
+          "from": "nf-docker-scripts",
+          "to": "create-container",
+          "label": "script packaging",
+          "when": "For script-placement questions, choose and verify staging or packaging without requiring a container build.",
+          "heading": "Script packaging playbook"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "description: >\n  Plan and scaffold a new Nextflow DSL2 pipeline from source material —\n  scripts, repositories, Jupyter/R notebooks, papers, or informal\n  instructions. Drives the planning phases before any .nf code is written:\n  mapping the data flow, critiquing it, shaping channels and metadata,\n  scoping subworkflows, hunting for existing modules, and only then building\n  containers and writing code. Use this skill whenever the user asks to\n  \"build a pipeline\", \"compose registry modules\", \"port this to Nextflow\", \"turn this notebook/repo/script\n  into a pipeline\", or otherwise wants to go from an existing body of work to\n  a clean Nextflow pipeline. Pair with `nf-pipeline-design`, which owns the\n  code-level rules (layout, main.nf, subworkflow/module shape); this skill\n  owns the planning process that precedes them.",
+          "new": "description: >\n  Build or convert Nextflow pipelines from scripts, notebooks, repositories\n  or Snakemake workflows. Also use for read-only conversion readiness audits,\n  discovering or directly running registry modules, requested tool comparisons,\n  and Nextflow installation or upgrade help. Choose the bounded task path;\n  only full pipeline construction uses the planning phases. Pair with\n  nf-pipeline-design for code structure and output contracts.\n  Route compute/credential setup to the optional nextflow-platform pack,\n  nf-core analysis/maintenance to nextflow-nf-core, extension plugin work to\n  nextflow-plugins, and broad run/cache/lineage analysis to nextflow-provenance.\n  If a specialist is absent, name its pack from the nextflow-claude-plugin\n  marketplace and ask the user to explicitly install/enable it; stop that task."
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "## Choose the construction path",
+          "new": "## Choose the requested task\n\nFor compute/credential setup, omics analysis/nf-core maintenance, extension plugin development or broad provenance work, read [optional pack handoffs](references/optional-packs.md) first. If the matching namespaced specialist is absent, name its pack, explain explicit installation/enablement and stop that specialist task. These requests do not enter construction phases.\n\nFor an audit-only request, use the conversion-readiness playbook and return its report without writing pipeline code. For module discovery or a single module run, use the matching playbook and stop with a reuse verdict or verified run result. For tool comparison or runtime setup, use only that playbook and stop at the requested answer or authorized environment change.\n\nThese bounded paths skip the full construction phases below. When delegating a helper task, supply the relevant playbook content rather than invoking a removed skill identity.\n\n## Choose the construction path"
+        },
+        {
+          "path": "skills/migrate-from-snakemake/SKILL.md",
+          "old": "For the complete conventions (branches, edit policy, CLI commands), chain `maintain-nf-core-pipeline` and read its `nf-core-conventions.md`.",
+          "new": "For nf-core-safe editing, read [nf-core safety](../build-nextflow-pipeline/references/nf-core-safety.md). Template synchronization or upstream contribution is a separate optional maintenance task."
+        },
+        {
+          "path": "skills/install-nextflow/SKILL.md",
+          "old": "2. If the installed version is **older than 26.04**, the user MUST upgrade — other Nextflow skills depend on it.\n3. Otherwise, propose an upgrade only if a newer version is available.",
+          "new": "2. Check whether the installed release supports the user's requested operation. Ordinary pipeline execution does not inherit the 26.04 minimum used by native module or launch commands.\n3. If the operation is unsupported, explain the minimum supported release and ask before upgrading; otherwise keep the existing installation unless the user requests an upgrade."
+        },
+        {
+          "path": "skills/install-nextflow/SKILL.md",
+          "old": "# Install or Upgrade Nextflow",
+          "new": "# Install or Upgrade Nextflow\n\nAn installation-help request is not permission to change the environment. Confirm the target release, Java/runtime prerequisites and user's approval before any installer, package-manager command or self-update."
+        },
+        {
+          "path": "skills/create-container/SKILL.md",
+          "old": "description: >\n  Build, claim, or recommend a verified container for a bioinformatics tool —\n  and prove it runs the intended command on representative test data before\n  handing it off for module authoring. Make sure to use this skill whenever\n  the user wants to containerize a tool, wrap a tool for a Nextflow module,\n  set up Wave for a custom package stack, pin a Bioconda/conda-forge\n  environment, or unblock a \"this tool's dependencies are weird\" problem.\n  Trigger phrases include \"containerize X\", \"I need an image for Y\",\n  \"set up Wave for Z\", \"build a conda env for this tool\", \"verify this\n  container works on test input\", \"what container does <tool> need\",\n  \"wrap <tool> for a Nextflow module\", \"fix this conda solve\". Follows a\n  build → run-test-input → iterate loop and returns a structured handoff\n  (verified image reference + working command). Do not author the Nextflow\n  module here — that belongs in `build-nextflow-pipeline` after verification.",
+          "new": "description: >\n  Create and verify containers for Nextflow tools using Wave or the selected\n  runtime. Also use for choosing where process scripts live, helper-command\n  staging, templates and image packaging. Script-placement advice does not\n  require building an image. Verify the requested command and representative\n  outputs before claiming a container works."
+        },
+        {
+          "path": "skills/nf-pipeline-design/SKILL.md",
+          "old": "description: >",
+          "new": "description: >\n  Also use for output aggregation, collectFile headers, join cardinality,\n  grouping keys and null-handling correctness."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "description: Launch Nextflow pipeline executions on cloud and HPC clusters via Nextflow Platform. Use when the user wants to run/launch/submit a pipeline on a cloud or cluster compute environment, configure a compute environment, push pipeline changes to GitHub before launching, or sign in to Nextflow Platform.",
+          "new": "description: >\n  Plan, launch or resume Nextflow pipelines locally or through Nextflow Platform.\n  Use for pre-launch questions about uncommitted/unpublished changes, revision\n  selection, parameters, compute resources and resume identity, as well as\n  submission and readback. Publication and infrastructure creation require\n  separate explicit authorization; a launch question does not authorize them."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "# Launch Pipeline on Nextflow Platform",
+          "new": "# Launch or Resume a Pipeline\n\n## Local runs and resume\n\nFor a local run, confirm the user's pipeline, parameters, executor and output destination. Use the installed release's `nextflow run` interface; a local run does not require Platform authentication, a remote Git repository or Nextflow 26.04.\n\nBefore resuming, read [run identification](../debug-local-run/references/run-identification.md) and verify the requested run/session and accessible work/cache metadata. Use `-resume` with the selected identity; do not choose a run solely because it is newest. Inspect completion status and representative outputs; a cache hit alone is not scientific-output verification.\n\nFor missing runtime setup, read [runtime setup](../build-nextflow-pipeline/references/install-nextflow/README.md). Stop before installing or upgrading without explicit approval.\n\n## Platform launches"
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "3. **Upload local changes** — push any uncommitted local changes to the remote so the launched run reflects the user's current code.",
+          "new": "3. **Select a published revision** — verify that the remote contains the intended code. Publishing local changes requires separate explicit approval; a launch request alone is not authority to commit or push."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "Initialize Git if needed, review the user's selected pipeline files, and stage\nonly the intended changes. Help the user create or select a remote repository,\nconfigure its remote URL, and push the agreed revision using the available tools.",
+          "new": "Explain the missing published revision and ask for separate authorization before initializing Git, creating a remote, staging files or publishing code. Alternatively select an already published revision the user approves."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "Before launching, push any local changes so the remote reflects the code that should run:\n\nReview the changes, commit the user's intended pipeline files with a descriptive\nmessage, and push the confirmed branch using the available Git tools.",
+          "new": "Compare local changes with the selected remote revision. If the intended code is unpublished, stop and ask whether the user wants a separate commit/push task or a launch of the existing published revision. Only publish after explicit approval, staging only the approved files."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "4. **PUSH local changes first** — the launched run uses the remote code, so local edits must be committed and pushed.",
+          "new": "4. **VERIFY the published revision** — use the approved remote code; obtain separate authorization before committing or pushing local changes."
+        },
+        {
+          "path": "skills/launch-workflow/SKILL.md",
+          "old": "`nextflow launch` returns a run URL on Nextflow Platform. Present this URL to the user so they can monitor progress in the Platform UI.",
+          "new": "`nextflow launch` returns a run URL on Nextflow Platform. Retrieve the authoritative submitted workflow using discovered MCP operations and confirm its revision, parameters, compute environment and resume identity. Present the verified run identifier/URL and distinguish submission from successful completion."
+        }
+      ]
+    },
+    {
+      "folds": [
+        {
+          "from": "nf-plugin-legacy-migration",
+          "to": "nf-plugin-development",
+          "label": "legacy plugin migration",
+          "heading": "Legacy plugin migration",
+          "when": "When migrating an existing legacy plugin, preserve extension behavior and validate the target registry and Nextflow release; publishing needs explicit authorization."
+        }
+      ]
+    }
+  ]
+}

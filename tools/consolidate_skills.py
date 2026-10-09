@@ -151,10 +151,10 @@ def apply_consolidations(root: Path, plan: dict, assets: Path) -> None:
             edited.add(entry["path"])
         entry["bundled_sha256"] = digest
     sources["files"] = list(entries.values())
-    sources["claude_curation"]["consolidated_skills"] = [
-        {"from": fold["from"], "to": fold["to"]}
-        for group in plan["groups"] for fold in group["folds"]
-    ]
+    consolidated = {item["from"]: item for item in sources["claude_curation"].get("consolidated_skills", [])}
+    consolidated.update({fold["from"]: {"from": fold["from"], "to": fold["to"]}
+                         for group in plan["groups"] for fold in group["folds"]})
+    sources["claude_curation"]["consolidated_skills"] = list(consolidated.values())
     sources["claude_curation"]["edited_files"] = sorted(edited & entries.keys())
     write_json(sources_path, sources)
 

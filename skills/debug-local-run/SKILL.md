@@ -102,3 +102,10 @@ actually run and which remain unverified.
 References:
 [Nextflow error handling](https://www.nextflow.io/docs/latest/process.html#error-strategy)
 and [Nextflow tracing](https://www.nextflow.io/docs/latest/tracing.html).
+
+
+## Optional specialist work
+
+For infrastructure setup, nf-core maintenance/analysis, plugin development or broad provenance work, read [optional pack handoffs](../build-nextflow-pipeline/references/optional-packs.md). Check available namespaced skills first; if the pack is absent, explain how to explicitly install/enable it and stop that specialist task. Ordinary debugging and launch/resume remain in core.
+
+For selecting a run or inspecting resume/cache identity, read [run identification](references/run-identification.md); the provenance pack is unnecessary for ordinary diagnosis.
