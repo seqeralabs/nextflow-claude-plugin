@@ -56,6 +56,9 @@ To make the plugin available to everyone working in a repository, add it to that
 Licensed under the [Apache License, Version 2.0](LICENSE). Third-party attributions are in
 [`NOTICE`](NOTICE), and per-file origin is recorded in [`sources.json`](sources.json).
 
+The Apache-2.0 license covers the files in this repository. The hosted Seqera MCP server it
+connects to is a separate work, governed by its own license and Seqera's terms of service.
+
 ## Development
 
 The plugin content is generated from a host-neutral Agent Plugins package. To update it:

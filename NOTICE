@@ -3,6 +3,10 @@ Copyright 2024-2026 Seqera Labs, S.L.
 
 This product is licensed under the Apache License, Version 2.0 (see LICENSE).
 
+The Apache-2.0 license covers the files in this repository. The hosted Seqera MCP
+server it connects to (https://mcp.seqera.io/mcp) is a separate work, governed by
+its own license and Seqera's terms of service.
+
 It includes software and documentation from the following projects, also under
 the Apache License, Version 2.0:
 
