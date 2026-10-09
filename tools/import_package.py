@@ -35,7 +35,7 @@ AUTHOR = {"name": "Seqera", "url": "https://seqera.io"}
 
 # Version of the Claude plugin. It is released independently of the generic package
 # because the Claude build curates the skill set below; bump it on every release.
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 
 # Skills from the generic package that are not shipped in the Claude plugin.
 EXCLUDED_SKILLS = [
@@ -85,6 +85,9 @@ EDITS = [
      "- `nf-pipeline-design` — Standard pipeline organization"),
 ]
 MCP_URL = "https://mcp.seqera.io/mcp"
+
+# Listing icon shown in plugin browsers and the plugin directory.
+ICON = "./assets/nextflow-uploaded-logo.png"
 
 
 def locate_package(source: Path, workdir: Path) -> Path:
@@ -218,6 +221,7 @@ def main() -> None:
         "name": name,
         "version": version,
         "description": description,
+        "icon": ICON,
         "author": AUTHOR,
         "homepage": REPOSITORY,
         "repository": REPOSITORY,
@@ -244,6 +248,9 @@ def main() -> None:
     })
 
     write_json(REPO / ".mcp.json", {"mcpServers": {"seqera": {"type": "http", "url": MCP_URL}}})
+
+    if not (REPO / ICON).is_file():
+        sys.exit(f"icon not found: {ICON}")
 
     skills = sorted(p.parent.name for p in (REPO / "skills").glob("*/SKILL.md"))
     print(f"imported {name} {version}: {len(skills)} skills")
