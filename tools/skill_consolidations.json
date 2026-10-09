@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "folds": [
+        {
+          "from": "create-workflow",
+          "to": "build-nextflow-pipeline",
+          "heading": "Registry composition playbook",
+          "when": "When composing multiple Nextflow Registry modules, use the registry path instead of the source-material planning phases.",
+          "label": "registry composition"
+        }
+      ],
+      "edits": [
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "\"build a pipeline\", \"port this to Nextflow\"",
+          "new": "\"build a pipeline\", \"compose registry modules\", \"port this to Nextflow\""
+        },
+        {
+          "path": "skills/build-nextflow-pipeline/SKILL.md",
+          "old": "# Building a Nextflow pipeline from existing source material",
+          "new": "# Build a Nextflow Pipeline\n\n## Choose the construction path\n\nFor composing existing Registry modules, read [registry composition](references/create-workflow/README.md) and follow its plan → approval → module validation → composition → end-to-end verification loop. For a single module, use `run-module`; a wrapper workflow is unnecessary.\n\nFor scripts, notebooks, repositories or analysis descriptions, use the source-material phases below. Load `nf-pipeline-design` for code-level rules in either path."
+        },
+        {
+          "path": "skills/create-container/SKILL.md",
+          "old": "module here — that belongs in `create-workflow` after verification.",
+          "new": "module here — that belongs in `build-nextflow-pipeline` after verification."
+        },
+        {
+          "path": "skills/nextflow-output-patterns/SKILL.md",
+          "old": "- For `collectFile`'s `storeDir:` / `cache:` / `sort:` parameters (publishing, deduplication), see `create-workflow` § \"publishing outputs\".",
+          "new": "- For `collectFile`'s `storeDir:` / `cache:` / `sort:` parameters, consult the current official Nextflow operator reference."
+        },
+        {
+          "path": "skills/nextflow-output-patterns/SKILL.md",
+          "old": "- For metadata-channel shape design (when meta has multiple keys), see `create-workflow` § \"metadata flow\".",
+          "new": "- For metadata-channel shape design (when meta has multiple keys), use `nf-pipeline-design`."
+        }
+      ]
+    }
+  ]
+}

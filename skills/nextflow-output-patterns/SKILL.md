@@ -11,7 +11,7 @@ description: >
   merging, combined output files, metadata-keyed grouping, optional
   tuple positions, and the broader category of "the workflow finishes
   without error but the merged output is malformed." Pair with
-  `nextflow-26-syntax` (strict v2 syntax) and `create-workflow`
+  `nextflow-26-syntax` (strict v2 syntax) and build-nextflow-pipeline
   (high-level structure and module composition); this skill is specifically about
   output-correctness idioms in the operator layer.
 ---
@@ -127,5 +127,5 @@ ch_files    // tuple val(sample), val(condition), path(file)
 ## When this skill is NOT enough
 
 - For `splitFasta`, `splitText`, `splitCsv` (the *input* side of file-channel work), consult the Nextflow docs (the host's web tools restricted to official https://docs.seqera.io/nextflow/ documentation).
-- For `collectFile`'s `storeDir:` / `cache:` / `sort:` parameters (publishing, deduplication), see `create-workflow` § "publishing outputs".
-- For metadata-channel shape design (when meta has multiple keys), see `create-workflow` § "metadata flow".
+- For `collectFile`'s `storeDir:` / `cache:` / `sort:` parameters, consult the current official Nextflow operator reference.
+- For metadata-channel shape design (when meta has multiple keys), use `nf-pipeline-design`.

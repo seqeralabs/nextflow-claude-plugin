@@ -13,7 +13,7 @@ description: >
   "wrap <tool> for a Nextflow module", "fix this conda solve". Follows a
   build → run-test-input → iterate loop and returns a structured handoff
   (verified image reference + working command). Do not author the Nextflow
-  module here — that belongs in `create-workflow` after verification.
+  module here — that belongs in `build-nextflow-pipeline` after verification.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 

@@ -5,7 +5,7 @@
       "path": "skills/audit-conversion-readiness/SKILL.md",
       "source": "portal/backend/src/skills/audit-conversion-readiness/SKILL.md",
       "source_sha256": "c03ff0e0755129fb718f8d7d45dec4b222661c9c5e3af91145deab166907de29",
-      "bundled_sha256": "f11f5db7561c82f65d0b2f5470dfe44e2ab983bb6119bd157a4e4f0457a844df",
+      "bundled_sha256": "458059c4556c36d63cc5f89082ccfab59a95a89bde1142c90d6626765c4f2d96",
       "override": true
     },
     {
@@ -33,7 +33,7 @@
       "path": "skills/build-nextflow-pipeline/SKILL.md",
       "source": "portal/backend/src/skills/build-nextflow-pipeline/SKILL.md",
       "source_sha256": "4dcc9dcaa19a74f8b9d05272271b5a55317ca8fd0e3ca11b3eb0edb43fe4dcad",
-      "bundled_sha256": "660210dd93f801eb52bcdb15ac58cac9a194f677bd145d42258d47bc80fc1944",
+      "bundled_sha256": "eda41c03600b9a4a88f3ab03ac580591447d1e18ed7d262507eabafcc7143b98",
       "override": true
     },
     {
@@ -103,8 +103,8 @@
       "path": "skills/create-container/SKILL.md",
       "source": "portal/backend/src/skills/create-container/SKILL.md",
       "source_sha256": "7e87a45b6665d9cb282f7f9c145e688cf57affd6e95d84a61b8ce993fc811a57",
-      "bundled_sha256": "fa65e97de764afe605945e74c8fd5948ea110c19843b18030cedcf3f53fe4603",
-      "override": false
+      "bundled_sha256": "1c9729953129219f937ae386ea590e48923a90c3760a45de130d3f5f9d1a615b",
+      "override": true
     },
     {
       "path": "skills/debug-local-run/SKILL.md",
@@ -278,8 +278,8 @@
       "path": "skills/nextflow-output-patterns/SKILL.md",
       "source": "portal/backend/src/skills/nextflow-output-patterns/SKILL.md",
       "source_sha256": "b8ee43fb09ae92ddf90b7b4ea9517b4660e297879804c8a51c1988765017df72",
-      "bundled_sha256": "f1fe3710aad4ebac69b69f03624e9172671968a9d18ca5b75e3c71e979eb7c02",
-      "override": false
+      "bundled_sha256": "a21069e6e319a0570707357131e9a93423bbc6efb4507f86cd9dee0037cdc0a5",
+      "override": true
     },
     {
       "path": "skills/nextflow-schema/SKILL.md",
@@ -320,7 +320,7 @@
       "path": "skills/nf-docker-scripts/SKILL.md",
       "source": "portal/backend/src/skills/nf-docker-scripts/SKILL.md",
       "source_sha256": "867fbfd0d732efc9655df1e025e89a608f049bf2397b057a38fcfd1af266b249",
-      "bundled_sha256": "7174f3f76f853a5d0e11becb6e0b8795197113264c3f03ae5e9f3a5476e44f52",
+      "bundled_sha256": "24c693766642d3e98c66a17619a8df38518acc41b7d89e1c0ddb5cedd209bc5d",
       "override": true
     },
     {
@@ -600,8 +600,8 @@
       "path": "skills/repair-workflow/SKILL.md",
       "source": "portal/backend/src/skills/repair-workflow/SKILL.md",
       "source_sha256": "43567947449b6dcd44c34bded2a44c93826d42fd703c71576fdca3780e39d72a",
-      "bundled_sha256": "47b79a87a0f7f2e272c301e79e03c2e1c21b736d97662705114a01ff4ef03124",
-      "override": false
+      "bundled_sha256": "bcea586b46525ca1e5c9cf55203e49c43aeb7e937fedada42ee47c5a0e5f696b",
+      "override": true
     },
     {
       "path": "skills/repair-workflow/references/repair-checklists.md",
@@ -614,8 +614,8 @@
       "path": "skills/search-existing-modules/SKILL.md",
       "source": "portal/backend/src/skills/search-existing-modules/SKILL.md",
       "source_sha256": "73ab4e956a3bddd4382a8d74911963a8c51a72abcd3ff8a7fd0d49bd8ffd53a9",
-      "bundled_sha256": "55a609056fe58ef368a49df5e7206417bd9ac08a106316c1a873d0e333ff3a8a",
-      "override": false
+      "bundled_sha256": "5256ad852ea3d0c6c52d6ebaa2e1b219b98abf7fdf3a1ce9474f6abce965cb71",
+      "override": true
     },
     {
       "path": "skills/seqera-data-links/SKILL.md",
@@ -651,8 +651,8 @@
       "path": "skills/triage-pipeline-parameters/SKILL.md",
       "source": "portal/backend/src/skills/triage-pipeline-parameters/SKILL.md",
       "source_sha256": "b0f05305aaa356d0cd933ecbe8b9a62db2b9433557dca68e0c70df4661377898",
-      "bundled_sha256": "949428762ecf796121a44c2a54b003d88a1c45c81cc0d95f8ba50c1326ec9948",
-      "override": false
+      "bundled_sha256": "7e28c1e9c2ab47f89c40f0c752aa492725f88129bf015e1d806e22f19883ff0b",
+      "override": true
     },
     {
       "path": "skills/nf-debug/SKILL.md",
@@ -865,13 +865,6 @@
       "override": false
     },
     {
-      "path": "skills/create-workflow/SKILL.md",
-      "source": "https://github.com/nextflow-io/agent-skills/blob/1edf73763da408c410074568f228a75fc6d42864/skills/create-workflow/SKILL.md",
-      "source_sha256": "cb038d5bc1c2b5a7e76f309cf28b8dfe889e88235d03717a9862f2b5a7434972",
-      "bundled_sha256": "673f63371de41f639e260ad1e821b84b1078b8c2244cf256c1c33b3e9e98acf2",
-      "override": true
-    },
-    {
       "path": "skills/install-nextflow/SKILL.md",
       "source": "https://github.com/nextflow-io/agent-skills/blob/1edf73763da408c410074568f228a75fc6d42864/skills/install-nextflow/SKILL.md",
       "source_sha256": "a2b8ba6464bc60dbc51c5aa47d024a9efd4e44af3c17f5e27a4ea099ffa5e4e9",
@@ -954,6 +947,13 @@
       "source_sha256": "4baa8db788e56819432fde89ffae786189657d7da94fc5f9b4cbc05b16c1d73a",
       "bundled_sha256": "4baa8db788e56819432fde89ffae786189657d7da94fc5f9b4cbc05b16c1d73a",
       "override": false
+    },
+    {
+      "path": "skills/build-nextflow-pipeline/references/create-workflow/README.md",
+      "source": "https://github.com/nextflow-io/agent-skills/blob/1edf73763da408c410074568f228a75fc6d42864/skills/create-workflow/SKILL.md",
+      "source_sha256": "cb038d5bc1c2b5a7e76f309cf28b8dfe889e88235d03717a9862f2b5a7434972",
+      "bundled_sha256": "bd02254ad2e7affe2df98ed689d1bac9cce7652776bb45cf927e3b6b7bc4e468",
+      "override": true
     }
   ],
   "github_upstreams": [
@@ -1152,22 +1152,34 @@
       "skills/audit-conversion-readiness/SKILL.md",
       "skills/audit-conversion-readiness/references/tool-availability.md",
       "skills/build-nextflow-pipeline/SKILL.md",
+      "skills/build-nextflow-pipeline/references/create-workflow/README.md",
       "skills/ce-credentials-setup/SKILL.md",
       "skills/ce-credentials-setup/references/aws-batch.md",
       "skills/ce-credentials-setup/references/kubernetes.md",
       "skills/ce-credentials-setup/references/seqera-compute.md",
+      "skills/create-container/SKILL.md",
       "skills/debug-seqera-failed-run/SKILL.md",
       "skills/debug-seqera-failed-run/references/debug-workflow.md",
       "skills/launch-workflow/SKILL.md",
       "skills/maintain-nf-core-pipeline/SKILL.md",
       "skills/nextflow-config/SKILL.md",
       "skills/nextflow-config/references/config-options.md",
+      "skills/nextflow-output-patterns/SKILL.md",
       "skills/nf-docker-scripts/SKILL.md",
       "skills/nf-pipeline-design/SKILL.md",
       "skills/nf-plugin-development/SKILL.md",
+      "skills/repair-workflow/SKILL.md",
+      "skills/search-existing-modules/SKILL.md",
       "skills/seqera-data-links/SKILL.md",
       "skills/seqera-mcp/SKILL.md",
-      "skills/seqerakit/SKILL.md"
+      "skills/seqerakit/SKILL.md",
+      "skills/triage-pipeline-parameters/SKILL.md"
+    ],
+    "consolidated_skills": [
+      {
+        "from": "create-workflow",
+        "to": "build-nextflow-pipeline"
+      }
     ]
   }
 }

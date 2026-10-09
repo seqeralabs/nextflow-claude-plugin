@@ -154,7 +154,7 @@ With the audit answered, route onward:
   requirements, or abandonment
 - `seqera-data-links` — cloud data the pipeline must read
 - Then the conversion skill itself: `convert-python-script`, `convert-r-script`,
-  `convert-jupyter-notebook`, `migrate-from-snakemake`, or `create-workflow`
+  `convert-jupyter-notebook`, `migrate-from-snakemake`, or [registry composition](../build-nextflow-pipeline/references/create-workflow/README.md)
 
 ## Guardrails
 

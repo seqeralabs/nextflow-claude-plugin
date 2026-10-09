@@ -11,7 +11,7 @@ description: >
   new module). Use whenever a subworkflow is being scoped and needs to
   decide whether to reuse an existing Nextflow module or write a new one,
   or as a subagent task during the `nf-pipeline-design` /
-  `create-workflow` flow. Self-contained — needs only the tool name and
+  build-nextflow-pipeline flow. Self-contained — needs only the tool name and
   optionally the source repo path, no prior conversation context.
 ---
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->

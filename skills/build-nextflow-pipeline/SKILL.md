@@ -7,7 +7,7 @@ description: >
   mapping the data flow, critiquing it, shaping channels and metadata,
   scoping subworkflows, hunting for existing modules, and only then building
   containers and writing code. Use this skill whenever the user asks to
-  "build a pipeline", "port this to Nextflow", "turn this notebook/repo/script
+  "build a pipeline", "compose registry modules", "port this to Nextflow", "turn this notebook/repo/script
   into a pipeline", or otherwise wants to go from an existing body of work to
   a clean Nextflow pipeline. Pair with `nf-pipeline-design`, which owns the
   code-level rules (layout, main.nf, subworkflow/module shape); this skill
@@ -28,7 +28,13 @@ describe API operations. Discover their exact names and parameter schemas with
 manages OAuth for the connected MCP server.
 
 
-# Building a Nextflow pipeline from existing source material
+# Build a Nextflow Pipeline
+
+## Choose the construction path
+
+For composing existing Registry modules, read [registry composition](references/create-workflow/README.md) and follow its plan → approval → module validation → composition → end-to-end verification loop. For a single module, use `run-module`; a wrapper workflow is unnecessary.
+
+For scripts, notebooks, repositories or analysis descriptions, use the source-material phases below. Load `nf-pipeline-design` for code-level rules in either path.
 
 This skill guides the **planning** of a Nextflow pipeline that is being built from something that already exists: a set of scripts, a GitHub repository, a Jupyter or R notebook, a methods section in a paper, or a half-formed description of an analysis.
 
@@ -424,3 +430,7 @@ Writing the actual `main.nf`, subworkflows, and modules should now be a mechanic
 - [ ] Primary report files exist in the published output tree
 - [ ] `tower.yml` patterns match the user's actual published reports
 - [ ] After a Platform launch, the workflow Reports tab lists the expected entries
+
+## Registry composition playbook
+
+When composing multiple Nextflow Registry modules, use the registry path instead of the source-material planning phases. Read [registry composition](references/create-workflow/README.md) before proceeding.

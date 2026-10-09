@@ -311,6 +311,6 @@ When the user asks about Docker + scripts, follow this flow:
 ## Related Skills
 
 - `create-container` — Wave/conda container provisioning
-- `create-workflow` — composing workflows from modules
+- [registry composition](../build-nextflow-pipeline/references/create-workflow/README.md) — composing workflows from modules
 - `convert-python-script` — converting Python scripts to Nextflow processes
 - `nf-pipeline-design` — understanding pipeline layout including shared helper commands
