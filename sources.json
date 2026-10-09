@@ -138,15 +138,15 @@
       "path": "skills/maintain-nf-core-pipeline/SKILL.md",
       "source": "portal/backend/src/skills/maintain-nf-core-pipeline/SKILL.md",
       "source_sha256": "4ab1ec7a1ad95f4e622efe4e7f56eec650e70f6f62ebe087639be82d000c837c",
-      "bundled_sha256": "58bcd72b2fbfb0471f0f211a4f1c699361b3e6d90fe7a6555e55156503024598",
+      "bundled_sha256": "437a531848a8d8b4c1b1955efb545b6e0d7828e004a7eec45ded3dd8d37b347c",
       "override": true
     },
     {
       "path": "skills/maintain-nf-core-pipeline/references/nf-core-conventions.md",
       "source": "portal/backend/src/skills/maintain-nf-core-pipeline/references/nf-core-conventions.md",
       "source_sha256": "fee5073d8241a52fc24e38d60f979b1a8a49e665703d2800f3c1e7e5bd088878",
-      "bundled_sha256": "f09f3cb0a2183a2cdd3aac2da61920a0ccd02e9b5329ed4a225a329a25e66c4e",
-      "override": false
+      "bundled_sha256": "30fd736ccf1808f1ffa9d813aa0b490d41291c98772eafb6a5379c4a03a2a7dd",
+      "override": true
     },
     {
       "path": "skills/maintain-nf-core-pipeline/references/template-merges/README.md",
@@ -159,7 +159,7 @@
       "path": "skills/maintain-nf-core-pipeline/references/template-merges/tools-4_0.md",
       "source": "portal/backend/src/skills/maintain-nf-core-pipeline/references/template-merges/tools-4_0.md",
       "source_sha256": "743295a75fea1c54adc6e93c8b479012a705beb0d74a599c2262b417f0cf415c",
-      "bundled_sha256": "9048275b5e1280a607fe634b9aac898b70bfad8be0f992b97f393bf87546644e",
+      "bundled_sha256": "79f3cb51a5f1b9062a15423ea87d6278085694d5047bd5628b83ac04586b18ac",
       "override": true
     },
     {
@@ -205,13 +205,6 @@
       "override": false
     },
     {
-      "path": "skills/nextflow-26-syntax/SKILL.md",
-      "source": "portal/backend/src/skills/nextflow-26-syntax/SKILL.md",
-      "source_sha256": "b5d1e1ac292ef84311339091169c9f9278b32b34f61d1c34a698629eee5b21d0",
-      "bundled_sha256": "77e9724b5f5be1dd0aba5a8aaf838f1bd10ba034a128141f6559dbbc79f4b5c5",
-      "override": true
-    },
-    {
       "path": "skills/nextflow-config/SKILL.md",
       "source": "portal/backend/src/skills/nextflow-config/SKILL.md",
       "source_sha256": "1c421137313d594b23128d5bb74768ba8c68617f23f612f9961292a359f4b8dd",
@@ -243,7 +236,7 @@
       "path": "skills/nextflow-output-patterns/SKILL.md",
       "source": "portal/backend/src/skills/nextflow-output-patterns/SKILL.md",
       "source_sha256": "b8ee43fb09ae92ddf90b7b4ea9517b4660e297879804c8a51c1988765017df72",
-      "bundled_sha256": "a21069e6e319a0570707357131e9a93423bbc6efb4507f86cd9dee0037cdc0a5",
+      "bundled_sha256": "5b805a10e55644c31cafe6bb3346fe052170458f26ba4b87535f05a20d3deec2",
       "override": true
     },
     {
@@ -527,25 +520,18 @@
       "override": false
     },
     {
-      "path": "skills/nf-v2-boolean-params/SKILL.md",
-      "source": "portal/backend/src/skills/nf-v2-boolean-params/SKILL.md",
-      "source_sha256": "8771e4330ea11d17aca403c9b2e3998152c5b5986a9da096daed20f1c8ba35c1",
-      "bundled_sha256": "3d59554a778afbf7cc635dacad597cee11bf52ac829b65f379bc297b461eab79",
-      "override": true
-    },
-    {
       "path": "skills/repair-workflow/SKILL.md",
       "source": "portal/backend/src/skills/repair-workflow/SKILL.md",
       "source_sha256": "43567947449b6dcd44c34bded2a44c93826d42fd703c71576fdca3780e39d72a",
-      "bundled_sha256": "3b203a25f874c4195d4c2d929223963dd2dca374d9373591f2b4fe71e234067a",
+      "bundled_sha256": "ffb344c15ecbad603c3ed7ecc11c08fa1f0c530aaa560ea996e239fb19d7f105",
       "override": true
     },
     {
       "path": "skills/repair-workflow/references/repair-checklists.md",
       "source": "portal/backend/src/skills/repair-workflow/references/repair-checklists.md",
       "source_sha256": "5d3f8ff37d457cf2abb4871211f07e0c76a0050e0dd01101cba4369fc3d96dab",
-      "bundled_sha256": "ee10f9c18dab4907e37588c47a8361b2b2ecd200e36bc0c8f93fb0c0f1593d07",
-      "override": false
+      "bundled_sha256": "80eeabc193f92a1a07801fdb8408dfce1c8975906405298172de97670d9e3f0f",
+      "override": true
     },
     {
       "path": "skills/search-existing-modules/SKILL.md",
@@ -583,34 +569,6 @@
       "source_sha256": "4e70348d52b774e716d4e48091317b5b22c48c7c6482712543d32ecb6898ecf7",
       "bundled_sha256": "f89f87ebd46dc03c0b4aea83df2e8ce4aadeba0177e225ea0269122b46c4e455",
       "override": true
-    },
-    {
-      "path": "skills/nf-migrate-25-04/SKILL.md",
-      "source": "portal/.agents/skills/nf-migrate-25-04/SKILL.md",
-      "source_sha256": "bbb89170c1e42812c00b98d675da7ea95af9f6e99234315253b88b386904f089",
-      "bundled_sha256": "7fea957ff47d6e7de2a0d281b58c367daca1a5370c19c44d36044cb0a6a88393",
-      "override": false
-    },
-    {
-      "path": "skills/nf-migrate-25-04/references/upstream-25-04.md",
-      "source": "portal/.agents/skills/nf-migrate-25-04/references/upstream-25-04.md",
-      "source_sha256": "8b50112d5df68dac2986b3204480816be5e885539c4d2535583a6ec5592a8410",
-      "bundled_sha256": "f0ec9f986abb0707c53f57f165f7ff1c7b75f6a5cfa77afad84681814742f56a",
-      "override": false
-    },
-    {
-      "path": "skills/nf-migrate-25-04/scripts/find_deprecated_patterns.py",
-      "source": "portal/.agents/skills/nf-migrate-25-04/scripts/find_deprecated_patterns.py",
-      "source_sha256": "a23a4eb685ef75baf62d7fa4b3464bd521e9524f850a18403160b4e38c53cc35",
-      "bundled_sha256": "a23a4eb685ef75baf62d7fa4b3464bd521e9524f850a18403160b4e38c53cc35",
-      "override": false
-    },
-    {
-      "path": "skills/nf-migrate-25-04/scripts/find_shell_blocks.py",
-      "source": "portal/.agents/skills/nf-migrate-25-04/scripts/find_shell_blocks.py",
-      "source_sha256": "13efcf3abb1510b88694d973d8d98be643c43fb189774a05fc3810453dab3a70",
-      "bundled_sha256": "13efcf3abb1510b88694d973d8d98be643c43fb189774a05fc3810453dab3a70",
-      "override": false
     },
     {
       "path": "skills/nextflow-development/LICENSE.txt",
@@ -805,7 +763,7 @@
       "path": "skills/migrate-nextflow-code/SKILL.md",
       "source": "https://github.com/nextflow-io/agent-skills/blob/1edf73763da408c410074568f228a75fc6d42864/skills/migrate-nextflow-code/SKILL.md",
       "source_sha256": "7cdba1fd11ecda34189503669f989e97ffc611fe957a051fb83357073faab021",
-      "bundled_sha256": "18a01710d1681eb46481b975c468118a4805aa96cada67cbe5afbe1df08b0b06",
+      "bundled_sha256": "a2612d5ad0b473151f2e74143be7647d8c7e8b57c1b10dfc7143d50c22f717ea",
       "override": true
     },
     {
@@ -953,6 +911,48 @@
       "source": "portal/backend/src/skills/nf-run-history/SKILL.md",
       "source_sha256": "8bcb5e04a79bb28b0cb833e5fdf32f7d81a79eaee81e2e97d2316b486dc3502c",
       "bundled_sha256": "49b8d77e47a5ed4ab6ef41202efa807aeda692fd75a5b7bc1f59cb7ba6415d45",
+      "override": true
+    },
+    {
+      "path": "skills/migrate-nextflow-code/references/nextflow-26-syntax/README.md",
+      "source": "portal/backend/src/skills/nextflow-26-syntax/SKILL.md",
+      "source_sha256": "b5d1e1ac292ef84311339091169c9f9278b32b34f61d1c34a698629eee5b21d0",
+      "bundled_sha256": "db46f0f87d06bfa5b5218c16979811f3a4bce086ce17f7ecc380a881b5c0ee8a",
+      "override": true
+    },
+    {
+      "path": "skills/migrate-nextflow-code/references/nf-v2-boolean-params/README.md",
+      "source": "portal/backend/src/skills/nf-v2-boolean-params/SKILL.md",
+      "source_sha256": "8771e4330ea11d17aca403c9b2e3998152c5b5986a9da096daed20f1c8ba35c1",
+      "bundled_sha256": "5f9eafde72d0d12196635726b98e97a81e7b8d4493560c25b1f622aa194c2ad8",
+      "override": true
+    },
+    {
+      "path": "skills/migrate-nextflow-code/references/nf-migrate-25-04/README.md",
+      "source": "portal/.agents/skills/nf-migrate-25-04/SKILL.md",
+      "source_sha256": "bbb89170c1e42812c00b98d675da7ea95af9f6e99234315253b88b386904f089",
+      "bundled_sha256": "7c121c813735823d17fae622d37d46bd4852b93bf06ddc82bc88fd8535dcd711",
+      "override": true
+    },
+    {
+      "path": "skills/migrate-nextflow-code/references/nf-migrate-25-04/references/upstream-25-04.md",
+      "source": "portal/.agents/skills/nf-migrate-25-04/references/upstream-25-04.md",
+      "source_sha256": "8b50112d5df68dac2986b3204480816be5e885539c4d2535583a6ec5592a8410",
+      "bundled_sha256": "f0ec9f986abb0707c53f57f165f7ff1c7b75f6a5cfa77afad84681814742f56a",
+      "override": true
+    },
+    {
+      "path": "skills/migrate-nextflow-code/references/nf-migrate-25-04/scripts/find_deprecated_patterns.py",
+      "source": "portal/.agents/skills/nf-migrate-25-04/scripts/find_deprecated_patterns.py",
+      "source_sha256": "a23a4eb685ef75baf62d7fa4b3464bd521e9524f850a18403160b4e38c53cc35",
+      "bundled_sha256": "a23a4eb685ef75baf62d7fa4b3464bd521e9524f850a18403160b4e38c53cc35",
+      "override": true
+    },
+    {
+      "path": "skills/migrate-nextflow-code/references/nf-migrate-25-04/scripts/find_shell_blocks.py",
+      "source": "portal/.agents/skills/nf-migrate-25-04/scripts/find_shell_blocks.py",
+      "source_sha256": "13efcf3abb1510b88694d973d8d98be643c43fb189774a05fc3810453dab3a70",
+      "bundled_sha256": "13efcf3abb1510b88694d973d8d98be643c43fb189774a05fc3810453dab3a70",
       "override": true
     }
   ],
@@ -1167,9 +1167,16 @@
       "skills/debug-seqera-failed-run/references/debug-workflow.md",
       "skills/launch-workflow/SKILL.md",
       "skills/maintain-nf-core-pipeline/SKILL.md",
+      "skills/maintain-nf-core-pipeline/references/nf-core-conventions.md",
       "skills/maintain-nf-core-pipeline/references/template-merges/tools-4_0.md",
       "skills/migrate-from-snakemake/SKILL.md",
-      "skills/nextflow-26-syntax/SKILL.md",
+      "skills/migrate-nextflow-code/SKILL.md",
+      "skills/migrate-nextflow-code/references/nextflow-26-syntax/README.md",
+      "skills/migrate-nextflow-code/references/nf-migrate-25-04/README.md",
+      "skills/migrate-nextflow-code/references/nf-migrate-25-04/references/upstream-25-04.md",
+      "skills/migrate-nextflow-code/references/nf-migrate-25-04/scripts/find_deprecated_patterns.py",
+      "skills/migrate-nextflow-code/references/nf-migrate-25-04/scripts/find_shell_blocks.py",
+      "skills/migrate-nextflow-code/references/nf-v2-boolean-params/README.md",
       "skills/nextflow-config/SKILL.md",
       "skills/nextflow-config/references/config-options.md",
       "skills/nextflow-history/SKILL.md",
@@ -1185,9 +1192,9 @@
       "skills/nf-plugin-development/SKILL.md",
       "skills/nf-test/SKILL.md",
       "skills/nf-test/references/repair-nf-test/README.md",
-      "skills/nf-v2-boolean-params/SKILL.md",
       "skills/repair-workflow/SKILL.md",
       "skills/repair-workflow/references/nf-debug/README.md",
+      "skills/repair-workflow/references/repair-checklists.md",
       "skills/search-existing-modules/SKILL.md",
       "skills/seqera-data-links/SKILL.md",
       "skills/seqera-mcp/SKILL.md",
@@ -1229,6 +1236,18 @@
       {
         "from": "nf-run-history",
         "to": "nextflow-history"
+      },
+      {
+        "from": "nextflow-26-syntax",
+        "to": "migrate-nextflow-code"
+      },
+      {
+        "from": "nf-v2-boolean-params",
+        "to": "migrate-nextflow-code"
+      },
+      {
+        "from": "nf-migrate-25-04",
+        "to": "migrate-nextflow-code"
       }
     ]
   }

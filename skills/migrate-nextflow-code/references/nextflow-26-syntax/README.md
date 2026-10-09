@@ -1,14 +1,3 @@
----
-name: nextflow-26-syntax
-description: >
-  Migrate, write, or debug Nextflow workflows under the v2 strict-syntax
-  parser used by Nextflow 26+. Use for NXF_SYNTAX_PARSER=v2 issues,
-  typed params blocks, process input/output type annotations, implicit
-  it errors, mixed declarations, nextflow inspect, or preview/compile
-  failures. Also use for staged modernization of an existing pipeline to
-  26.04+ — publishDir to workflow output blocks, static types, and
-  tuple-to-record channel migration.
----
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
 ## Using this skill
@@ -339,7 +328,7 @@ nextflow inspect <pipeline> 2>&1
 
 ## Related Skills
 
-- `nf-v2-boolean-params` — focused deep-dive on boolean CLI params under strict syntax. **Load this skill alone for general v2 migration; pair with `nf-v2-boolean-params` when the task also involves a boolean flag that's not toggling.**
+- [boolean parameter compatibility](../nf-v2-boolean-params/README.md) — read the boolean compatibility reference when the task also involves a flag that is not toggling; otherwise keep the syntax investigation scoped to the observed parser errors.
 - `nf-pipeline-design` — typed process/workflow rules and the workflow `output {}` block in new code
 - `maintain-nf-core-pipeline` — when the pipeline being migrated is an nf-core pipeline (template sync and module updates come first)
 - `nf-test` / [nf-test failure repair](../nf-test/references/repair-nf-test/README.md) — regression tests between migration stages

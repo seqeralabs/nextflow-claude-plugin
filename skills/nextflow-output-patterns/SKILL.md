@@ -11,7 +11,7 @@ description: >
   merging, combined output files, metadata-keyed grouping, optional
   tuple positions, and the broader category of "the workflow finishes
   without error but the merged output is malformed." Pair with
-  `nextflow-26-syntax` (strict v2 syntax) and build-nextflow-pipeline
+  migrate-nextflow-code (strict v2 syntax) and build-nextflow-pipeline
   (high-level structure and module composition); this skill is specifically about
   output-correctness idioms in the operator layer.
 ---

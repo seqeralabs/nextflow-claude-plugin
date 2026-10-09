@@ -1,12 +1,3 @@
----
-name: nf-v2-boolean-params
-description: >
-  Handle boolean parameters correctly in Nextflow v2 strict syntax.
-  Use when writing or migrating Nextflow workflows with Boolean params,
-  debugging "Value is [string] but should be [boolean]", fixing truthy
-  string flags, or when --flag true/false behaves differently under
-  NXF_SYNTAX_PARSER=v2 / Nextflow 26+.
----
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
 ## Using this skill
@@ -219,5 +210,5 @@ If using the `nf-schema` plugin (`validateParameters()`), be aware:
 
 ## Related Skills
 
-- `nextflow-26-syntax` — broader v2 parser rules (type annotations on process I/O, implicit `it`, top-level statements vs declarations, emit labels). **Load together with this skill when the task touches multiple v2 grammar rules; load this one alone when the failure is specifically about a boolean CLI param.**
+- [strict syntax compatibility](../nextflow-26-syntax/README.md) — broader v2 parser rules (type annotations on process I/O, implicit `it`, top-level statements vs declarations, emit labels). Read the syntax compatibility reference when the task touches multiple grammar rules; keep boolean-only failures scoped to this reference.
 - [static diagnostics](../repair-workflow/references/nf-debug/README.md) — Pipeline diagnostics with lint, config validation, and preview

@@ -1,11 +1,3 @@
----
-name: nf-migrate-25-04
-description: >
-  Migrate Nextflow pipelines to 25.04. Covers breaking changes, deprecations,
-  workflow outputs v3, strict syntax, and new features. Use when upgrading
-  pipelines, fixing 25.04 compatibility, or adopting data lineage, topic
-  channels, or `nextflow lint`.
----
 <!-- Adapted for the Nextflow plugin: generic host tools and OAuth MCP. -->
 
 ## Using this skill
@@ -23,19 +15,19 @@ manages OAuth for the connected MCP server.
 
 # Nextflow 25.04 Migration
 
-Full upstream changelog: `upstream-25-04.md`
+Full upstream changelog: [25.04 release notes](references/upstream-25-04.md). This reference applies to that target release; verify version-dependent commands against installed help.
 
 ## Quick Start — Scan for Issues
 
 Run the comprehensive scanner on any pipeline directory:
 
 If available, use the bundled `find_deprecated_patterns.py` helper to inspect
-the user-provided source files with the host's execution tools.
+the user-provided source files with the host's execution tools: [deprecated-pattern scanner](scripts/find_deprecated_patterns.py).
 
 Checks for: deprecated `shell` blocks, unnecessary `nextflow.preview.topic` flags,
 workflow output v2 `>>` syntax, and `-with-weblog` usage.
 
-For shell blocks only, use the bundled `find_shell_blocks.py` helper if available.
+For shell blocks only, use the [shell-block scanner](scripts/find_shell_blocks.py).
 
 Both scripts exit 0 if clean, 1 if issues found.
 
@@ -153,5 +145,5 @@ plugins {
 
 ### 5. New Config Options
 
-See `upstream-25-04.md` § Miscellaneous for the full list.
+See [25.04 release notes](references/upstream-25-04.md) § Miscellaneous for the full list.
 Relevant only if using specific cloud executors (AWS Batch, Azure Batch, Google Batch, Fusion).
